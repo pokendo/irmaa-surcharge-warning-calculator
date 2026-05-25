@@ -49,12 +49,22 @@ Coolify setup target:
 
 ```text
 App name: irmaacheck
-Domain: https://www.irmaacheck.com
+Domains: https://www.irmaacheck.com, https://irmaacheck.com
+Redirect direction: root/non-www to www
 Git source: https://github.com/pokendo/irmaa-surcharge-warning-calculator
 Build pack: Dockerfile
 Health check path: /healthz
 Start command: npm start
 Internal port: 4173
+```
+
+Production verification:
+
+```text
+https://www.irmaacheck.com/healthz -> 200
+https://www.irmaacheck.com/ -> 200
+https://irmaacheck.com/ -> redirects to https://www.irmaacheck.com/
+npm run smoke with SMOKE_BASE_URL=https://www.irmaacheck.com -> passed
 ```
 
 ## PocketBase Rules
@@ -63,7 +73,7 @@ PocketBase is the selected free backend until the site produces enough revenue t
 
 Do not reuse PocketBase services, data volumes, admin credentials, API rules, or backups from any other app. The `irmaacheck-pocketbase` resource and its `pocketbase-data` and `pocketbase-hooks` volumes belong only to this project.
 
-PocketBase is running in the `irmaacheck` Coolify project, `production` environment. The service is healthy in Coolify and its domain field is configured as `http://pb.irmaacheck.com:8080`, but DNS and public port routing still need to be completed before the URL or admin screen can be used externally.
+PocketBase is running in the `irmaacheck` Coolify project, `production` environment. The service is healthy in Coolify and its domain field is configured as `http://pb.irmaacheck.com:8080`. DNS for `pb.irmaacheck.com` points to `204.168.236.236`, but public port routing for `8080` still needs to be completed before the URL or admin screen can be used externally.
 
 Admin setup should be completed only through this project's PocketBase admin path:
 
@@ -121,13 +131,14 @@ Annual update checklist:
 
 ## Deployment Checklist
 
-- [ ] All tests pass locally with `npm.cmd test`.
-- [ ] No secrets are committed.
-- [ ] IRMAA bracket data matches current CMS published rates.
-- [ ] Calculator output says estimated or educational, never exact or guaranteed.
-- [ ] SSA-44 page clearly states that Roth conversions, capital gains, and home sales generally do not qualify as SSA life-changing events.
-- [ ] Ad placements are labeled Advertisement and do not push the calculator below the first viewport.
-- [ ] Mobile layout is checked at narrow widths before production deployment.
+- [x] All tests pass locally with `npm.cmd test`.
+- [x] No secrets are committed.
+- [x] IRMAA bracket data matches current CMS published rates.
+- [x] Calculator output says estimated or educational, never exact or guaranteed.
+- [x] SSA-44 page clearly states that Roth conversions, capital gains, and home sales generally do not qualify as SSA life-changing events.
+- [x] Ad placements are labeled Advertisement and do not push the calculator below the first viewport.
+- [x] Mobile layout is checked at narrow widths before production deployment.
+- [x] Production smoke checks pass against `https://www.irmaacheck.com`.
 
 ## Content Compliance Rules
 

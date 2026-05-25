@@ -2,7 +2,7 @@
 
 ## Current Status
 
-The static MVP is built in this project folder. The site includes the homepage calculator, `/irmaa-calculator/`, `/irmaa-brackets-2026/`, supporting educational pages, scenario calculator pages, source notes, SEO files, a static Node server, Docker deployment files, and automated tests. The production domain is `irmaacheck.com`.
+The static MVP is built and deployed from this project folder. The site includes the homepage calculator, `/irmaa-calculator/`, `/irmaa-brackets-2026/`, supporting educational pages, scenario calculator pages, source notes, SEO files, a static Node server, Docker deployment files, and automated tests. The production site is live at `https://www.irmaacheck.com`.
 
 ## Completed
 
@@ -19,21 +19,20 @@ The static MVP is built in this project folder. The site includes the homepage c
 - Local Git repository initialized in this folder and committed at `c07e2fa`.
 - GitHub repository `pokendo/irmaa-surcharge-warning-calculator` created and connected as `origin`.
 - Coolify app resource `irmaacheck` created from the GitHub repo with Dockerfile build pack, domain `https://www.irmaacheck.com`, and exposed port `4173`.
+- Coolify deployment completed and the app is running healthy.
+- DNS records for `irmaacheck.com`, `www.irmaacheck.com`, and `pb.irmaacheck.com` point to `204.168.236.236`.
+- Production SSL is working for `https://www.irmaacheck.com`.
+- Root domain redirects to `https://www.irmaacheck.com`.
+- Production smoke checks passed against `https://www.irmaacheck.com`.
 - Mobile header adjustment so the header does not cover the calculator on narrow screens.
 - Automated test coverage for calculator logic, content, metadata, deployment notes, source links, and server behavior.
 
 ## Next Tasks
 
-- Resolve the first Coolify deployment, which is currently stuck at "Building docker image started" and still shows the app as exited.
-- Add DNS records for `irmaacheck.com`, `www.irmaacheck.com`, and `pb.irmaacheck.com` pointing to `204.168.236.236`.
 - Make PocketBase public URL reachable by confirming port `8080` is routed/open for `pb.irmaacheck.com`.
 - Finish PocketBase admin setup at the project-specific `/_/` admin path after the public URL is reachable.
-- Start Docker Desktop or use the server-side builder, then run a container build.
-- Run `npm test` and `npm run smoke` against the local server before deployment.
-- Deploy the app in Coolify as its own isolated application.
-- Point the production domain to the Coolify app and verify SSL.
-- Run post-deploy smoke checks against the production URL.
-- Add analytics only after the production domain is confirmed.
+- Add analytics now that the production domain is confirmed.
+- Decide whether to connect the Coolify GitHub app/webhook for automatic deploys on future pushes.
 
 ## Open Deployment Details
 
@@ -45,7 +44,7 @@ The static MVP is built in this project folder. The site includes the homepage c
 - PocketBase service URL in Coolify: `http://204.168.236.236:8000/project/c6f8y5vgefsrxoutm7a3kpus/environment/uqcfqwqf85rasi8hifvybn6k/service/pu9ifhjm8nj5qsoxs2jwxp1v`
 - PocketBase configured public URL: `http://pb.irmaacheck.com:8080`
 - Supabase is not being used now because the org is blocked by the free-project limit.
-- Production domain: irmaacheck.com.
+- Production domain: `https://www.irmaacheck.com`.
 - Hetzner/Coolify dashboard: `http://204.168.236.236:8000/`
 - Code source for deployment: local Git repository is connected to GitHub `origin/main`.
-- Docker daemon: was not running during the last local build attempt.
+- Local Docker daemon was not running during the last local build attempt; Coolify's server-side builder is working.
