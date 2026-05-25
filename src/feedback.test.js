@@ -46,7 +46,7 @@ test("infrastructure documents isolated PocketBase and Coolify resources", async
   assert.match(text, /PocketBase service name: `irmaacheck-pocketbase`/);
   assert.match(text, /Do not reuse PocketBase services/i);
   assert.match(env, /POCKETBASE_RESOURCE_NAME=irmaacheck-pocketbase/);
-  assert.match(env, /VITE_POCKETBASE_URL=http:\/\/pb\.irmaacheck\.com:8080/);
+  assert.match(env, /VITE_POCKETBASE_URL=https:\/\/pb\.irmaacheck\.com/);
 });
 
 test("docs frame scenario pages as UX flows instead of primary SEO pages", async () => {

@@ -23,7 +23,7 @@ This project must stay separate from other ongoing projects.
 - GitHub repository: `https://github.com/pokendo/irmaa-surcharge-warning-calculator`
 - PocketBase service name: `irmaacheck-pocketbase`
 - PocketBase Coolify UUID: `pu9ifhjm8nj5qsoxs2jwxp1v`
-- PocketBase configured URL: `http://pb.irmaacheck.com:8080`
+- PocketBase configured URL: `https://pb.irmaacheck.com`
 - Coolify resource boundary: create a new app/resource for `irmaacheck`; do not attach it to another site's stack.
 - Local Git repository: initialized in this folder with commit `c07e2fa`.
 
@@ -73,12 +73,14 @@ PocketBase is the selected free backend until the site produces enough revenue t
 
 Do not reuse PocketBase services, data volumes, admin credentials, API rules, or backups from any other app. The `irmaacheck-pocketbase` resource and its `pocketbase-data` and `pocketbase-hooks` volumes belong only to this project.
 
-PocketBase is running in the `irmaacheck` Coolify project, `production` environment. The service is healthy in Coolify and its domain field is configured as `http://pb.irmaacheck.com:8080`. DNS for `pb.irmaacheck.com` points to `204.168.236.236`, but public port routing for `8080` still needs to be completed before the URL or admin screen can be used externally.
+PocketBase is running in the `irmaacheck` Coolify project, `production` environment. The service is healthy in Coolify and reachable at `https://pb.irmaacheck.com`. DNS for `pb.irmaacheck.com` points to `204.168.236.236`, HTTP redirects to HTTPS, and `/api/health` returns healthy.
+
+PocketBase routing note: the Coolify service template originally generated proxy labels for an `sslip.io` hostname and expected public port `8080`. The saved compose file was backed up at `/data/coolify/services/pu9ifhjm8nj5qsoxs2jwxp1v/docker-compose.yml.bak-irmaacheck`, then the service labels were updated so Traefik routes `pb.irmaacheck.com` on normal HTTPS to the internal PocketBase port `8080`. Be careful when saving this service in Coolify; if Coolify regenerates labels, recheck `https://pb.irmaacheck.com/api/health`.
 
 Admin setup should be completed only through this project's PocketBase admin path:
 
 ```text
-http://pb.irmaacheck.com:8080/_/
+https://pb.irmaacheck.com/_/
 ```
 
 ## Environment Variables
@@ -89,7 +91,7 @@ Document placeholders in `.env.example` if a feature needs them:
 HOST=0.0.0.0
 PORT=4173
 POCKETBASE_RESOURCE_NAME=irmaacheck-pocketbase
-VITE_POCKETBASE_URL=http://pb.irmaacheck.com:8080
+VITE_POCKETBASE_URL=https://pb.irmaacheck.com
 VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 

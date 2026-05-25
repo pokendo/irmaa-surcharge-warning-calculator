@@ -15,7 +15,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Dedicated resource names selected: Coolify app name: irmaacheck; PocketBase service name: irmaacheck-pocketbase; production domain: irmaacheck.com.
 - Coolify project `irmaacheck` created in its own `production` environment.
 - PocketBase service `irmaacheck-pocketbase` created in the `irmaacheck` Coolify project and deployed healthy with isolated PocketBase data/hooks volumes.
-- PocketBase service domain configured in Coolify as `http://pb.irmaacheck.com:8080`.
+- PocketBase service domain configured and reachable at `https://pb.irmaacheck.com`.
 - Local Git repository initialized in this folder and committed at `c07e2fa`.
 - GitHub repository `pokendo/irmaa-surcharge-warning-calculator` created and connected as `origin`.
 - Coolify app resource `irmaacheck` created from the GitHub repo with Dockerfile build pack, domain `https://www.irmaacheck.com`, and exposed port `4173`.
@@ -24,13 +24,14 @@ The static MVP is built and deployed from this project folder. The site includes
 - Production SSL is working for `https://www.irmaacheck.com`.
 - Root domain redirects to `https://www.irmaacheck.com`.
 - Production smoke checks passed against `https://www.irmaacheck.com`.
+- PocketBase HTTPS health check passed at `https://pb.irmaacheck.com/api/health`.
+- PocketBase admin screen loads at `https://pb.irmaacheck.com/_/`.
 - Mobile header adjustment so the header does not cover the calculator on narrow screens.
 - Automated test coverage for calculator logic, content, metadata, deployment notes, source links, and server behavior.
 
 ## Next Tasks
 
-- Make PocketBase public URL reachable by confirming port `8080` is routed/open for `pb.irmaacheck.com`.
-- Finish PocketBase admin setup at the project-specific `/_/` admin path after the public URL is reachable.
+- Finish PocketBase admin setup at the project-specific `/_/` admin path.
 - Add analytics now that the production domain is confirmed.
 - Decide whether to connect the Coolify GitHub app/webhook for automatic deploys on future pushes.
 
@@ -42,7 +43,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - GitHub repository: `https://github.com/pokendo/irmaa-surcharge-warning-calculator`
 - PocketBase service: `irmaacheck-pocketbase`.
 - PocketBase service URL in Coolify: `http://204.168.236.236:8000/project/c6f8y5vgefsrxoutm7a3kpus/environment/uqcfqwqf85rasi8hifvybn6k/service/pu9ifhjm8nj5qsoxs2jwxp1v`
-- PocketBase configured public URL: `http://pb.irmaacheck.com:8080`
+- PocketBase configured public URL: `https://pb.irmaacheck.com`
 - Supabase is not being used now because the org is blocked by the free-project limit.
 - Production domain: `https://www.irmaacheck.com`.
 - Hetzner/Coolify dashboard: `http://204.168.236.236:8000/`
