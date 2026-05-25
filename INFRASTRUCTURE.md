@@ -19,6 +19,8 @@ This project must stay separate from other ongoing projects.
 - Production domain: `irmaacheck.com`
 - Canonical HTTPS origin: `https://www.irmaacheck.com`
 - Coolify app name: `irmaacheck`
+- Coolify app UUID: `n2muhudfe48a2x48bc7edbou`
+- GitHub repository: `https://github.com/pokendo/irmaa-surcharge-warning-calculator`
 - PocketBase service name: `irmaacheck-pocketbase`
 - PocketBase Coolify UUID: `pu9ifhjm8nj5qsoxs2jwxp1v`
 - PocketBase configured URL: `http://pb.irmaacheck.com:8080`
@@ -48,6 +50,8 @@ Coolify setup target:
 ```text
 App name: irmaacheck
 Domain: https://www.irmaacheck.com
+Git source: https://github.com/pokendo/irmaa-surcharge-warning-calculator
+Build pack: Dockerfile
 Health check path: /healthz
 Start command: npm start
 Internal port: 4173
