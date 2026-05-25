@@ -21,8 +21,9 @@ This project must stay separate from other ongoing projects.
 - Coolify app name: `irmaacheck`
 - PocketBase service name: `irmaacheck-pocketbase`
 - PocketBase Coolify UUID: `pu9ifhjm8nj5qsoxs2jwxp1v`
-- PocketBase temporary URL: `http://pocketbase-pu9ifhjm8nj5qsoxs2jwxp1v.204.168.236.236.sslip.io:8080`
+- PocketBase configured URL: `http://pb.irmaacheck.com:8080`
 - Coolify resource boundary: create a new app/resource for `irmaacheck`; do not attach it to another site's stack.
+- Local Git repository: initialized in this folder with commit `c07e2fa`.
 
 ## Runtime
 
@@ -58,12 +59,12 @@ PocketBase is the selected free backend until the site produces enough revenue t
 
 Do not reuse PocketBase services, data volumes, admin credentials, API rules, or backups from any other app. The `irmaacheck-pocketbase` resource and its `pocketbase-data` and `pocketbase-hooks` volumes belong only to this project.
 
-PocketBase is running in the `irmaacheck` Coolify project, `production` environment. The service is healthy in Coolify, but the generated temporary public URL uses port `8080`; that port must be reachable from the public internet before the URL or admin screen can be used externally.
+PocketBase is running in the `irmaacheck` Coolify project, `production` environment. The service is healthy in Coolify and its domain field is configured as `http://pb.irmaacheck.com:8080`, but DNS and public port routing still need to be completed before the URL or admin screen can be used externally.
 
 Admin setup should be completed only through this project's PocketBase admin path:
 
 ```text
-http://pocketbase-pu9ifhjm8nj5qsoxs2jwxp1v.204.168.236.236.sslip.io:8080/_/
+http://pb.irmaacheck.com:8080/_/
 ```
 
 ## Environment Variables
@@ -74,7 +75,7 @@ Document placeholders in `.env.example` if a feature needs them:
 HOST=0.0.0.0
 PORT=4173
 POCKETBASE_RESOURCE_NAME=irmaacheck-pocketbase
-VITE_POCKETBASE_URL=http://pocketbase-pu9ifhjm8nj5qsoxs2jwxp1v.204.168.236.236.sslip.io:8080
+VITE_POCKETBASE_URL=http://pb.irmaacheck.com:8080
 VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 

@@ -15,14 +15,17 @@ The static MVP is built in this project folder. The site includes the homepage c
 - Dedicated resource names selected: Coolify app name: irmaacheck; PocketBase service name: irmaacheck-pocketbase; production domain: irmaacheck.com.
 - Coolify project `irmaacheck` created in its own `production` environment.
 - PocketBase service `irmaacheck-pocketbase` created in the `irmaacheck` Coolify project and deployed healthy with isolated PocketBase data/hooks volumes.
+- PocketBase service domain configured in Coolify as `http://pb.irmaacheck.com:8080`.
+- Local Git repository initialized in this folder and committed at `c07e2fa`.
 - Mobile header adjustment so the header does not cover the calculator on narrow screens.
 - Automated test coverage for calculator logic, content, metadata, deployment notes, source links, and server behavior.
 
 ## Next Tasks
 
-- Provide or create a separate Git repository or Docker image source for Coolify to deploy.
+- Create a remote GitHub repository for this local repo or provide another Docker image source for Coolify to deploy.
 - Add the app resource inside the existing Coolify project `irmaacheck`.
-- Make the PocketBase public URL reachable: open/route port `8080` or assign a cleaner backend subdomain such as `pb.irmaacheck.com` in Coolify and DNS.
+- Add DNS records for `irmaacheck.com`, `www.irmaacheck.com`, and `pb.irmaacheck.com` pointing to `204.168.236.236`.
+- Make PocketBase public URL reachable by confirming port `8080` is routed/open for `pb.irmaacheck.com`.
 - Finish PocketBase admin setup at the project-specific `/_/` admin path after the public URL is reachable.
 - Start Docker Desktop or use the server-side builder, then run a container build.
 - Run `npm test` and `npm run smoke` against the local server before deployment.
@@ -37,9 +40,9 @@ The static MVP is built in this project folder. The site includes the homepage c
 - Coolify project URL: `http://204.168.236.236:8000/project/c6f8y5vgefsrxoutm7a3kpus/environment/uqcfqwqf85rasi8hifvybn6k`
 - PocketBase service: `irmaacheck-pocketbase`.
 - PocketBase service URL in Coolify: `http://204.168.236.236:8000/project/c6f8y5vgefsrxoutm7a3kpus/environment/uqcfqwqf85rasi8hifvybn6k/service/pu9ifhjm8nj5qsoxs2jwxp1v`
-- PocketBase temporary public URL: `http://pocketbase-pu9ifhjm8nj5qsoxs2jwxp1v.204.168.236.236.sslip.io:8080`
+- PocketBase configured public URL: `http://pb.irmaacheck.com:8080`
 - Supabase is not being used now because the org is blocked by the free-project limit.
 - Production domain: irmaacheck.com.
 - Hetzner/Coolify dashboard: `http://204.168.236.236:8000/`
-- Code source for deployment: not yet connected; this folder is not currently a git repository and `gh` is not installed locally.
+- Code source for deployment: local Git repository exists, but no remote repository is connected yet and `gh` is not installed locally.
 - Docker daemon: was not running during the last local build attempt.
