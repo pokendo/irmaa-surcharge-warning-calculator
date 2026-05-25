@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roth Conversion IRMAA Calculator | IRMAA Warning Calculator</title>
+  <meta name="description" content="Estimate whether a Roth conversion could push your Medicare MAGI into a higher IRMAA bracket.">
+  <link rel="canonical" href="https://www.irmaacheck.com/roth-conversion-irmaa-calculator/">
+  <meta property="og:title" content="Roth Conversion IRMAA Calculator | IRMAA Warning Calculator">
+  <meta property="og:description" content="Estimate whether a Roth conversion could push your Medicare MAGI into a higher IRMAA bracket.">
+  <meta property="og:url" content="https://www.irmaacheck.com/roth-conversion-irmaa-calculator/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://www.irmaacheck.com/assets/irmaa-social-card.svg">
+  <meta name="twitter:image" content="https://www.irmaacheck.com/assets/irmaa-social-card.svg">
+  <script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "WebApplication",
+    "name":  "Roth Conversion IRMAA Calculator",
+    "description":  "Estimate whether a Roth conversion may affect IRMAA.",
+    "url":  "https://www.irmaacheck.com/roth-conversion-irmaa-calculator/",
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "IRMAA Warning Calculator"
+                  },
+    "applicationCategory":  "FinanceApplication",
+    "operatingSystem":  "Any"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.irmaacheck.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Roth Conversion IRMAA Calculator",
+      "item": "https://www.irmaacheck.com/roth-conversion-irmaa-calculator/"
+    }
+  ]
+}
+  </script>  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="layout-guided-planner">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">IW</span>IRMAA Warning Calculator</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../irmaa-calculator/">Calculator</a>
+        <a href="../irmaa-brackets-2026/">2026 Brackets</a>
+        <a href="../medicare-magi/">Medicare MAGI</a>
+        <a href="../how-to-avoid-irmaa/">Avoid IRMAA</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="ad-slot ad-slot-sponsor" aria-label="Advertisement">
+      <span>Advertisement</span>
+      <strong>Education partner</strong>
+      <p>Quiet sponsor space for Medicare education, annual threshold updates, or retirement planning resources.</p>
+    </div>
+
+    <section class="hero planner-hero">
+      <div class="hero-copy planner-intro">
+        <h1>Roth Conversion IRMAA Calculator</h1>
+        <p>Estimate whether a Roth conversion could push your Medicare MAGI into a higher IRMAA bracket.</p>
+        <div class="planner-progress" aria-label="Calculator steps">
+          <div><span>1</span><strong>Filing status</strong></div>
+          <div><span>2</span><strong>MAGI estimate</strong></div>
+          <div><span>3</span><strong>Income events</strong></div>
+          <div><span>4</span><strong>Premium impact</strong></div>
+        </div>
+        <ul class="trust-list">
+          <li>Uses 2026 CMS Part B and Part D IRMAA surcharge amounts.</li>
+          <li>Shows monthly and annual surcharge estimates in plain English.</li>
+          <li>Built for planning conversations, not tax, legal, or Medicare enrollment advice.</li>
+        </ul>
+      </div>
+
+      <div id="calculator" class="calculator-panel planner-panel" aria-label="IRMAA calculator">
+        <div class="panel-header">
+          <p class="step-label">Step-by-step estimate</p>
+          <h2>Check your estimated IRMAA risk</h2>
+          <p>Enter your expected Medicare MAGI and add any one-time income events.</p>
+        </div>
+        <form class="calculator-form" data-calculator-form data-default-event="roth">
+          <div class="field-grid">
+            <div class="field">
+              <label for="filingStatus">Filing status</label>
+              <select id="filingStatus" name="filingStatus">
+                <option value="single">Single</option>
+                <option value="joint">Married filing jointly</option>
+                <option value="separate">Married filing separately</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="baseMagi">Estimated Medicare MAGI</label>
+              <input id="baseMagi" name="baseMagi" type="number" inputmode="decimal" min="0" step="100" value="105000">
+              <span class="hint">MAGI is generally AGI plus tax-exempt interest for IRMAA.</span>
+            </div>
+          </div>
+
+          <fieldset>
+            <legend>Add income events</legend>
+            <div class="event-row" data-event>
+              <input id="event-roth" data-event-key="roth" type="checkbox" value="Roth conversion" checked>
+              <label for="event-roth">Roth conversion</label>
+              <input aria-label="Roth conversion amount" type="number" min="0" step="100" value="8000">
+            </div>
+            <div class="event-row" data-event>
+              <input id="event-rmd" data-event-key="rmd" type="checkbox" value="RMD">
+              <label for="event-rmd">RMD or IRA withdrawal</label>
+              <input aria-label="RMD or IRA withdrawal amount" type="number" min="0" step="100" value="0">
+            </div>
+            <div class="event-row" data-event>
+              <input id="event-gain" data-event-key="gains" type="checkbox" value="Capital gains">
+              <label for="event-gain">Capital gains or stock sale</label>
+              <input aria-label="Capital gains amount" type="number" min="0" step="100" value="0">
+            </div>
+            <div class="event-row" data-event>
+              <input id="event-home" data-event-key="home" type="checkbox" value="Home sale gain">
+              <label for="event-home">Taxable home sale gain</label>
+              <input aria-label="Taxable home sale gain amount" type="number" min="0" step="100" value="0">
+            </div>
+            <div class="event-row" data-event>
+              <input id="event-work" data-event-key="work" type="checkbox" value="Pension or part-time work">
+              <label for="event-work">Pension or part-time work</label>
+              <input aria-label="Pension or part-time work amount" type="number" min="0" step="100" value="0">
+            </div>
+          </fieldset>
+
+          <section class="results planner-results" data-results aria-live="polite">
+            <h3>Your estimate</h3>
+            <div class="result-grid">
+              <div class="result-item result-wide"><span class="result-label">Estimated bracket</span><span class="result-value" data-result="status">Standard premium</span></div>
+              <div class="result-item"><span class="result-label">Estimated MAGI</span><span class="result-value" data-result="magi">$0</span></div>
+              <div class="result-item"><span class="result-label">Monthly surcharge</span><span class="result-value" data-result="monthly">$0.00</span></div>
+              <div class="result-item"><span class="result-label">Annual surcharge</span><span class="result-value" data-result="annual">$0</span></div>
+              <div class="result-item"><span class="result-label">Room before next bracket</span><span class="result-value" data-result="room">$0</span></div>
+            </div>
+            <p class="disclaimer">This estimate is educational. Check final rules and your situation against official Medicare, SSA, and tax guidance.</p>
+          </section>
+
+          <div class="ad-slot ad-slot-inline" aria-label="Advertisement">
+            <span>Advertisement</span>
+            <p>Education partner placement for a Medicare planning checklist or annual IRMAA threshold update.</p>
+          </div>
+
+          <button type="submit">Print summary</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section planner-next" id="brackets-preview">
+      <div>
+        <h2>2026 IRMAA brackets at a glance</h2>
+        <p>For 2026 Medicare premiums, IRMAA uses 2024 modified adjusted gross income. The first surcharge begins above $109,000 for single filers and above $218,000 for married couples filing jointly.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Filing status</th><th>First IRMAA threshold</th><th>First Part B surcharge</th><th>First Part D surcharge</th></tr></thead>
+          <tbody>
+            <tr><td>Single</td><td>Over $109,000</td><td>$81.20/month</td><td>$14.50/month</td></tr>
+            <tr><td>Married filing jointly</td><td>Over $218,000</td><td>$81.20/month</td><td>$14.50/month</td></tr>
+            <tr><td>Married filing separately</td><td>Over $109,000</td><td>$446.30/month</td><td>$83.30/month</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ad-slot ad-slot-bottom" aria-label="Advertisement"><span>Advertisement</span><p>End-of-section banner for a sponsor that does not interrupt the calculator.</p></div>
+    </section>
+    <section class="section scenario-education">
+      <h2>Why Roth conversions can affect IRMAA</h2>
+      <p>A Roth conversion usually adds taxable income in the year of the conversion. For Medicare IRMAA, that extra income can raise Medicare MAGI and may move you into a higher premium bracket two years later.</p>
+      <p>Use this page to test the conversion amount before you act, then compare the result with the <a href="../irmaa-brackets-2026/">2026 IRMAA brackets</a>, review what counts in <a href="../medicare-magi/">Medicare MAGI</a>, or return to the <a href="../irmaa-calculator/">main IRMAA calculator</a>.</p>
+      <h3>Roth conversion FAQ</h3>
+      <dl class="faq-list">
+        <dt>Does a Roth conversion count for IRMAA?</dt><dd>A taxable Roth conversion generally increases MAGI for the tax year, which can affect later Medicare premiums.</dd>
+        <dt>Can I convert only part of an IRA?</dt><dd>Many people model smaller conversion amounts to see whether a partial conversion stays below a bracket threshold.</dd>
+        <dt>Is this tax advice?</dt><dd>No. This estimate is educational and should be checked with official guidance and a qualified professional.</dd>
+      </dl>
+    </section>  </main>
+
+  <footer class="site-footer"><div class="footer-inner">Educational estimates only. Not tax, legal, investment, or Medicare enrollment advice.</div></footer>
+  <script type="module" src="../src/app.js"></script>
+</body>
+</html>
+
+
+
+
+
+

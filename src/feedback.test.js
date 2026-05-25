@@ -1,0 +1,65 @@
+﻿import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import test from "node:test";
+
+const root = dirname(dirname(fileURLToPath(import.meta.url)));
+
+test("INFRASTRUCTURE documents hosting, PocketBase, and annual update rules", async () => {
+  const text = await readFile(join(root, "INFRASTRUCTURE.md"), "utf8");
+
+  assert.match(text, /Hetzner Cloud/);
+  assert.match(text, /Coolify/);
+  assert.match(text, /PocketBase/);
+  assert.match(text, /IRMAA Bracket Data/);
+  assert.match(text, /Annual Update Requirement/);
+  assert.match(text, /\/healthz/);
+});
+
+test("environment example documents deploy-time placeholders without secrets", async () => {
+  const text = await readFile(join(root, ".env.example"), "utf8");
+
+  assert.match(text, /HOST=0\.0\.0\.0/);
+  assert.match(text, /PORT=4173/);
+  assert.match(text, /VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX/);
+  assert.doesNotMatch(text, /sk-[A-Za-z0-9]/);
+});
+
+test("launch tasks document captures current handoff and remaining deployment work", async () => {
+  const text = await readFile(join(root, "TASKS.md"), "utf8");
+
+  assert.match(text, /Current status/i);
+  assert.match(text, /Completed/i);
+  assert.match(text, /Next tasks/i);
+  assert.match(text, /Coolify app name: irmaacheck/i);
+  assert.match(text, /production domain: irmaacheck\.com/i);
+  assert.match(text, /Docker daemon/i);
+});
+
+test("infrastructure documents isolated PocketBase and Coolify resources", async () => {
+  const text = await readFile(join(root, "INFRASTRUCTURE.md"), "utf8");
+  const env = await readFile(join(root, ".env.example"), "utf8");
+
+  assert.match(text, /Production domain: `irmaacheck\.com`/);
+  assert.match(text, /Coolify app name: `irmaacheck`/);
+  assert.match(text, /PocketBase service name: `irmaacheck-pocketbase`/);
+  assert.match(text, /Do not reuse PocketBase services/i);
+  assert.match(env, /POCKETBASE_RESOURCE_NAME=irmaacheck-pocketbase/);
+  assert.match(env, /VITE_POCKETBASE_URL=http:\/\/pocketbase-pu9ifhjm8nj5qsoxs2jwxp1v\.204\.168\.236\.236\.sslip\.io:8080/);
+});
+
+test("docs frame scenario pages as UX flows instead of primary SEO pages", async () => {
+  const readme = await readFile(join(root, "README.md"), "utf8");
+  const seoPlan = await readFile(join(root, "seo-plan.md"), "utf8");
+
+  assert.match(readme, /Scenario pages are UX entry flows/);
+  assert.match(seoPlan, /not primary SEO bets/i);
+});
+
+test("SSA-44 page prominently warns that common one-time income events usually do not qualify", async () => {
+  const html = await readFile(join(root, "irmaa-appeal-ssa-44-form", "index.html"), "utf8");
+
+  assert.match(html, /Roth conversions, capital gains, and home sales generally do not qualify/i);
+  assert.match(html, /not a general fix for one-time income/i);
+});

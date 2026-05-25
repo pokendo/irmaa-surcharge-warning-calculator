@@ -1,0 +1,11 @@
+﻿{
+  "name": "irmaa-surcharge-warning-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test src/*.test.js",
+    "smoke": "node scripts/smoke-test.js",
+    "start": "node server.js"
+  }
+}
