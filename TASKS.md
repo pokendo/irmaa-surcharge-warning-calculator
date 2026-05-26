@@ -26,12 +26,12 @@ The static MVP is built and deployed from this project folder. The site includes
 - Production smoke checks passed against `https://www.irmaacheck.com`.
 - PocketBase HTTPS health check passed at `https://pb.irmaacheck.com/api/health`.
 - PocketBase admin screen loads at `https://pb.irmaacheck.com/_/`.
+- PocketBase first superuser was created for this isolated project and login was verified.
 - Mobile header adjustment so the header does not cover the calculator on narrow screens.
 - Automated test coverage for calculator logic, content, metadata, deployment notes, source links, and server behavior.
 
 ## Next Tasks
 
-- Finish PocketBase admin setup at the project-specific `/_/` admin path.
 - Add analytics now that the production domain is confirmed.
 - Decide whether to connect the Coolify GitHub app/webhook for automatic deploys on future pushes.
 

@@ -77,11 +77,13 @@ PocketBase is running in the `irmaacheck` Coolify project, `production` environm
 
 PocketBase routing note: the Coolify service template originally generated proxy labels for an `sslip.io` hostname and expected public port `8080`. The saved compose file was backed up at `/data/coolify/services/pu9ifhjm8nj5qsoxs2jwxp1v/docker-compose.yml.bak-irmaacheck`, then the service labels were updated so Traefik routes `pb.irmaacheck.com` on normal HTTPS to the internal PocketBase port `8080`. Be careful when saving this service in Coolify; if Coolify regenerates labels, recheck `https://pb.irmaacheck.com/api/health`.
 
-Admin setup should be completed only through this project's PocketBase admin path:
+Admin access should be used only through this project's PocketBase admin path:
 
 ```text
 https://pb.irmaacheck.com/_/
 ```
+
+The first project-specific PocketBase superuser has been created and login has been verified. Do not commit or document the password in this repository.
 
 ## Environment Variables
 
