@@ -31,6 +31,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Profitability surfaces added: newsletter signup, sponsor-slot tracking, and `/advertise/` sponsor inventory page.
 - PocketBase report script added at `scripts/pocketbase-report.js` for early event and signup review.
 - First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
+- First sponsor outreach Gmail drafts created for Income Lab and RothAware; remaining prospects need contact-form outreach or confirmed emails.
 - Automatic deployment workflow added at `.github/workflows/deploy-coolify.yml` to trigger this project's Coolify deploy API on pushes to `main`.
 - Coolify API access enabled and a deploy-only `COOLIFY_API_TOKEN` GitHub repository secret added for automatic deployments.
 - Mobile header adjustment so the header does not cover the calculator on narrow screens.
@@ -38,8 +39,10 @@ The static MVP is built and deployed from this project folder. The site includes
 
 ## Next Tasks
 
+- Send or revise the two prepared Gmail sponsor drafts.
+- Submit contact-form outreach for MaxiFi Planner, Savvy Medicare Planning, AdvisorEdgeOS, Rothology Partner Desk, and AdvisorCal.
 - Send the first sponsor outreach batch and track replies.
-- Review early PocketBase `site_events` and `newsletter_signups` data after traffic starts.
+- Review PocketBase `site_events` and `newsletter_signups` again after traffic starts; the first report on May 30, 2026 showed 0 events and 0 signups.
 
 ## Open Deployment Details
 

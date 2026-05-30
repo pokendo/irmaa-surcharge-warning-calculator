@@ -73,6 +73,20 @@ Status
 Notes
 ```
 
+## First Batch Status
+
+As of May 30, 2026:
+
+| Prospect | Contact path | Status | Notes |
+| --- | --- | --- | --- |
+| Income Lab | info@incomelab.io | Gmail draft created | Public contact page lists general info email. |
+| RothAware | support@rothaware.com | Gmail draft created | Public FAQ/contact page lists support email. |
+| MaxiFi Planner | https://maxifiplanner.com/contact | Contact form next | No direct sponsor email confirmed; use contact form or support ticket. |
+| Savvy Medicare Planning | https://www.savvymedicare.com/ | Contact form next | Public site points users to contact options. |
+| AdvisorEdgeOS / RothEdge | https://www.advisoredgeos.com/ | Contact form next | Good fit; no public outreach email confirmed yet. |
+| Rothology Partner Desk | https://q3partnerdesk.com/ | Contact form next | Good fit; use site CTA/contact path. |
+| AdvisorCal | https://www.advisorcal.com/ | Contact form next | Strong fit; no public outreach email confirmed yet. |
+
 ## Rules
 
 - Keep sponsors clearly labeled as Advertisement.
