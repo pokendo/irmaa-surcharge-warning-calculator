@@ -73,7 +73,7 @@ Automatic deploys:
 .github/workflows/deploy-coolify.yml
 ```
 
-GitHub's protected webhook settings page may ask for account re-authentication, so this repository uses a lightweight GitHub Actions workflow to POST push events to Coolify's manual GitHub webhook URL. If a native GitHub webhook is later added in GitHub settings, keep only one automatic deployment path to avoid duplicate deploys.
+GitHub's protected webhook settings page may ask for account re-authentication, so this repository uses a lightweight GitHub Actions workflow to call Coolify's deploy API for this app UUID. Coolify API access is enabled on this instance, and GitHub Actions stores the deploy-only token in the `COOLIFY_API_TOKEN` repository secret. If a native GitHub webhook is later added in GitHub settings, keep only one automatic deployment path to avoid duplicate deploys.
 
 ## PocketBase Rules
 

@@ -12,13 +12,10 @@ jobs:
     steps:
       - name: Trigger Coolify deploy
         env:
-          COOLIFY_WEBHOOK_URL: http://204.168.236.236:8000/webhooks/source/github/events/manual
-          GITHUB_EVENT_JSON: ${{ toJson(github.event) }}
+          COOLIFY_DEPLOY_URL: http://204.168.236.236:8000/api/v1/deploy?uuid=n2muhudfe48a2x48bc7edbou&force=false
+          COOLIFY_API_TOKEN: ${{ secrets.COOLIFY_API_TOKEN }}
         run: |
           curl --fail --show-error --silent \
-            --request POST \
-            --header "Content-Type: application/json" \
-            --header "X-GitHub-Event: push" \
-            --header "X-GitHub-Delivery: actions-${{ github.run_id }}" \
-            --data "$GITHUB_EVENT_JSON" \
-            "$COOLIFY_WEBHOOK_URL"
+            --request GET \
+            --header "Authorization: Bearer $COOLIFY_API_TOKEN" \
+            "$COOLIFY_DEPLOY_URL"
