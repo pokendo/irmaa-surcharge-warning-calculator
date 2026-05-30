@@ -13,14 +13,16 @@ const auth = await request("/api/collections/_superusers/auth-with-password", {
 });
 
 const headers = { Authorization: `Bearer ${auth.token}` };
-const [events, signups] = await Promise.all([
+const [events, signups, sponsorInquiries] = await Promise.all([
   listRecords("site_events"),
   listRecords("newsletter_signups"),
+  listRecords("sponsor_inquiries"),
 ]);
 
 const byEvent = countBy(events.items, "event_name");
 const byPage = countBy(events.items, "page_path");
 const bySignupSource = countBy(signups.items, "source");
+const bySponsorPlacement = countBy(sponsorInquiries.items, "placement");
 
 console.log("# IRMAA Check PocketBase Report");
 console.log(`Generated: ${new Date().toISOString()}`);
@@ -35,6 +37,14 @@ console.log("");
 console.log("Recent newsletter signups:");
 for (const item of signups.items.slice(0, 10)) {
   console.log(`- ${item.created} | ${item.email} | ${item.source || "unknown"} | ${item.page_path || "/"}`);
+}
+console.log("");
+console.log(`Sponsor inquiries: ${sponsorInquiries.totalItems}`);
+printCounts("Sponsor inquiries by placement", bySponsorPlacement);
+console.log("");
+console.log("Recent sponsor inquiries:");
+for (const item of sponsorInquiries.items.slice(0, 10)) {
+  console.log(`- ${item.created} | ${item.company} | ${item.email} | ${item.placement || "unknown"}`);
 }
 
 async function listRecords(collection) {

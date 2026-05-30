@@ -27,8 +27,9 @@ The static MVP is built and deployed from this project folder. The site includes
 - PocketBase HTTPS health check passed at `https://pb.irmaacheck.com/api/health`.
 - PocketBase admin screen loads at `https://pb.irmaacheck.com/_/`.
 - PocketBase first superuser was created for this isolated project and login was verified.
-- PocketBase collections `newsletter_signups` and `site_events` created for project-owned lead capture and first-party analytics.
+- PocketBase collections `newsletter_signups`, `site_events`, and `sponsor_inquiries` created for project-owned lead capture and first-party analytics.
 - Profitability surfaces added: newsletter signup, sponsor-slot tracking, and `/advertise/` sponsor inventory page.
+- Sponsor inquiry form added to `/advertise/` and connected to the project-owned `sponsor_inquiries` PocketBase collection.
 - PocketBase report script added at `scripts/pocketbase-report.js` for early event and signup review.
 - First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
 - First sponsor outreach Gmail drafts created for Income Lab and RothAware; remaining prospects need contact-form outreach or confirmed emails.

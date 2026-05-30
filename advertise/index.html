@@ -109,6 +109,44 @@
         <span>Consumer finance tools</span>
       </div>
     </section>
+
+    <section class="section sponsor-inquiry">
+      <div>
+        <h2>Ask about sponsor availability</h2>
+        <p>Tell us who you serve and which placement might fit. We will keep sponsorships educational, clearly labeled, and aligned with the Medicare premium planning audience.</p>
+      </div>
+      <form class="sponsor-inquiry-form" data-sponsor-inquiry-form>
+        <div class="field">
+          <label for="sponsor-company">Company</label>
+          <input id="sponsor-company" name="company" autocomplete="organization" required>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="sponsor-name">Name</label>
+            <input id="sponsor-name" name="name" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="sponsor-email">Email</label>
+            <input id="sponsor-email" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="sponsor-interest">Placement interest</label>
+          <select id="sponsor-interest" name="placement">
+            <option value="calculator">Calculator sponsor</option>
+            <option value="scenario">Scenario page sponsor</option>
+            <option value="email">Email update sponsor</option>
+            <option value="unsure">Not sure yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sponsor-message">Message</label>
+          <textarea id="sponsor-message" name="message" rows="4" placeholder="Audience fit, timing, or questions"></textarea>
+        </div>
+        <button type="submit" data-track-event="sponsor_inquiry" data-track-label="sponsor form submit">Ask about sponsor availability</button>
+        <p class="form-status" data-sponsor-inquiry-status aria-live="polite"></p>
+      </form>
+    </section>
   </main>
 
   <footer class="site-footer"><div class="footer-inner">Educational estimates only. Not tax, legal, investment, or Medicare enrollment advice.</div></footer>

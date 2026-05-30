@@ -59,6 +59,11 @@ test("advertise page documents sponsor inventory", async () => {
   assert.match(html, /Scenario page sponsor/i);
   assert.match(html, /Email update sponsor/i);
   assert.match(html, /data-track-event="sponsor_inquiry"/);
+  assert.match(html, /data-sponsor-inquiry-form/);
+  assert.match(html, /name="company"/);
+  assert.match(html, /name="email"/);
+  assert.match(html, /name="message"/);
+  assert.match(html, /Ask about sponsor availability/i);
 });
 
 test("mobile layout keeps the header out of the calculator viewport", async () => {
