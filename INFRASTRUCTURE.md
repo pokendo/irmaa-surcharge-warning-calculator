@@ -67,6 +67,14 @@ https://irmaacheck.com/ -> redirects to https://www.irmaacheck.com/
 npm run smoke with SMOKE_BASE_URL=https://www.irmaacheck.com -> passed
 ```
 
+Automatic deploys:
+
+```text
+.github/workflows/deploy-coolify.yml
+```
+
+GitHub's protected webhook settings page may ask for account re-authentication, so this repository uses a lightweight GitHub Actions workflow to POST push events to Coolify's manual GitHub webhook URL. If a native GitHub webhook is later added in GitHub settings, keep only one automatic deployment path to avoid duplicate deploys.
+
 ## PocketBase Rules
 
 PocketBase is the selected free backend until the site produces enough revenue to justify a paid hosted database. The current calculator still runs entirely in the browser, so do not add PocketBase dependencies until a planned feature needs them, such as email capture, saved scenarios, admin-managed bracket overrides, or lightweight event logging.
@@ -93,6 +101,14 @@ site_events
 ```
 
 `newsletter_signups` stores email update requests with source page and lightweight calculator context. `site_events` stores first-party product events such as page views, share-link clicks, sponsor-slot clicks, and newsletter signups. Public create access is enabled for these two collections so static pages can submit records without exposing admin credentials. Keep list, view, update, and delete access private.
+
+To review early traction without opening PocketBase manually:
+
+```text
+POCKETBASE_ADMIN_EMAIL=... POCKETBASE_ADMIN_PASSWORD=... node scripts/pocketbase-report.js
+```
+
+Do not commit real PocketBase credentials. Use local shell environment variables only.
 
 ## Environment Variables
 

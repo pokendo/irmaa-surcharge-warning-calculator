@@ -1,0 +1,24 @@
+name: Deploy to Coolify
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Coolify deploy
+        env:
+          COOLIFY_WEBHOOK_URL: http://204.168.236.236:8000/webhooks/source/github/events/manual
+          GITHUB_EVENT_JSON: ${{ toJson(github.event) }}
+        run: |
+          curl --fail --show-error --silent \
+            --request POST \
+            --header "Content-Type: application/json" \
+            --header "X-GitHub-Event: push" \
+            --header "X-GitHub-Delivery: actions-${{ github.run_id }}" \
+            --data "$GITHUB_EVENT_JSON" \
+            "$COOLIFY_WEBHOOK_URL"

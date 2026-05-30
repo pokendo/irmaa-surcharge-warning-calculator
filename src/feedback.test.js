@@ -49,6 +49,24 @@ test("infrastructure documents isolated PocketBase and Coolify resources", async
   assert.match(env, /VITE_POCKETBASE_URL=https:\/\/pb\.irmaacheck\.com/);
 });
 
+test("profitability operations include sponsor outreach and PocketBase reporting", async () => {
+  const outreach = await readFile(join(root, "SPONSOR_OUTREACH.md"), "utf8");
+  const infra = await readFile(join(root, "INFRASTRUCTURE.md"), "utf8");
+  const report = await readFile(join(root, "scripts", "pocketbase-report.js"), "utf8");
+  const workflow = await readFile(join(root, ".github", "workflows", "deploy-coolify.yml"), "utf8");
+
+  assert.match(outreach, /First Outreach List/i);
+  assert.match(outreach, /IRMAA Check helps adults estimate/i);
+  assert.match(outreach, /AdvisorEdgeOS/i);
+  assert.match(outreach, /Savvy Medicare Planning/i);
+  assert.match(infra, /scripts\/pocketbase-report\.js/);
+  assert.match(report, /newsletter_signups/);
+  assert.match(report, /site_events/);
+  assert.doesNotMatch(report, /F3jJYgf0aA9mEbKcQnUMl7sOPCpv/);
+  assert.match(workflow, /Deploy to Coolify/);
+  assert.match(workflow, /webhooks\/source\/github\/events\/manual/);
+});
+
 test("docs frame scenario pages as UX flows instead of primary SEO pages", async () => {
   const readme = await readFile(join(root, "README.md"), "utf8");
   const seoPlan = await readFile(join(root, "seo-plan.md"), "utf8");

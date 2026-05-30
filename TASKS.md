@@ -29,14 +29,17 @@ The static MVP is built and deployed from this project folder. The site includes
 - PocketBase first superuser was created for this isolated project and login was verified.
 - PocketBase collections `newsletter_signups` and `site_events` created for project-owned lead capture and first-party analytics.
 - Profitability surfaces added: newsletter signup, sponsor-slot tracking, and `/advertise/` sponsor inventory page.
+- PocketBase report script added at `scripts/pocketbase-report.js` for early event and signup review.
+- First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
+- Automatic deployment workflow added at `.github/workflows/deploy-coolify.yml` to trigger Coolify on pushes to `main`.
 - Mobile header adjustment so the header does not cover the calculator on narrow screens.
 - Automated test coverage for calculator logic, content, metadata, deployment notes, source links, and server behavior.
 
 ## Next Tasks
 
-- Decide whether to connect the Coolify GitHub app/webhook for automatic deploys on future pushes.
+- Confirm the next GitHub Actions run triggers Coolify successfully after the next push.
+- Send the first sponsor outreach batch and track replies.
 - Review early PocketBase `site_events` and `newsletter_signups` data after traffic starts.
-- Build the first outreach list for Medicare education, retirement income, and tax-planning sponsors.
 
 ## Open Deployment Details
 
