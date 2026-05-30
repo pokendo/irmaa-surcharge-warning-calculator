@@ -21,6 +21,7 @@ const pages = [
   ["ira-withdrawal-medicare-premium-calculator/index.html", "IRA Withdrawal Medicare Premium Calculator"],
   ["401k-withdrawal-medicare-premium-calculator/index.html", "401(k) Withdrawal Medicare Premium Calculator"],
   ["qcd-irmaa/index.html", "QCD IRMAA Guide"],
+  ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
 
 for (const [path, heading] of pages) {
@@ -38,6 +39,26 @@ test("calculator pages use the guided planner layout with sponsor placements", a
   assert.match(html, /ad-slot ad-slot-sponsor/);
   assert.match(html, /Education partner/);
   assert.match(html, /Advertisement/);
+});
+
+test("homepage and calculator expose revenue capture surfaces", async () => {
+  for (const path of ["index.html", join("irmaa-calculator", "index.html")]) {
+    const html = await readFile(join(root, path), "utf8");
+
+    assert.match(html, /data-newsletter-form/);
+    assert.match(html, /Get IRMAA bracket updates/i);
+    assert.match(html, /Sponsor this placement/i);
+    assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
+  }
+});
+
+test("advertise page documents sponsor inventory", async () => {
+  const html = await readFile(join(root, "advertise", "index.html"), "utf8");
+
+  assert.match(html, /Calculator sponsor/i);
+  assert.match(html, /Scenario page sponsor/i);
+  assert.match(html, /Email update sponsor/i);
+  assert.match(html, /data-track-event="sponsor_inquiry"/);
 });
 
 test("mobile layout keeps the header out of the calculator viewport", async () => {

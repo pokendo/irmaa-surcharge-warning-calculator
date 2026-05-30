@@ -27,6 +27,7 @@ if (typeof document !== "undefined") {
         const shareUrl = buildShareUrl(window.location, getCoreShareValues(form));
         await copyShareUrl(shareUrl, navigator.clipboard);
         shareLinkButton.textContent = "Link copied";
+        window.irmaaTrack?.("share_link", getCoreShareValues(form));
       });
     }
 
@@ -65,7 +66,18 @@ if (typeof document !== "undefined") {
         : formatCurrency(result.roomBeforeNextBracket);
       updateSummaryNode(summaryNode, result);
       renderPrintDetails(printDetailsNode, buildPrintDetails(result));
+      window.irmaaCurrentEstimate = {
+        filingStatus: result.filingStatus,
+        baseMagi: result.baseMagi,
+        eventTotal: result.eventTotal,
+        totalMagi: result.totalMagi,
+        monthlySurcharge: result.monthlySurcharge,
+        annualSurcharge: result.annualSurcharge,
+        bracketName: result.bracket.name,
+      };
     }
+
+    window.irmaaGetCalculatorContext = () => window.irmaaCurrentEstimate ?? getCoreShareValues(form);
   }
 }
 

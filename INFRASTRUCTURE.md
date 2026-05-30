@@ -85,6 +85,15 @@ https://pb.irmaacheck.com/_/
 
 The first project-specific PocketBase superuser has been created and login has been verified. Do not commit or document the password in this repository.
 
+PocketBase collections used by the public site:
+
+```text
+newsletter_signups
+site_events
+```
+
+`newsletter_signups` stores email update requests with source page and lightweight calculator context. `site_events` stores first-party product events such as page views, share-link clicks, sponsor-slot clicks, and newsletter signups. Public create access is enabled for these two collections so static pages can submit records without exposing admin credentials. Keep list, view, update, and delete access private.
+
 ## Environment Variables
 
 Document placeholders in `.env.example` if a feature needs them:

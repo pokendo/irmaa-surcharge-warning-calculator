@@ -27,13 +27,16 @@ The static MVP is built and deployed from this project folder. The site includes
 - PocketBase HTTPS health check passed at `https://pb.irmaacheck.com/api/health`.
 - PocketBase admin screen loads at `https://pb.irmaacheck.com/_/`.
 - PocketBase first superuser was created for this isolated project and login was verified.
+- PocketBase collections `newsletter_signups` and `site_events` created for project-owned lead capture and first-party analytics.
+- Profitability surfaces added: newsletter signup, sponsor-slot tracking, and `/advertise/` sponsor inventory page.
 - Mobile header adjustment so the header does not cover the calculator on narrow screens.
 - Automated test coverage for calculator logic, content, metadata, deployment notes, source links, and server behavior.
 
 ## Next Tasks
 
-- Add analytics now that the production domain is confirmed.
 - Decide whether to connect the Coolify GitHub app/webhook for automatic deploys on future pushes.
+- Review early PocketBase `site_events` and `newsletter_signups` data after traffic starts.
+- Build the first outreach list for Medicare education, retirement income, and tax-planning sponsors.
 
 ## Open Deployment Details
 

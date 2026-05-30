@@ -39,6 +39,7 @@
         <a href="./irmaa-brackets-2026/">2026 Brackets</a>
         <a href="./medicare-magi/">Medicare MAGI</a>
         <a href="./how-to-avoid-irmaa/">Avoid IRMAA</a>
+        <a href="./advertise/">Advertise</a>
       </nav>
     </div>
   </header>
@@ -48,6 +49,7 @@
       <span>Advertisement</span>
       <strong>Education partner</strong>
       <p>Quiet sponsor space for Medicare education, annual threshold updates, or retirement planning resources.</p>
+      <a href="./advertise/" data-track-event="sponsor_slot_click" data-track-label="homepage top sponsor">Sponsor this placement</a>
     </div>
 
     <section class="hero planner-hero">
@@ -159,6 +161,7 @@
           <div class="ad-slot ad-slot-inline" aria-label="Advertisement">
             <span>Advertisement</span>
             <p>Education partner placement for a Medicare planning checklist or annual IRMAA threshold update.</p>
+            <a href="./advertise/" data-track-event="sponsor_slot_click" data-track-label="homepage inline sponsor">Sponsor this placement</a>
           </div>
 
           <div class="action-row">
@@ -184,7 +187,7 @@
           </tbody>
         </table>
       </div>
-      <div class="ad-slot ad-slot-bottom" aria-label="Advertisement"><span>Advertisement</span><p>End-of-section banner for a sponsor that does not interrupt the calculator.</p></div>
+      <div class="ad-slot ad-slot-bottom" aria-label="Advertisement"><span>Advertisement</span><p>End-of-section banner for a sponsor that does not interrupt the calculator.</p><a href="./advertise/" data-track-event="sponsor_slot_click" data-track-label="homepage bottom sponsor">Sponsor this placement</a></div>
     </section>
     <section class="section scenario-links">
       <div>
@@ -200,10 +203,26 @@
         <a href="./401k-withdrawal-medicare-premium-calculator/">401(k) withdrawal</a>
         <a href="./qcd-irmaa/">QCD planning</a>
       </div>
+    </section>
+    <section class="section signup-section" aria-labelledby="signup-title">
+      <div>
+        <h2 id="signup-title">Get IRMAA bracket updates before they surprise you</h2>
+        <p>Join the practical update list for annual bracket changes, Medicare premium announcements, and plain-English planning reminders.</p>
+      </div>
+      <form class="signup-form" data-newsletter-form data-source="homepage">
+        <label for="signup-email">Email address</label>
+        <div class="signup-row">
+          <input id="signup-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <button type="submit">Send updates</button>
+        </div>
+        <p class="signup-note">Educational updates only. No tax, legal, investment, or Medicare enrollment advice.</p>
+        <p class="form-status" data-newsletter-status aria-live="polite"></p>
+      </form>
     </section>  </main>
 
   <footer class="site-footer"><div class="footer-inner">Educational estimates only. Not tax, legal, investment, or Medicare enrollment advice.</div></footer>
   <script type="module" src="./src/app.js"></script>
+  <script type="module" src="./src/profit.js"></script>
 </body>
 </html>
 
