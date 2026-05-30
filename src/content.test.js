@@ -52,6 +52,16 @@ test("homepage and calculator expose revenue capture surfaces", async () => {
   }
 });
 
+test("sponsor placement links point directly to the inquiry form", async () => {
+  const home = await readFile(join(root, "index.html"), "utf8");
+  const calculator = await readFile(join(root, "irmaa-calculator", "index.html"), "utf8");
+
+  assert.doesNotMatch(home, /href="\.\/advertise\/" data-track-event="sponsor_slot_click"/);
+  assert.match(home, /href="\.\/advertise\/#sponsor-inquiry" data-track-event="sponsor_slot_click"/);
+  assert.doesNotMatch(calculator, /href="\.\.\/advertise\/" data-track-event="sponsor_slot_click"/);
+  assert.match(calculator, /href="\.\.\/advertise\/#sponsor-inquiry" data-track-event="sponsor_slot_click"/);
+});
+
 test("advertise page documents sponsor inventory", async () => {
   const html = await readFile(join(root, "advertise", "index.html"), "utf8");
 
@@ -63,6 +73,7 @@ test("advertise page documents sponsor inventory", async () => {
   assert.match(html, /name="company"/);
   assert.match(html, /name="email"/);
   assert.match(html, /name="message"/);
+  assert.match(html, /id="sponsor-inquiry"/);
   assert.match(html, /Ask about sponsor availability/i);
 });
 
