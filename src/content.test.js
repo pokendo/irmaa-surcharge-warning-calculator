@@ -156,6 +156,27 @@ test("educational article pages use the editorial guide layout with related guid
   assert.match(html, /ad-slot ad-slot-inline/);
 });
 
+test("high-intent education pages route readers to the planning checklist lead magnet", async () => {
+  const articleRoutes = [
+    "medicare-magi",
+    "what-is-irmaa",
+    "how-to-avoid-irmaa",
+    "irmaa-appeal-ssa-44-form",
+    "does-roth-conversion-affect-irmaa",
+    "do-capital-gains-affect-medicare-premiums",
+    "do-rmds-affect-medicare-premiums",
+    "does-selling-a-house-affect-medicare-premiums",
+    "medicare-part-b-premium-2026",
+  ];
+
+  for (const route of articleRoutes) {
+    const html = await readFile(join(root, route, "index.html"), "utf8");
+
+    assert.match(html, /href="\.\.\/irmaa-planning-checklist\/"/, route);
+    assert.match(html, /IRMAA planning checklist/i, route);
+  }
+});
+
 test("Medicare MAGI page targets modified adjusted gross income and income-count questions", async () => {
   const html = await readFile(join(root, "medicare-magi", "index.html"), "utf8");
 
