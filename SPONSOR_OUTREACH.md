@@ -178,8 +178,11 @@ Email
 First outreach date
 Follow-up date
 Status
+Sponsor Landing URL
 Notes
 ```
+
+Use the prospect-specific Sponsor Landing URL in outreach messages so PocketBase reporting can attribute sponsor inquiries back to the right first-contact channel. Keep the base destination on `/advertise/` and use `utm_campaign=sponsor_outreach`.
 
 ## First Batch Status
 

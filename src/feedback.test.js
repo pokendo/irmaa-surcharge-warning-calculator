@@ -65,6 +65,8 @@ test("profitability operations include sponsor outreach and PocketBase reporting
   assert.match(outreach, /Contact form version/i);
   assert.match(outreach, /Follow-up template/i);
   assert.match(tracker, /Prospect,Category,Contact Path/);
+  assert.match(tracker, /Sponsor Landing URL/);
+  assert.match(tracker, /utm_campaign=sponsor_outreach/);
   assert.match(tracker, /Income Lab/);
   assert.match(tracker, /Gmail draft created/);
   assert.match(infra, /scripts\/pocketbase-report\.js/);

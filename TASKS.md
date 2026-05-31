@@ -37,7 +37,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
 - Sponsor outreach variants added for advisor software prospects, Medicare education prospects, contact forms, and follow-up messages.
 - First sponsor outreach Gmail drafts created for Income Lab and RothAware; remaining prospects need contact-form outreach or confirmed emails.
-- Sponsor outreach tracker created at `SPONSOR_TRACKER.csv` to track first outreach, follow-up dates, statuses, and notes.
+- Sponsor outreach tracker created at `SPONSOR_TRACKER.csv` to track first outreach, follow-up dates, statuses, UTM landing URLs, and notes.
 - Automatic deployment workflow added at `.github/workflows/deploy-coolify.yml` to trigger this project's Coolify deploy API on pushes to `main`.
 - Coolify API access enabled and a deploy-only `COOLIFY_API_TOKEN` GitHub repository secret added for automatic deployments.
 - Mobile header adjustment so the header does not cover the calculator on narrow screens.
