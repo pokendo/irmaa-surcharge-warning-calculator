@@ -222,6 +222,25 @@ test("home sale article targets premium-impact query and routes readers to calcu
   assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
 });
 
+test("avoid IRMAA page targets prevention queries with planning sections and sponsor placement", async () => {
+  const html = await readFile(join(root, "how-to-avoid-irmaa", "index.html"), "utf8");
+
+  assert.match(html, /How to avoid IRMAA surprises/i);
+  assert.match(html, /id="planning-checklist"/);
+  assert.match(html, /Roth conversions/i);
+  assert.match(html, /Required minimum distributions/i);
+  assert.match(html, /Capital gains/i);
+  assert.match(html, /Qualified charitable distributions/i);
+  assert.match(html, /Tax-exempt interest/i);
+  assert.match(html, /href="\.\.\/does-roth-conversion-affect-irmaa\/"/);
+  assert.match(html, /href="\.\.\/do-rmds-affect-medicare-premiums\/"/);
+  assert.match(html, /href="\.\.\/do-capital-gains-affect-medicare-premiums\/"/);
+  assert.match(html, /href="\.\.\/qcd-irmaa\/"/);
+  assert.match(html, /data-track-label="avoid planning sponsor"/);
+  assert.match(html, /data-newsletter-form/);
+  assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
+});
+
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
