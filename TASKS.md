@@ -40,6 +40,10 @@ The static MVP is built and deployed from this project folder. The site includes
 - Medicare MAGI and SSA-44 pages expanded from the keyword roadmap.
 - Longtail Roth conversion article added at `/does-roth-conversion-affect-irmaa/`.
 - Longtail capital gains article added at `/do-capital-gains-affect-medicare-premiums/`.
+- Longtail RMD article added at `/do-rmds-affect-medicare-premiums/`.
+- Longtail home sale article added at `/does-selling-a-house-affect-medicare-premiums/`.
+- Homepage article discovery links added for the first organic content cluster.
+- Google Search Console domain verification and sitemap submission completed.
 - First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
 - Sponsor outreach variants added for advisor software prospects, Medicare education prospects, contact forms, and follow-up messages.
 - First sponsor outreach Gmail drafts created for Income Lab and RothAware; remaining prospects need contact-form outreach or confirmed emails.
@@ -51,8 +55,7 @@ The static MVP is built and deployed from this project folder. The site includes
 
 ## Next Tasks
 
-- Add the Google Search Console TXT verification record for `irmaacheck.com`, verify the domain property, and submit `https://www.irmaacheck.com/sitemap.xml`.
-- Execute the first content sprint from `CONTENT_ROADMAP.md`: expand Medicare MAGI and SSA-44 pages, then add Roth conversion and capital gains article pages.
+- Continue content expansion from `CONTENT_ROADMAP.md`, starting with strengthening `/irmaa-brackets-2026/` and `/how-to-avoid-irmaa/`.
 - Send or revise the two prepared Gmail sponsor drafts.
 - Submit contact-form outreach for MaxiFi Planner, Savvy Medicare Planning, AdvisorEdgeOS, Rothology Partner Desk, and AdvisorCal.
 - Send the first sponsor outreach batch and track replies.

@@ -23,6 +23,8 @@ const pages = [
   ["qcd-irmaa/index.html", "QCD IRMAA Guide"],
   ["does-roth-conversion-affect-irmaa/index.html", "Does a Roth Conversion Affect IRMAA?"],
   ["do-capital-gains-affect-medicare-premiums/index.html", "Do Capital Gains Affect Medicare Premiums?"],
+  ["do-rmds-affect-medicare-premiums/index.html", "Do RMDs Affect Medicare Premiums?"],
+  ["does-selling-a-house-affect-medicare-premiums/index.html", "Does Selling a House Affect Medicare Premiums?"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
 
@@ -177,6 +179,30 @@ test("capital gains article targets premium-impact query and routes readers to c
   assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
 });
 
+test("RMD article targets premium-impact query and routes readers to calculator", async () => {
+  const html = await readFile(join(root, "do-rmds-affect-medicare-premiums", "index.html"), "utf8");
+
+  assert.match(html, /RMDs can affect Medicare premiums/i);
+  assert.match(html, /Why RMDs can trigger IRMAA/i);
+  assert.match(html, /required minimum distribution/i);
+  assert.match(html, /RMD and IRMAA FAQ/i);
+  assert.match(html, /href="\.\.\/rmd-irmaa-calculator\/"/);
+  assert.match(html, /ad-slot ad-slot-inline/);
+  assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
+});
+
+test("home sale article targets premium-impact query and routes readers to calculator", async () => {
+  const html = await readFile(join(root, "does-selling-a-house-affect-medicare-premiums", "index.html"), "utf8");
+
+  assert.match(html, /Selling a house can affect Medicare premiums/i);
+  assert.match(html, /taxable gain, not the sale price/i);
+  assert.match(html, /Can you appeal IRMAA after selling a house\?/i);
+  assert.match(html, /Home sale and IRMAA FAQ/i);
+  assert.match(html, /href="\.\.\/home-sale-medicare-premium-calculator\/"/);
+  assert.match(html, /ad-slot ad-slot-inline/);
+  assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
+});
+
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -203,6 +229,19 @@ test("homepage exposes scenario calculators for internal discovery", async () =>
     "ira-withdrawal-medicare-premium-calculator",
     "401k-withdrawal-medicare-premium-calculator",
     "qcd-irmaa",
+  ]) {
+    assert.match(html, new RegExp(`href="\\./${route}/"`), route);
+  }
+});
+
+test("homepage exposes article links for organic discovery", async () => {
+  const html = await readFile(join(root, "index.html"), "utf8");
+
+  for (const route of [
+    "does-roth-conversion-affect-irmaa",
+    "do-capital-gains-affect-medicare-premiums",
+    "do-rmds-affect-medicare-premiums",
+    "does-selling-a-house-affect-medicare-premiums",
   ]) {
     assert.match(html, new RegExp(`href="\\./${route}/"`), route);
   }

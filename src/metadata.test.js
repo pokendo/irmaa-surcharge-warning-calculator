@@ -24,6 +24,8 @@ const routes = [
   ["qcd-irmaa/index.html", `${productionOrigin}/qcd-irmaa/`],
   ["does-roth-conversion-affect-irmaa/index.html", `${productionOrigin}/does-roth-conversion-affect-irmaa/`],
   ["do-capital-gains-affect-medicare-premiums/index.html", `${productionOrigin}/do-capital-gains-affect-medicare-premiums/`],
+  ["do-rmds-affect-medicare-premiums/index.html", `${productionOrigin}/do-rmds-affect-medicare-premiums/`],
+  ["does-selling-a-house-affect-medicare-premiums/index.html", `${productionOrigin}/does-selling-a-house-affect-medicare-premiums/`],
   ["advertise/index.html", `${productionOrigin}/advertise/`],
 ];
 
