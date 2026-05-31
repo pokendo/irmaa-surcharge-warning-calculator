@@ -39,6 +39,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Content roadmap added at `CONTENT_ROADMAP.md` with the first traffic-building article sprint and sponsor placement rules.
 - Medicare MAGI and SSA-44 pages expanded from the keyword roadmap.
 - Longtail Roth conversion article added at `/does-roth-conversion-affect-irmaa/`.
+- Longtail capital gains article added at `/do-capital-gains-affect-medicare-premiums/`.
 - First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
 - Sponsor outreach variants added for advisor software prospects, Medicare education prospects, contact forms, and follow-up messages.
 - First sponsor outreach Gmail drafts created for Income Lab and RothAware; remaining prospects need contact-form outreach or confirmed emails.

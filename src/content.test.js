@@ -22,6 +22,7 @@ const pages = [
   ["401k-withdrawal-medicare-premium-calculator/index.html", "401(k) Withdrawal Medicare Premium Calculator"],
   ["qcd-irmaa/index.html", "QCD IRMAA Guide"],
   ["does-roth-conversion-affect-irmaa/index.html", "Does a Roth Conversion Affect IRMAA?"],
+  ["do-capital-gains-affect-medicare-premiums/index.html", "Do Capital Gains Affect Medicare Premiums?"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
 
@@ -160,6 +161,18 @@ test("Roth conversion article targets longtail query and routes readers to calcu
   assert.match(html, /Can you appeal IRMAA after a Roth conversion\?/i);
   assert.match(html, /Roth conversion IRMAA FAQ/i);
   assert.match(html, /href="\.\.\/roth-conversion-irmaa-calculator\/"/);
+  assert.match(html, /ad-slot ad-slot-inline/);
+  assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
+});
+
+test("capital gains article targets premium-impact query and routes readers to calculator", async () => {
+  const html = await readFile(join(root, "do-capital-gains-affect-medicare-premiums", "index.html"), "utf8");
+
+  assert.match(html, /Taxable capital gains can raise Medicare MAGI/i);
+  assert.match(html, /Why capital gains can trigger IRMAA/i);
+  assert.match(html, /Can selling stock affect Medicare premiums\?/i);
+  assert.match(html, /Capital gains and IRMAA FAQ/i);
+  assert.match(html, /href="\.\.\/capital-gains-irmaa-calculator\/"/);
   assert.match(html, /ad-slot ad-slot-inline/);
   assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
 });

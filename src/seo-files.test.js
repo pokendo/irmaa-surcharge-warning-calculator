@@ -23,6 +23,7 @@ const requiredRoutes = [
   "/401k-withdrawal-medicare-premium-calculator/",
   "/qcd-irmaa/",
   "/does-roth-conversion-affect-irmaa/",
+  "/do-capital-gains-affect-medicare-premiums/",
   "/advertise/",
 ];
 
