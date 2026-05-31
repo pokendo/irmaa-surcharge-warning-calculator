@@ -82,6 +82,10 @@ test("advertise page gives sponsors a clear starter package and FAQ", async () =
 
   assert.match(html, /Starter sponsor package/i);
   assert.match(html, /30-day pilot/i);
+  assert.match(html, /Sponsor media kit/i);
+  assert.match(html, /Audience context/i);
+  assert.match(html, /Reporting available/i);
+  assert.match(html, /Sponsor asset checklist/i);
   assert.match(html, /What sponsors provide/i);
   assert.match(html, /Sponsor FAQ/i);
   assert.match(html, /Do you publish medical or financial advice\?/i);
