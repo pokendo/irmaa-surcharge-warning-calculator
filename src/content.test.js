@@ -100,6 +100,10 @@ test("advertise page gives sponsors a clear starter package and FAQ", async () =
 
   assert.match(html, /Starter sponsor package/i);
   assert.match(html, /30-day pilot/i);
+  assert.match(html, /Founding sponsor pilot/i);
+  assert.match(html, /3 founding sponsor slots/i);
+  assert.match(html, /No auto-renewal/i);
+  assert.match(html, /30-day performance snapshot/i);
   assert.match(html, /Sponsor media kit/i);
   assert.match(html, /Audience context/i);
   assert.match(html, /Reporting available/i);
