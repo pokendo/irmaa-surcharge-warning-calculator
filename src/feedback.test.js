@@ -83,6 +83,10 @@ test("profitability operations include sponsor outreach and PocketBase reporting
   assert.match(report, /newsletter_signups/);
   assert.match(report, /site_events/);
   assert.match(report, /sponsor_inquiries/);
+  assert.match(report, /Lead capture funnel/);
+  assert.match(report, /Sponsor slot clicks by label/);
+  assert.match(report, /Newsletter signups by page/);
+  assert.match(report, /topPages/);
   assert.match(report, /Sponsor inquiries by source/);
   assert.doesNotMatch(report, /F3jJYgf0aA9mEbKcQnUMl7sOPCpv/);
   assert.match(workflow, /Deploy to Coolify/);

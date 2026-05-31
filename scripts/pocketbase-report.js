@@ -22,8 +22,14 @@ const [events, signups, sponsorInquiries] = await Promise.all([
 const byEvent = countBy(events.items, "event_name");
 const byPage = countBy(events.items, "page_path");
 const bySignupSource = countBy(signups.items, "source");
+const bySignupPage = countBy(signups.items, "page_path");
 const bySponsorPlacement = countBy(sponsorInquiries.items, "placement");
 const bySponsorSource = countBy(sponsorInquiries.items, "source");
+const sponsorClicksByLabel = countBy(
+  events.items.filter((event) => event.event_name === "sponsor_slot_click"),
+  (event) => event.metadata?.label || "unknown"
+);
+const topPages = topCounts(byPage, 10);
 
 console.log("# IRMAA Check PocketBase Report");
 console.log(`Generated: ${new Date().toISOString()}`);
@@ -31,9 +37,18 @@ console.log("");
 console.log(`Site events: ${events.totalItems}`);
 printCounts("Events by name", byEvent);
 printCounts("Events by page", byPage);
+printCounts("Top pages", topPages);
+console.log("");
+console.log("Lead capture funnel");
+console.log(`- Page views: ${byEvent.page_view || 0}`);
+console.log(`- Sponsor slot clicks: ${byEvent.sponsor_slot_click || 0}`);
+console.log(`- Newsletter signups: ${signups.totalItems}`);
+console.log(`- Sponsor inquiries: ${sponsorInquiries.totalItems}`);
+printCounts("Sponsor slot clicks by label", sponsorClicksByLabel);
 console.log("");
 console.log(`Newsletter signups: ${signups.totalItems}`);
 printCounts("Signups by source", bySignupSource);
+printCounts("Newsletter signups by page", bySignupPage);
 console.log("");
 console.log("Recent newsletter signups:");
 for (const item of signups.items.slice(0, 10)) {
@@ -74,10 +89,14 @@ async function request(path, options = {}) {
 
 function countBy(items, key) {
   return items.reduce((counts, item) => {
-    const value = item[key] || "unknown";
+    const value = typeof key === "function" ? key(item) : item[key] || "unknown";
     counts[value] = (counts[value] || 0) + 1;
     return counts;
   }, {});
+}
+
+function topCounts(counts, limit) {
+  return Object.fromEntries(Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, limit));
 }
 
 function printCounts(title, counts) {
