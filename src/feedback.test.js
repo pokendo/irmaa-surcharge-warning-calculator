@@ -60,6 +60,10 @@ test("profitability operations include sponsor outreach and PocketBase reporting
   assert.match(outreach, /IRMAA Check helps adults estimate/i);
   assert.match(outreach, /AdvisorEdgeOS/i);
   assert.match(outreach, /Savvy Medicare Planning/i);
+  assert.match(outreach, /Advisor software version/i);
+  assert.match(outreach, /Medicare education version/i);
+  assert.match(outreach, /Contact form version/i);
+  assert.match(outreach, /Follow-up template/i);
   assert.match(tracker, /Prospect,Category,Contact Path/);
   assert.match(tracker, /Income Lab/);
   assert.match(tracker, /Gmail draft created/);

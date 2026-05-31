@@ -33,6 +33,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Starter sponsor package and sponsor FAQ added to `/advertise/` so outreach traffic has a clearer conversion path.
 - PocketBase report script added at `scripts/pocketbase-report.js` for early event and signup review.
 - First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
+- Sponsor outreach variants added for advisor software prospects, Medicare education prospects, contact forms, and follow-up messages.
 - First sponsor outreach Gmail drafts created for Income Lab and RothAware; remaining prospects need contact-form outreach or confirmed emails.
 - Sponsor outreach tracker created at `SPONSOR_TRACKER.csv` to track first outreach, follow-up dates, statuses, and notes.
 - Automatic deployment workflow added at `.github/workflows/deploy-coolify.yml` to trigger this project's Coolify deploy API on pushes to `main`.

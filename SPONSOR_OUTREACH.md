@@ -57,6 +57,114 @@ IRMAA Check
 https://www.irmaacheck.com/advertise/
 ```
 
+## Outreach Variants
+
+These are templates only. Personalize the bracketed fields before using them, and do not send outreach until the prospect fit and contact path are confirmed.
+
+### Advisor software version
+
+Subject options:
+
+```text
+Possible sponsor fit for advisor IRMAA planning education
+Educational IRMAA calculator sponsorship for advisor audiences
+Reach people planning Roth conversions and Medicare premium thresholds
+```
+
+Template:
+
+```text
+Hi [Name],
+
+I run IRMAA Check, a plain-English calculator for people researching how Roth conversions, RMDs, capital gains, home sales, and other income events may affect future Medicare premium surcharges.
+
+Your advisor-facing planning tools look aligned with the questions our readers bring to tax-sensitive retirement income decisions.
+
+We are opening a small 30-day pilot sponsor package with clearly labeled educational placements on the main calculator and scenario pages such as Roth conversions, RMDs, and capital gains. The best fit is a guide, checklist, webinar, calculator, or planning explainer rather than an aggressive sales offer.
+
+Would it make sense to compare audiences and see whether this could be useful for your advisor education pipeline?
+
+Best,
+[Name]
+IRMAA Check
+https://www.irmaacheck.com/advertise/
+```
+
+### Medicare education version
+
+Subject options:
+
+```text
+Possible fit for Medicare premium education
+Educational sponsorship around IRMAA and Medicare surcharges
+IRMAA Check sponsor pilot for Medicare education
+```
+
+Template:
+
+```text
+Hi [Name],
+
+I run IRMAA Check, a plain-English calculator for people trying to understand when income may trigger future Medicare premium surcharges.
+
+Your Medicare education work looks aligned with people who need a clearer explanation of IRMAA before making retirement income decisions.
+
+We are opening a small 30-day pilot sponsor package with clearly labeled placements on IRMAA Check. The best fit is educational content: an explainer, checklist, webinar, guide, or planning resource that helps people understand Medicare premiums without turning the calculator into a sales page.
+
+Would you be open to a short conversation about whether this audience is a useful fit for your education work?
+
+Best,
+[Name]
+IRMAA Check
+https://www.irmaacheck.com/advertise/
+```
+
+### Contact form version
+
+Short message:
+
+```text
+Hi,
+
+I run IRMAA Check, a plain-English calculator for people researching how Roth conversions, RMDs, capital gains, home sales, and other income events may affect future Medicare premium surcharges.
+
+I am opening a small number of clearly labeled educational sponsor placements for companies serving retirement income, tax planning, Medicare education, and advisor-client planning audiences.
+
+Your work around [specific fit] looks aligned. Could you point me to the right person to discuss a simple 30-day sponsor pilot?
+
+Details: https://www.irmaacheck.com/advertise/
+
+Best,
+[Name]
+```
+
+### Follow-up template
+
+Subject options:
+
+```text
+Quick follow-up on IRMAA Check sponsorship
+Following up on the IRMAA education pilot
+Still worth a quick look?
+```
+
+Template:
+
+```text
+Hi [Name],
+
+Just following up on my note about IRMAA Check.
+
+The sponsor pilot is meant to be simple: clearly labeled educational placements on pages where people are already estimating Medicare premium surcharge risk before income decisions like Roth conversions, RMDs, capital gains, and home sales.
+
+If this is not the right fit, no problem. If someone else handles partnerships or education sponsorships, could you point me in the right direction?
+
+Best,
+[Name]
+IRMAA Check
+https://www.irmaacheck.com/advertise/
+```
+
 ## Tracking
 
 Use `SPONSOR_TRACKER.csv` as the working outreach tracker. If this later moves into a CRM, keep the same fields:
