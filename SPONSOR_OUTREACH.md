@@ -59,7 +59,7 @@ https://www.irmaacheck.com/advertise/
 
 ## Tracking
 
-Use these notes in a spreadsheet or CRM:
+Use `SPONSOR_TRACKER.csv` as the working outreach tracker. If this later moves into a CRM, keep the same fields:
 
 ```text
 Prospect

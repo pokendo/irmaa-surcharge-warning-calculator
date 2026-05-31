@@ -51,6 +51,7 @@ test("infrastructure documents isolated PocketBase and Coolify resources", async
 
 test("profitability operations include sponsor outreach and PocketBase reporting", async () => {
   const outreach = await readFile(join(root, "SPONSOR_OUTREACH.md"), "utf8");
+  const tracker = await readFile(join(root, "SPONSOR_TRACKER.csv"), "utf8");
   const infra = await readFile(join(root, "INFRASTRUCTURE.md"), "utf8");
   const report = await readFile(join(root, "scripts", "pocketbase-report.js"), "utf8");
   const workflow = await readFile(join(root, ".github", "workflows", "deploy-coolify.yml"), "utf8");
@@ -59,6 +60,9 @@ test("profitability operations include sponsor outreach and PocketBase reporting
   assert.match(outreach, /IRMAA Check helps adults estimate/i);
   assert.match(outreach, /AdvisorEdgeOS/i);
   assert.match(outreach, /Savvy Medicare Planning/i);
+  assert.match(tracker, /Prospect,Category,Contact Path/);
+  assert.match(tracker, /Income Lab/);
+  assert.match(tracker, /Gmail draft created/);
   assert.match(infra, /scripts\/pocketbase-report\.js/);
   assert.match(report, /newsletter_signups/);
   assert.match(report, /site_events/);
