@@ -77,6 +77,17 @@ test("advertise page documents sponsor inventory", async () => {
   assert.match(html, /Ask about sponsor availability/i);
 });
 
+test("advertise page gives sponsors a clear starter package and FAQ", async () => {
+  const html = await readFile(join(root, "advertise", "index.html"), "utf8");
+
+  assert.match(html, /Starter sponsor package/i);
+  assert.match(html, /30-day pilot/i);
+  assert.match(html, /What sponsors provide/i);
+  assert.match(html, /Sponsor FAQ/i);
+  assert.match(html, /Do you publish medical or financial advice\?/i);
+  assert.match(html, /href="#sponsor-inquiry"/);
+});
+
 test("mobile layout keeps the header out of the calculator viewport", async () => {
   const css = await readFile(join(root, "styles.css"), "utf8");
 

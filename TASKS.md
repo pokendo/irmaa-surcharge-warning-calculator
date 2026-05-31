@@ -30,6 +30,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - PocketBase collections `newsletter_signups`, `site_events`, and `sponsor_inquiries` created for project-owned lead capture and first-party analytics.
 - Profitability surfaces added: newsletter signup, sponsor-slot tracking, and `/advertise/` sponsor inventory page.
 - Sponsor inquiry form added to `/advertise/` and connected to the project-owned `sponsor_inquiries` PocketBase collection.
+- Starter sponsor package and sponsor FAQ added to `/advertise/` so outreach traffic has a clearer conversion path.
 - PocketBase report script added at `scripts/pocketbase-report.js` for early event and signup review.
 - First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
 - First sponsor outreach Gmail drafts created for Income Lab and RothAware; remaining prospects need contact-form outreach or confirmed emails.
