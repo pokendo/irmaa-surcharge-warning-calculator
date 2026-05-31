@@ -29,6 +29,29 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does IRMAA mean?",
+      "acceptedAnswer": { "@type": "Answer", "text": "IRMAA means Income-Related Monthly Adjustment Amount. It is an extra Medicare premium amount for some higher-income beneficiaries." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does IRMAA apply to Medicare Part B and Part D?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. IRMAA can apply to Medicare Part B and Medicare Part D, and the Part D amount is separate from the plan premium." }
+    },
+    {
+      "@type": "Question",
+      "name": "What income does Medicare use for IRMAA?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Medicare generally uses Medicare MAGI from two years before the premium year." }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     {
@@ -63,15 +86,49 @@
   <main>
     <section class="article-hero editorial-hero">
       <h1>What Is IRMAA?</h1>
-      <p>IRMAA is Medicare income-related monthly adjustment amount, an extra premium paid by higher-income Medicare beneficiaries.</p>
+      <p>IRMAA is the Medicare Income-Related Monthly Adjustment Amount, an extra premium paid by some higher-income Medicare beneficiaries.</p>
       <a class="button" href="../irmaa-calculator/">Estimate your surcharge</a>
     </section>
     <div class="editorial-shell">
       <article class="article editorial-article">
-        <p>IRMAA is an extra amount some people pay for Medicare Part B and Part D when their income is above annual thresholds. It is based on income from two years before the premium year.</p>
-        <h2>Is IRMAA monthly or annual?</h2><p>IRMAA is charged monthly, but the calculator also shows an annual estimate so the full impact is easier to understand.</p>
-        <h2>Where to go next</h2><p>Start with the 2026 bracket table, then use the calculator to estimate how close your income is to the next threshold.</p>
-        <div class="ad-slot ad-slot-inline" aria-label="Advertisement"><span>Advertisement</span><p>In-content sponsor space for a Medicare education checklist or annual IRMAA update.</p></div>
+        <p>IRMAA is an extra amount some people pay for Medicare Part B and Medicare Part D when their income is above annual thresholds. It is based on income from two years before the premium year, which is why the surcharge can feel delayed.</p>
+        <section class="callout">
+          <h2>Quick definition</h2>
+          <p>Income-Related Monthly Adjustment Amount means Medicare adds a monthly surcharge when Medicare MAGI is above the bracket for your filing status.</p>
+        </section>
+        <h2>How IRMAA works</h2>
+        <p>Medicare uses a two-year lookback. For example, 2026 IRMAA brackets generally use 2024 Medicare MAGI. If that earlier income is above a threshold, Social Security can add a monthly amount to Part B and Part D.</p>
+        <p><a href="../irmaa-brackets-2026/">See the 2026 IRMAA brackets</a> and then <a href="../irmaa-calculator/">estimate your surcharge</a>.</p>
+        <div class="ad-slot ad-slot-inline" aria-label="Advertisement">
+          <span>Advertisement</span>
+          <p>Education sponsor space for Medicare premium basics, annual bracket updates, or retirement income planning resources.</p>
+          <a href="../advertise/#sponsor-inquiry" data-track-event="sponsor_slot_click" data-track-label="what is irmaa sponsor">Sponsor this placement</a>
+        </div>
+        <h2>What income counts?</h2>
+        <p>IRMAA is based on Medicare MAGI, not just taxable income. Medicare MAGI generally starts with adjusted gross income and adds tax-exempt interest.</p>
+        <p><a href="../medicare-magi/">Read the Medicare MAGI guide</a> for common income types such as capital gains, Roth conversions, pensions, dividends, and municipal bond interest.</p>
+        <h2>Is IRMAA monthly or annual?</h2>
+        <p>IRMAA is charged monthly, but an annual estimate is often easier to understand. A monthly surcharge can become a meaningful yearly cost when both Part B and Part D apply.</p>
+        <h2>Can IRMAA be appealed?</h2>
+        <p>Sometimes. The SSA-44 process is mainly for specific life-changing events, such as work stoppage, work reduction, marriage, divorce, death of a spouse, or loss of pension income. It usually is not a fix for every one-time income spike.</p>
+        <p><a href="../irmaa-appeal-ssa-44-form/">Review the SSA-44 appeal guide</a> before assuming an appeal applies.</p>
+        <section class="signup-section article-signup" aria-labelledby="what-signup-title">
+          <div>
+            <h2 id="what-signup-title">Get IRMAA bracket updates</h2>
+            <p>Receive annual Medicare premium and bracket updates in plain English.</p>
+          </div>
+          <form class="signup-form" data-newsletter-form data-source="what-is-irmaa-page">
+            <label for="what-signup-email">Email address</label>
+            <div class="signup-row">
+              <input id="what-signup-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+              <button type="submit">Send updates</button>
+            </div>
+            <p class="signup-note">Educational updates only. No tax, legal, investment, or Medicare enrollment advice.</p>
+            <p class="form-status" data-newsletter-status aria-live="polite"></p>
+          </form>
+        </section>
+        <h2>Where to go next</h2>
+        <p>Start with the 2026 bracket table, learn what counts in Medicare MAGI, and then use the calculator to estimate how close your income is to the next threshold.</p>
       </article>
       <aside class="editorial-rail" aria-label="Related content">
         <section class="related-guides">
@@ -86,6 +143,7 @@
     </div>
   </main>
   <footer class="site-footer"><div class="footer-inner">Educational estimates only. Not tax, legal, investment, or Medicare enrollment advice.</div></footer>
+  <script type="module" src="../src/profit.js"></script>
 </body>
 </html>
 

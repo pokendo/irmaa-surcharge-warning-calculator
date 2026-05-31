@@ -241,6 +241,25 @@ test("avoid IRMAA page targets prevention queries with planning sections and spo
   assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
 });
 
+test("what is IRMAA page explains the basics and routes readers into monetized flows", async () => {
+  const html = await readFile(join(root, "what-is-irmaa", "index.html"), "utf8");
+
+  assert.match(html, /Income-Related Monthly Adjustment Amount/i);
+  assert.match(html, /Medicare Part B/i);
+  assert.match(html, /Medicare Part D/i);
+  assert.match(html, /two-year lookback/i);
+  assert.match(html, /2026 IRMAA brackets/i);
+  assert.match(html, /Medicare MAGI/i);
+  assert.match(html, /SSA-44/i);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/irmaa-brackets-2026\/"/);
+  assert.match(html, /href="\.\.\/medicare-magi\/"/);
+  assert.match(html, /href="\.\.\/irmaa-appeal-ssa-44-form\/"/);
+  assert.match(html, /data-track-label="what is irmaa sponsor"/);
+  assert.match(html, /data-newsletter-form/);
+  assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
+});
+
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
