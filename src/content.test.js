@@ -138,6 +138,19 @@ test("Medicare MAGI page targets modified adjusted gross income and income-count
   assert.match(html, /Estimate your surcharge/i);
 });
 
+test("SSA-44 appeal page targets appeal form terms without weakening one-time income warnings", async () => {
+  const html = await readFile(join(root, "irmaa-appeal-ssa-44-form", "index.html"), "utf8");
+
+  assert.match(html, /SSA Form 44/i);
+  assert.match(html, /IRMAA appeal form/i);
+  assert.match(html, /When SSA-44 may apply/i);
+  assert.match(html, /When SSA-44 usually will not fix IRMAA/i);
+  assert.match(html, /Work stoppage or work reduction/i);
+  assert.match(html, /death of a spouse/i);
+  assert.match(html, /one-time income spike/i);
+  assert.match(html, /Roth conversions, capital gains, and home sales generally do not qualify/i);
+});
+
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
