@@ -44,6 +44,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Longtail home sale article added at `/does-selling-a-house-affect-medicare-premiums/`.
 - Homepage article discovery links added for the first organic content cluster.
 - Google Search Console domain verification and sitemap submission completed.
+- `/irmaa-brackets-2026/` strengthened for high-intent 2026 bracket queries with a quick-answer block, jump links, married-filing-separately table, Part B/Part D sections, expanded FAQ schema, and sponsor placements.
 - First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
 - Sponsor outreach variants added for advisor software prospects, Medicare education prospects, contact forms, and follow-up messages.
 - First sponsor outreach Gmail drafts created for Income Lab and RothAware; remaining prospects need contact-form outreach or confirmed emails.
@@ -55,7 +56,7 @@ The static MVP is built and deployed from this project folder. The site includes
 
 ## Next Tasks
 
-- Continue content expansion from `CONTENT_ROADMAP.md`, starting with strengthening `/irmaa-brackets-2026/` and `/how-to-avoid-irmaa/`.
+- Continue content expansion from `CONTENT_ROADMAP.md`, starting with strengthening `/how-to-avoid-irmaa/`.
 - Send or revise the two prepared Gmail sponsor drafts.
 - Submit contact-form outreach for MaxiFi Planner, Savvy Medicare Planning, AdvisorEdgeOS, Rothology Partner Desk, and AdvisorCal.
 - Send the first sponsor outreach batch and track replies.

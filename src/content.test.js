@@ -121,6 +121,25 @@ test("bracket page uses the calm civic utility layout with quiet ad inventory", 
   assert.match(html, /ad-slot ad-slot-rail/);
 });
 
+test("bracket page targets 2026 bracket search intent with answer block and jump links", async () => {
+  const html = await readFile(join(root, "irmaa-brackets-2026", "index.html"), "utf8");
+
+  assert.match(html, /id="quick-answer"/);
+  assert.match(html, /2026 IRMAA uses 2024 Medicare MAGI/i);
+  assert.match(html, /href="#single-brackets"/);
+  assert.match(html, /href="#joint-brackets"/);
+  assert.match(html, /href="#separate-brackets"/);
+  assert.match(html, /href="#part-b-irmaa-2026"/);
+  assert.match(html, /href="#part-d-irmaa-2026"/);
+  assert.match(html, /Married filing separately/i);
+  assert.match(html, /Part B IRMAA 2026/i);
+  assert.match(html, /Part D IRMAA 2026/i);
+  assert.match(html, /Medicare IRMAA brackets 2026/i);
+  assert.match(html, /IRMAA thresholds 2026/i);
+  assert.match(html, /data-track-label="brackets inline sponsor"/);
+  assert.match(html, /data-track-label="brackets table sponsor"/);
+});
+
 test("educational article pages use the editorial guide layout with related guides and ads", async () => {
   const html = await readFile(join(root, "medicare-magi", "index.html"), "utf8");
 
