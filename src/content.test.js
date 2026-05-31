@@ -52,7 +52,8 @@ test("homepage and calculator expose revenue capture surfaces", async () => {
     const html = await readFile(join(root, path), "utf8");
 
     assert.match(html, /data-newsletter-form/);
-    assert.match(html, /Get IRMAA bracket updates/i);
+    assert.match(html, /Get the IRMAA planning checklist/i);
+    assert.match(html, /href="\.\/irmaa-planning-checklist\/"|href="\.\.\/irmaa-planning-checklist\/"/);
     assert.match(html, /Sponsor this placement/i);
     assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
   }
