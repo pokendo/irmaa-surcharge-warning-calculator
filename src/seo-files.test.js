@@ -26,6 +26,7 @@ const requiredRoutes = [
   "/do-capital-gains-affect-medicare-premiums/",
   "/do-rmds-affect-medicare-premiums/",
   "/does-selling-a-house-affect-medicare-premiums/",
+  "/medicare-part-b-premium-2026/",
   "/advertise/",
 ];
 

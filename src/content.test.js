@@ -25,6 +25,7 @@ const pages = [
   ["do-capital-gains-affect-medicare-premiums/index.html", "Do Capital Gains Affect Medicare Premiums?"],
   ["do-rmds-affect-medicare-premiums/index.html", "Do RMDs Affect Medicare Premiums?"],
   ["does-selling-a-house-affect-medicare-premiums/index.html", "Does Selling a House Affect Medicare Premiums?"],
+  ["medicare-part-b-premium-2026/index.html", "Medicare Part B Premium 2026"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
 
@@ -260,6 +261,24 @@ test("what is IRMAA page explains the basics and routes readers into monetized f
   assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
 });
 
+test("Part B premium page targets 2026 premium search and routes to IRMAA conversion surfaces", async () => {
+  const html = await readFile(join(root, "medicare-part-b-premium-2026", "index.html"), "utf8");
+
+  assert.match(html, /standard Medicare Part B premium is \$202\.90/i);
+  assert.match(html, /Part B deductible is \$283/i);
+  assert.match(html, /higher depending on your income/i);
+  assert.match(html, /IRMAA/i);
+  assert.match(html, /Medicare MAGI/i);
+  assert.match(html, /2026 IRMAA brackets/i);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/irmaa-brackets-2026\/"/);
+  assert.match(html, /href="\.\.\/medicare-magi\/"/);
+  assert.match(html, /data-track-label="part b premium sponsor"/);
+  assert.match(html, /data-newsletter-form/);
+  assert.match(html, /Official sources/i);
+  assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
+});
+
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -299,6 +318,7 @@ test("homepage exposes article links for organic discovery", async () => {
     "do-capital-gains-affect-medicare-premiums",
     "do-rmds-affect-medicare-premiums",
     "does-selling-a-house-affect-medicare-premiums",
+    "medicare-part-b-premium-2026",
   ]) {
     assert.match(html, new RegExp(`href="\\./${route}/"`), route);
   }

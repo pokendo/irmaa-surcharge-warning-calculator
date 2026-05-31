@@ -14,7 +14,7 @@ test("IRMAA data records official source URLs and review date", () => {
   assert.equal(IRMAA_DATA_SOURCES.ssaLowerIrmaa.url, "https://www.ssa.gov/medicare/lower-irmaa");
 });
 
-for (const route of ["index.html", join("irmaa-calculator", "index.html"), join("irmaa-brackets-2026", "index.html")]) {
+for (const route of ["index.html", join("irmaa-calculator", "index.html"), join("irmaa-brackets-2026", "index.html"), join("medicare-part-b-premium-2026", "index.html")]) {
   test(`${route} links users to official IRMAA sources`, async () => {
     const html = await readFile(join(root, route), "utf8");
 
