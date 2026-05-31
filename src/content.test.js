@@ -21,6 +21,7 @@ const pages = [
   ["ira-withdrawal-medicare-premium-calculator/index.html", "IRA Withdrawal Medicare Premium Calculator"],
   ["401k-withdrawal-medicare-premium-calculator/index.html", "401(k) Withdrawal Medicare Premium Calculator"],
   ["qcd-irmaa/index.html", "QCD IRMAA Guide"],
+  ["does-roth-conversion-affect-irmaa/index.html", "Does a Roth Conversion Affect IRMAA?"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
 
@@ -149,6 +150,18 @@ test("SSA-44 appeal page targets appeal form terms without weakening one-time in
   assert.match(html, /death of a spouse/i);
   assert.match(html, /one-time income spike/i);
   assert.match(html, /Roth conversions, capital gains, and home sales generally do not qualify/i);
+});
+
+test("Roth conversion article targets longtail query and routes readers to calculator", async () => {
+  const html = await readFile(join(root, "does-roth-conversion-affect-irmaa", "index.html"), "utf8");
+
+  assert.match(html, /A taxable Roth conversion can raise Medicare MAGI/i);
+  assert.match(html, /How much can you convert before IRMAA\?/i);
+  assert.match(html, /Can you appeal IRMAA after a Roth conversion\?/i);
+  assert.match(html, /Roth conversion IRMAA FAQ/i);
+  assert.match(html, /href="\.\.\/roth-conversion-irmaa-calculator\/"/);
+  assert.match(html, /ad-slot ad-slot-inline/);
+  assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
 });
 
 function escapeRegExp(value) {

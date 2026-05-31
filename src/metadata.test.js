@@ -22,6 +22,7 @@ const routes = [
   ["ira-withdrawal-medicare-premium-calculator/index.html", `${productionOrigin}/ira-withdrawal-medicare-premium-calculator/`],
   ["401k-withdrawal-medicare-premium-calculator/index.html", `${productionOrigin}/401k-withdrawal-medicare-premium-calculator/`],
   ["qcd-irmaa/index.html", `${productionOrigin}/qcd-irmaa/`],
+  ["does-roth-conversion-affect-irmaa/index.html", `${productionOrigin}/does-roth-conversion-affect-irmaa/`],
   ["advertise/index.html", `${productionOrigin}/advertise/`],
 ];
 
