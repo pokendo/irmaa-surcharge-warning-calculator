@@ -49,6 +49,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - `/how-to-avoid-irmaa/` strengthened for prevention searches with a planning checklist, Roth conversion, RMD, capital gains, QCD, and tax-exempt interest sections, internal calculator/article links, sponsor CTA, newsletter capture, and FAQ schema.
 - `/what-is-irmaa/` expanded for beginner IRMAA searches with Part B/Part D basics, two-year lookback explanation, Medicare MAGI and SSA-44 routing, sponsor CTA, newsletter capture, and FAQ schema.
 - `/medicare-part-b-premium-2026/` added for 2026 Medicare premium searches with Part B premium/deductible answers, IRMAA routing, official sources, sponsor CTA, newsletter capture, homepage discovery link, and sitemap entry.
+- `/irmaa-planning-checklist/` added as a lead magnet with decision checklists for Roth conversions, RMDs, capital gains, home sales, and SSA-44 assumptions, plus newsletter capture and sponsor CTA.
 - First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
 - Sponsor outreach variants added for advisor software prospects, Medicare education prospects, contact forms, and follow-up messages.
 - First sponsor outreach Gmail drafts created for Income Lab and RothAware; remaining prospects need contact-form outreach or confirmed emails.

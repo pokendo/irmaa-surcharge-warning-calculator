@@ -27,6 +27,7 @@ const requiredRoutes = [
   "/do-rmds-affect-medicare-premiums/",
   "/does-selling-a-house-affect-medicare-premiums/",
   "/medicare-part-b-premium-2026/",
+  "/irmaa-planning-checklist/",
   "/advertise/",
 ];
 

@@ -26,6 +26,7 @@ const pages = [
   ["do-rmds-affect-medicare-premiums/index.html", "Do RMDs Affect Medicare Premiums?"],
   ["does-selling-a-house-affect-medicare-premiums/index.html", "Does Selling a House Affect Medicare Premiums?"],
   ["medicare-part-b-premium-2026/index.html", "Medicare Part B Premium 2026"],
+  ["irmaa-planning-checklist/index.html", "IRMAA Planning Checklist"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
 
@@ -279,6 +280,23 @@ test("Part B premium page targets 2026 premium search and routes to IRMAA conver
   assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
 });
 
+test("planning checklist page creates a lead magnet for newsletter and sponsor conversion", async () => {
+  const html = await readFile(join(root, "irmaa-planning-checklist", "index.html"), "utf8");
+
+  assert.match(html, /IRMAA Planning Checklist/i);
+  assert.match(html, /Before a Roth conversion/i);
+  assert.match(html, /Before an RMD/i);
+  assert.match(html, /Before a capital gain/i);
+  assert.match(html, /Before selling a home/i);
+  assert.match(html, /Before relying on SSA-44/i);
+  assert.match(html, /data-newsletter-form/);
+  assert.match(html, /Get the checklist updates/i);
+  assert.match(html, /data-track-label="checklist sponsor"/);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/how-to-avoid-irmaa\/"/);
+  assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
+});
+
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -319,6 +337,7 @@ test("homepage exposes article links for organic discovery", async () => {
     "do-rmds-affect-medicare-premiums",
     "does-selling-a-house-affect-medicare-premiums",
     "medicare-part-b-premium-2026",
+    "irmaa-planning-checklist",
   ]) {
     assert.match(html, new RegExp(`href="\\./${route}/"`), route);
   }

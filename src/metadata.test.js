@@ -27,6 +27,7 @@ const routes = [
   ["do-rmds-affect-medicare-premiums/index.html", `${productionOrigin}/do-rmds-affect-medicare-premiums/`],
   ["does-selling-a-house-affect-medicare-premiums/index.html", `${productionOrigin}/does-selling-a-house-affect-medicare-premiums/`],
   ["medicare-part-b-premium-2026/index.html", `${productionOrigin}/medicare-part-b-premium-2026/`],
+  ["irmaa-planning-checklist/index.html", `${productionOrigin}/irmaa-planning-checklist/`],
   ["advertise/index.html", `${productionOrigin}/advertise/`],
 ];
 
