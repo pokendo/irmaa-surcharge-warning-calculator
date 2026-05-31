@@ -126,6 +126,18 @@ test("educational article pages use the editorial guide layout with related guid
   assert.match(html, /ad-slot ad-slot-inline/);
 });
 
+test("Medicare MAGI page targets modified adjusted gross income and income-count questions", async () => {
+  const html = await readFile(join(root, "medicare-magi", "index.html"), "utf8");
+
+  assert.match(html, /Medicare modified adjusted gross income/i);
+  assert.match(html, /AGI \+ tax-exempt interest/i);
+  assert.match(html, /Does Social Security count toward IRMAA\?/i);
+  assert.match(html, /Do capital gains count for IRMAA\?/i);
+  assert.match(html, /Do qualified Roth IRA withdrawals count for IRMAA\?/i);
+  assert.match(html, /Tax-exempt interest/i);
+  assert.match(html, /Estimate your surcharge/i);
+});
+
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
