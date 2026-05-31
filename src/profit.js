@@ -94,7 +94,7 @@ document.addEventListener("submit", async (event) => {
     });
     if (!response.ok) throw new Error("Signup failed");
     form.reset();
-    if (status) status.textContent = "You're on the list. We'll send practical IRMAA updates, not noise.";
+    if (status) status.textContent = "You're on the list. We'll send the IRMAA planning checklist and practical IRMAA updates.";
     track("newsletter_signup", { source: payload.source });
   } catch {
     if (status) status.textContent = "We could not save that signup. Please try again in a moment.";

@@ -110,6 +110,13 @@ test("docs frame scenario pages as UX flows instead of primary SEO pages", async
   assert.match(seoPlan, /not primary SEO bets/i);
 });
 
+test("newsletter signup confirmation reinforces the checklist lead magnet", async () => {
+  const profitScript = await readFile(join(root, "src", "profit.js"), "utf8");
+
+  assert.match(profitScript, /send the IRMAA planning checklist/i);
+  assert.match(profitScript, /practical IRMAA updates/i);
+});
+
 test("SSA-44 page prominently warns that common one-time income events usually do not qualify", async () => {
   const html = await readFile(join(root, "irmaa-appeal-ssa-44-form", "index.html"), "utf8");
 
