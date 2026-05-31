@@ -59,6 +59,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - First sponsor outreach Gmail drafts created for Income Lab and RothAware; remaining prospects need contact-form outreach or confirmed emails.
 - Contact-form outreach queue prepared at `CONTACT_FORM_OUTREACH_QUEUE.md` for MaxiFi, Savvy Medicare Planning, AdvisorEdgeOS, RothAware, AdvisorCal, and Income Lab follow-up; messages are not submitted.
 - Sponsor outreach tracker created at `SPONSOR_TRACKER.csv` to track first outreach, follow-up dates, statuses, UTM landing URLs, and notes.
+- Sponsor outreach landing URLs updated to route prospects to intent-matched article and checklist pages instead of only `/advertise/`.
 - Automatic deployment workflow added at `.github/workflows/deploy-coolify.yml` to trigger this project's Coolify deploy API on pushes to `main`.
 - Coolify API access enabled and a deploy-only `COOLIFY_API_TOKEN` GitHub repository secret added for automatic deployments.
 - Mobile header adjustment so the header does not cover the calculator on narrow screens.

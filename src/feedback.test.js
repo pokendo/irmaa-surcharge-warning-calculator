@@ -70,6 +70,9 @@ test("profitability operations include sponsor outreach and PocketBase reporting
   assert.match(tracker, /Prospect,Category,Contact Path/);
   assert.match(tracker, /Sponsor Landing URL/);
   assert.match(tracker, /utm_campaign=sponsor_outreach/);
+  assert.match(tracker, /irmaa-planning-checklist\/\?utm_source=savvy_medicare/);
+  assert.match(tracker, /does-roth-conversion-affect-irmaa\/\?utm_source=rothaware/);
+  assert.match(tracker, /medicare-part-b-premium-2026\/\?utm_source=savvy_medicare/);
   assert.match(tracker, /Income Lab/);
   assert.match(tracker, /Gmail draft created/);
   assert.match(contactQueue, /Prepared contact-form outreach queue/i);
