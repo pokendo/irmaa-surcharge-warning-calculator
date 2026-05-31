@@ -34,6 +34,9 @@ The static MVP is built and deployed from this project folder. The site includes
 - Sponsor media kit section added to `/advertise/` with audience context, reporting expectations, and asset checklist for sponsor pilots.
 - Lead capture attribution improved so UTM-tagged sponsor outreach links can be reflected in site events, sponsor inquiries, and PocketBase reporting.
 - PocketBase report script added at `scripts/pocketbase-report.js` for early event and signup review.
+- Keyword research workspace added at `KEYWORD_RESEARCH.md` with Google Search Console verification notes, Ubersuggest batches, and first article priorities.
+- Ubersuggest keyword results captured for core IRMAA terms, Roth conversions, RMDs, capital gains/home sales, SSA-44 appeals, and Medicare MAGI.
+- Content roadmap added at `CONTENT_ROADMAP.md` with the first traffic-building article sprint and sponsor placement rules.
 - First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
 - Sponsor outreach variants added for advisor software prospects, Medicare education prospects, contact forms, and follow-up messages.
 - First sponsor outreach Gmail drafts created for Income Lab and RothAware; remaining prospects need contact-form outreach or confirmed emails.
@@ -45,6 +48,8 @@ The static MVP is built and deployed from this project folder. The site includes
 
 ## Next Tasks
 
+- Add the Google Search Console TXT verification record for `irmaacheck.com`, verify the domain property, and submit `https://www.irmaacheck.com/sitemap.xml`.
+- Execute the first content sprint from `CONTENT_ROADMAP.md`: expand Medicare MAGI and SSA-44 pages, then add Roth conversion and capital gains article pages.
 - Send or revise the two prepared Gmail sponsor drafts.
 - Submit contact-form outreach for MaxiFi Planner, Savvy Medicare Planning, AdvisorEdgeOS, Rothology Partner Desk, and AdvisorCal.
 - Send the first sponsor outreach batch and track replies.

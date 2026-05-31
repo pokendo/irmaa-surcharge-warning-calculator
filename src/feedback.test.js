@@ -52,6 +52,8 @@ test("infrastructure documents isolated PocketBase and Coolify resources", async
 test("profitability operations include sponsor outreach and PocketBase reporting", async () => {
   const outreach = await readFile(join(root, "SPONSOR_OUTREACH.md"), "utf8");
   const tracker = await readFile(join(root, "SPONSOR_TRACKER.csv"), "utf8");
+  const keywords = await readFile(join(root, "KEYWORD_RESEARCH.md"), "utf8");
+  const roadmap = await readFile(join(root, "CONTENT_ROADMAP.md"), "utf8");
   const infra = await readFile(join(root, "INFRASTRUCTURE.md"), "utf8");
   const report = await readFile(join(root, "scripts", "pocketbase-report.js"), "utf8");
   const workflow = await readFile(join(root, ".github", "workflows", "deploy-coolify.yml"), "utf8");
@@ -69,6 +71,14 @@ test("profitability operations include sponsor outreach and PocketBase reporting
   assert.match(tracker, /utm_campaign=sponsor_outreach/);
   assert.match(tracker, /Income Lab/);
   assert.match(tracker, /Gmail draft created/);
+  assert.match(keywords, /Google Search Console Setup/);
+  assert.match(keywords, /Ubersuggest Batch 1/);
+  assert.match(keywords, /Ubersuggest Batch 6/);
+  assert.match(keywords, /does roth conversion affect irmaa/);
+  assert.match(keywords, /do capital gains affect medicare premiums/);
+  assert.match(roadmap, /First Content Sprint/);
+  assert.match(roadmap, /medicare modified adjusted gross income/);
+  assert.match(roadmap, /does-roth-conversion-affect-irmaa/);
   assert.match(infra, /scripts\/pocketbase-report\.js/);
   assert.match(report, /newsletter_signups/);
   assert.match(report, /site_events/);
