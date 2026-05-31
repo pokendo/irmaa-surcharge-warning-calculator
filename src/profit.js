@@ -11,12 +11,38 @@ function postPocketBase(collection, payload) {
   }).catch(() => {});
 }
 
+function getAttribution() {
+  const params = new URLSearchParams(window.location.search);
+  const utm = {
+    source: params.get("utm_source") || "",
+    medium: params.get("utm_medium") || "",
+    campaign: params.get("utm_campaign") || "",
+    content: params.get("utm_content") || "",
+  };
+  const referrer = getReferrerHost();
+  const source = [utm.source, utm.medium, utm.campaign].filter(Boolean).join(" / ") || referrer || "direct";
+
+  return { source, referrer, utm };
+}
+
+function getReferrerHost() {
+  if (!document.referrer) return "";
+
+  try {
+    return new URL(document.referrer).hostname;
+  } catch {
+    return "";
+  }
+}
+
 function track(eventName, metadata = {}) {
+  const attribution = getAttribution();
+
   postPocketBase("site_events", {
     event_name: eventName,
     page_path: window.location.pathname,
-    source: document.referrer ? new URL(document.referrer).hostname : "direct",
-    metadata,
+    source: attribution.source,
+    metadata: { ...metadata, attribution },
   });
 }
 
@@ -47,12 +73,17 @@ document.addEventListener("submit", async (event) => {
   const status = form.querySelector("[data-newsletter-status]");
   if (!email) return;
 
+  const attribution = getAttribution();
+  const calculatorContext = window.irmaaGetCalculatorContext ? window.irmaaGetCalculatorContext() : {};
   const payload = {
     email,
     source: form.dataset.source || "newsletter",
     page_path: window.location.pathname,
     consent_text: "Requested IRMAA bracket updates and planning reminders from irmaacheck.com.",
-    calculator_context: window.irmaaGetCalculatorContext ? window.irmaaGetCalculatorContext() : {},
+    calculator_context: {
+      ...calculatorContext,
+      attribution,
+    },
   };
 
   try {
@@ -77,6 +108,7 @@ document.addEventListener("submit", async (event) => {
   event.preventDefault();
   const status = form.querySelector("[data-sponsor-inquiry-status]");
   const formData = new FormData(form);
+  const attribution = getAttribution();
   const payload = {
     company: String(formData.get("company") || "").trim(),
     name: String(formData.get("name") || "").trim(),
@@ -84,7 +116,7 @@ document.addEventListener("submit", async (event) => {
     placement: String(formData.get("placement") || "unsure").trim(),
     message: String(formData.get("message") || "").trim(),
     page_path: window.location.pathname,
-    source: document.referrer ? new URL(document.referrer).hostname : "direct",
+    source: attribution.source,
   };
 
   if (!payload.company || !payload.email) return;

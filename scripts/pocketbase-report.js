@@ -23,6 +23,7 @@ const byEvent = countBy(events.items, "event_name");
 const byPage = countBy(events.items, "page_path");
 const bySignupSource = countBy(signups.items, "source");
 const bySponsorPlacement = countBy(sponsorInquiries.items, "placement");
+const bySponsorSource = countBy(sponsorInquiries.items, "source");
 
 console.log("# IRMAA Check PocketBase Report");
 console.log(`Generated: ${new Date().toISOString()}`);
@@ -41,10 +42,11 @@ for (const item of signups.items.slice(0, 10)) {
 console.log("");
 console.log(`Sponsor inquiries: ${sponsorInquiries.totalItems}`);
 printCounts("Sponsor inquiries by placement", bySponsorPlacement);
+printCounts("Sponsor inquiries by source", bySponsorSource);
 console.log("");
 console.log("Recent sponsor inquiries:");
 for (const item of sponsorInquiries.items.slice(0, 10)) {
-  console.log(`- ${item.created} | ${item.company} | ${item.email} | ${item.placement || "unknown"}`);
+  console.log(`- ${item.created} | ${item.company} | ${item.email} | ${item.placement || "unknown"} | ${item.source || "unknown"}`);
 }
 
 async function listRecords(collection) {

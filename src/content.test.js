@@ -52,6 +52,17 @@ test("homepage and calculator expose revenue capture surfaces", async () => {
   }
 });
 
+test("profit tracking preserves UTM source context for outreach links", async () => {
+  const js = await readFile(join(root, "src", "profit.js"), "utf8");
+
+  assert.match(js, /getAttribution/);
+  assert.match(js, /utm_source/);
+  assert.match(js, /utm_campaign/);
+  assert.match(js, /utm_medium/);
+  assert.match(js, /calculator_context: \{\s*\.\.\.calculatorContext,\s*attribution,/);
+  assert.match(js, /source: attribution\.source/);
+});
+
 test("sponsor placement links point directly to the inquiry form", async () => {
   const home = await readFile(join(root, "index.html"), "utf8");
   const calculator = await readFile(join(root, "irmaa-calculator", "index.html"), "utf8");

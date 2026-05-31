@@ -32,6 +32,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Sponsor inquiry form added to `/advertise/` and connected to the project-owned `sponsor_inquiries` PocketBase collection.
 - Starter sponsor package and sponsor FAQ added to `/advertise/` so outreach traffic has a clearer conversion path.
 - Sponsor media kit section added to `/advertise/` with audience context, reporting expectations, and asset checklist for sponsor pilots.
+- Lead capture attribution improved so UTM-tagged sponsor outreach links can be reflected in site events, sponsor inquiries, and PocketBase reporting.
 - PocketBase report script added at `scripts/pocketbase-report.js` for early event and signup review.
 - First sponsor outreach list and email draft created in `SPONSOR_OUTREACH.md`.
 - Sponsor outreach variants added for advisor software prospects, Medicare education prospects, contact forms, and follow-up messages.
