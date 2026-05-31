@@ -43,6 +43,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Longtail Roth conversion article added at `/does-roth-conversion-affect-irmaa/`.
 - Longtail capital gains article added at `/do-capital-gains-affect-medicare-premiums/`.
 - Longtail RMD article added at `/do-rmds-affect-medicare-premiums/`.
+- Longtail IRA withdrawal article added at `/do-ira-withdrawals-affect-medicare-premiums/`.
 - Longtail home sale article added at `/does-selling-a-house-affect-medicare-premiums/`.
 - Homepage article discovery links added for the first organic content cluster.
 - Google Search Console domain verification and sitemap submission completed.

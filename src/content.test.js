@@ -24,6 +24,7 @@ const pages = [
   ["does-roth-conversion-affect-irmaa/index.html", "Does a Roth Conversion Affect IRMAA?"],
   ["do-capital-gains-affect-medicare-premiums/index.html", "Do Capital Gains Affect Medicare Premiums?"],
   ["do-rmds-affect-medicare-premiums/index.html", "Do RMDs Affect Medicare Premiums?"],
+  ["do-ira-withdrawals-affect-medicare-premiums/index.html", "Do IRA Withdrawals Affect Medicare Premiums?"],
   ["does-selling-a-house-affect-medicare-premiums/index.html", "Does Selling a House Affect Medicare Premiums?"],
   ["medicare-part-b-premium-2026/index.html", "Medicare Part B Premium 2026"],
   ["irmaa-planning-checklist/index.html", "IRMAA Planning Checklist"],
@@ -165,6 +166,7 @@ test("high-intent education pages route readers to the planning checklist lead m
     "does-roth-conversion-affect-irmaa",
     "do-capital-gains-affect-medicare-premiums",
     "do-rmds-affect-medicare-premiums",
+    "do-ira-withdrawals-affect-medicare-premiums",
     "does-selling-a-house-affect-medicare-premiums",
     "medicare-part-b-premium-2026",
   ];
@@ -234,6 +236,19 @@ test("RMD article targets premium-impact query and routes readers to calculator"
   assert.match(html, /required minimum distribution/i);
   assert.match(html, /RMD and IRMAA FAQ/i);
   assert.match(html, /href="\.\.\/rmd-irmaa-calculator\/"/);
+  assert.match(html, /ad-slot ad-slot-inline/);
+  assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
+});
+
+test("IRA withdrawal article targets premium-impact query and routes readers to calculator", async () => {
+  const html = await readFile(join(root, "do-ira-withdrawals-affect-medicare-premiums", "index.html"), "utf8");
+
+  assert.match(html, /IRA withdrawals can affect Medicare premiums/i);
+  assert.match(html, /taxable IRA withdrawal/i);
+  assert.match(html, /traditional IRA distribution/i);
+  assert.match(html, /IRA withdrawal and IRMAA FAQ/i);
+  assert.match(html, /href="\.\.\/ira-withdrawal-medicare-premium-calculator\/"/);
+  assert.match(html, /href="\.\.\/irmaa-planning-checklist\/"/);
   assert.match(html, /ad-slot ad-slot-inline/);
   assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
 });
@@ -361,6 +376,7 @@ test("homepage exposes article links for organic discovery", async () => {
     "does-roth-conversion-affect-irmaa",
     "do-capital-gains-affect-medicare-premiums",
     "do-rmds-affect-medicare-premiums",
+    "do-ira-withdrawals-affect-medicare-premiums",
     "does-selling-a-house-affect-medicare-premiums",
     "medicare-part-b-premium-2026",
     "irmaa-planning-checklist",

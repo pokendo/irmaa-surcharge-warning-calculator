@@ -25,6 +25,7 @@ const requiredRoutes = [
   "/does-roth-conversion-affect-irmaa/",
   "/do-capital-gains-affect-medicare-premiums/",
   "/do-rmds-affect-medicare-premiums/",
+  "/do-ira-withdrawals-affect-medicare-premiums/",
   "/does-selling-a-house-affect-medicare-premiums/",
   "/medicare-part-b-premium-2026/",
   "/irmaa-planning-checklist/",
