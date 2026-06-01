@@ -71,6 +71,12 @@ The static MVP is built and deployed from this project folder. The site includes
 
 ## Next Tasks
 
+- Execute the competitor-driven improvement plan in `COMPETITOR_ANALYSIS.md`, starting with calculator features that create a clearer planning decision and stronger monetization path.
+- Add "Max Roth conversion before next IRMAA bracket" to the calculator result cards across the homepage, main calculator, and scenario calculator pages.
+- Add a spouse impact toggle so married visitors can estimate whether one or both spouses on Medicare will pay the surcharge.
+- Add a premium-year selector for 2025 and 2026, with projected 2027 reserved for a clearly labeled future-planning mode.
+- Add a MAGI helper tool so users can build Medicare MAGI from AGI, tax-exempt interest, Roth conversions, RMDs, capital gains, taxable Social Security, pension, and consulting income.
+- Add a visual IRMAA cliff meter showing distance to the first or next surcharge bracket.
 - Continue content expansion from `CONTENT_ROADMAP.md`, prioritizing the next high-intent article or calculator page that can route visitors into lead capture and sponsor inventory.
 - Send or revise the two prepared Gmail sponsor drafts.
 - Submit contact-form outreach for MaxiFi Planner, Savvy Medicare Planning, AdvisorEdgeOS, Rothology Partner Desk, and AdvisorCal.

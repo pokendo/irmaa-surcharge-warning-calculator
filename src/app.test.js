@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { applyDefaultEvent, applyQueryParams, buildCalculatorQuery, buildShareUrl, copyShareUrl, getCoreShareValues, parseCalculatorQuery, renderPrintDetails, updateSummaryNode, buildPrintDetails } from "./app.js";
+import { applyDefaultEvent, applyQueryParams, buildCalculatorQuery, buildShareUrl, copyShareUrl, getCoreShareValues, parseCalculatorQuery, renderPrintDetails, updateSummaryNode, buildPrintDetails, calculateMaxRothConversionBeforeNextBracket, updateRothRoomNode } from "./app.js";
 
 test("applyDefaultEvent checks only the matching scenario event", () => {
   const events = [
@@ -41,6 +41,28 @@ test("updateSummaryNode writes the plain-English calculator summary", () => {
     node.textContent,
     "Your estimated Medicare MAGI is in the First IRMAA bracket. This adds about $95.70 per month, or $1,148 per year, before any plan premium. You have about $24,000 before the next bracket.",
   );
+});
+
+test("calculateMaxRothConversionBeforeNextBracket adds current Roth amount to remaining bracket room", () => {
+  assert.equal(
+    calculateMaxRothConversionBeforeNextBracket({ roomBeforeNextBracket: 24_000 }, 8_000),
+    32_000,
+  );
+});
+
+test("calculateMaxRothConversionBeforeNextBracket returns null in the top bracket", () => {
+  assert.equal(
+    calculateMaxRothConversionBeforeNextBracket({ roomBeforeNextBracket: null }, 8_000),
+    null,
+  );
+});
+
+test("updateRothRoomNode writes a high-intent Roth conversion result", () => {
+  const node = { textContent: "" };
+
+  updateRothRoomNode(node, { roomBeforeNextBracket: 24_000 }, 8_000);
+
+  assert.equal(node.textContent, "$32,000");
 });
 
 test("buildPrintDetails creates a concise decision record", () => {
@@ -93,6 +115,11 @@ test("parseCalculatorQuery ignores unsafe calculator values", () => {
     parseCalculatorQuery("?status=bad&magi=-1&roth=nope"),
     {},
   );
+});
+
+test("parseCalculatorQuery ignores missing calculator values instead of turning them into zero", () => {
+  assert.deepEqual(parseCalculatorQuery(""), {});
+  assert.deepEqual(parseCalculatorQuery("?utm_source=test"), {});
 });
 
 test("buildCalculatorQuery serializes the shareable core flow", () => {

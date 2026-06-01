@@ -74,6 +74,24 @@ test("homepage and calculator expose revenue capture surfaces", async () => {
   }
 });
 
+test("calculator result cards answer Roth conversion room before the next IRMAA bracket", async () => {
+  for (const path of [
+    "index.html",
+    join("irmaa-calculator", "index.html"),
+    join("roth-conversion-irmaa-calculator", "index.html"),
+    join("rmd-irmaa-calculator", "index.html"),
+    join("home-sale-medicare-premium-calculator", "index.html"),
+    join("capital-gains-irmaa-calculator", "index.html"),
+    join("ira-withdrawal-medicare-premium-calculator", "index.html"),
+    join("401k-withdrawal-medicare-premium-calculator", "index.html"),
+  ]) {
+    const html = await readFile(join(root, path), "utf8");
+
+    assert.match(html, /Max Roth conversion before next bracket/i, path);
+    assert.match(html, /data-result="roth-room"/, path);
+  }
+});
+
 test("profit tracking preserves UTM source context for outreach links", async () => {
   const js = await readFile(join(root, "src", "profit.js"), "utf8");
 

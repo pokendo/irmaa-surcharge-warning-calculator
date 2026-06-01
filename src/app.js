@@ -10,6 +10,7 @@ if (typeof document !== "undefined") {
     const monthlyNode = document.querySelector("[data-result='monthly']");
     const annualNode = document.querySelector("[data-result='annual']");
     const roomNode = document.querySelector("[data-result='room']");
+    const rothRoomNode = document.querySelector("[data-result='roth-room']");
     const summaryNode = document.querySelector("[data-result='summary']");
     const printDetailsNode = document.querySelector("[data-print-details]");
     const shareLinkButton = document.querySelector("[data-share-link]");
@@ -64,6 +65,8 @@ if (typeof document !== "undefined") {
       roomNode.textContent = result.roomBeforeNextBracket === null
         ? "Top bracket"
         : formatCurrency(result.roomBeforeNextBracket);
+      const rothAmount = getActiveEventAmount(form, "roth");
+      updateRothRoomNode(rothRoomNode, result, rothAmount);
       updateSummaryNode(summaryNode, result);
       renderPrintDetails(printDetailsNode, buildPrintDetails(result));
       window.irmaaCurrentEstimate = {
@@ -74,6 +77,7 @@ if (typeof document !== "undefined") {
         monthlySurcharge: result.monthlySurcharge,
         annualSurcharge: result.annualSurcharge,
         bracketName: result.bracket.name,
+        maxRothConversionBeforeNextBracket: calculateMaxRothConversionBeforeNextBracket(result, rothAmount),
       };
     }
 
@@ -94,6 +98,19 @@ export function updateSummaryNode(node, result) {
   if (!node) return;
 
   node.textContent = describeIrmaaResult(result);
+}
+
+export function updateRothRoomNode(node, result, currentRothAmount) {
+  if (!node) return;
+
+  const maxRothConversion = calculateMaxRothConversionBeforeNextBracket(result, currentRothAmount);
+  node.textContent = maxRothConversion === null ? "Top bracket" : formatCurrency(maxRothConversion);
+}
+
+export function calculateMaxRothConversionBeforeNextBracket(result, currentRothAmount = 0) {
+  if (result.roomBeforeNextBracket === null) return null;
+
+  return Number(currentRothAmount) + result.roomBeforeNextBracket;
 }
 
 
@@ -172,6 +189,8 @@ export function buildCalculatorQuery({ filingStatus, baseMagi, rothAmount }) {
 }
 
 function isSafeAmount(value) {
+  if (value === null || value === undefined || value === "") return false;
+
   const amount = Number(value);
   return Number.isFinite(amount) && amount >= 0;
 }
@@ -200,6 +219,13 @@ export function getCoreShareValues(form) {
     baseMagi: form.querySelector("[name='baseMagi']")?.value,
     rothAmount: roth?.checked ? rothAmount?.value : 0,
   };
+}
+
+function getActiveEventAmount(form, eventKey) {
+  const event = form.querySelector(`[data-event-key='${eventKey}']`);
+  const amount = event?.closest("[data-event]")?.querySelector("input[type='number']");
+
+  return event?.checked ? Number(amount?.value) || 0 : 0;
 }
 
 export function buildShareUrl(location, values) {
