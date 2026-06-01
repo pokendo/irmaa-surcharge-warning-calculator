@@ -128,6 +128,13 @@ test("mobile layout keeps the header out of the calculator viewport", async () =
   assert.match(css, /@media \(max-width: 980px\)[\s\S]*\.site-header \{ position: static; \}/);
 });
 
+test("editorial and civic heroes stay centered on desktop", async () => {
+  const css = await readFile(join(root, "styles.css"), "utf8");
+
+  assert.match(css, /\.editorial-hero \{[^}]*margin: 0 auto;/);
+  assert.match(css, /\.civic-hero \{[^}]*margin: 0 auto;/);
+});
+
 test("bracket page uses the calm civic utility layout with quiet ad inventory", async () => {
   const html = await readFile(join(root, "irmaa-brackets-2026", "index.html"), "utf8");
 
