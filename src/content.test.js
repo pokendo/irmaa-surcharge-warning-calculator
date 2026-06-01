@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
@@ -37,6 +37,13 @@ const pages = [
   ["backdoor-roth-irmaa/index.html", "Backdoor Roth and IRMAA"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
+
+test("all public pages are covered by content and layout tests", async () => {
+  const discoveredPages = await collectPublicPages(root);
+  const expectedPages = pages.map(([path]) => normalizePath(path)).sort();
+
+  assert.deepEqual(discoveredPages, expectedPages);
+});
 
 for (const [path, heading] of pages) {
   test(`${path} contains the planned SEO heading`, async () => {
@@ -133,6 +140,34 @@ test("editorial and civic heroes stay centered on desktop", async () => {
 
   assert.match(css, /\.editorial-hero \{[^}]*margin: 0 auto;/);
   assert.match(css, /\.civic-hero \{[^}]*margin: 0 auto;/);
+});
+
+test("all shared page containers stay centered", async () => {
+  const css = await readFile(join(root, "styles.css"), "utf8");
+
+  assert.ok(selectorHasDeclaration(css, ".header-inner, .section, .hero, .footer-inner, .ad-slot-sponsor, .ad-slot-leaderboard", "margin: 0 auto"));
+  assert.ok(selectorHasDeclaration(css, ".civic-hero", "margin: 0 auto"));
+  assert.ok(selectorHasDeclaration(css, ".civic-shell", "margin: 0 auto 56px"));
+  assert.ok(selectorHasDeclaration(css, ".editorial-hero", "margin: 0 auto"));
+  assert.ok(selectorHasDeclaration(css, ".editorial-shell", "margin: 0 auto 60px"));
+  assert.ok(selectorHasDeclaration(css, ".article", "margin: 0 auto"));
+});
+
+test("every public page uses a known centered page layout", async () => {
+  for (const [path] of pages) {
+    const html = await readFile(join(root, path), "utf8");
+
+    assert.match(
+      html,
+      /class="[^"]*(?:layout-guided-planner|layout-civic-utility|layout-editorial-guide)[^"]*"/,
+      path,
+    );
+    assert.match(
+      html,
+      /class="[^"]*(?:hero|section|civic-hero|editorial-hero|editorial-shell|civic-shell|article)[^"]*"/,
+      path,
+    );
+  }
 });
 
 test("bracket page uses the calm civic utility layout with quiet ad inventory", async () => {
@@ -354,6 +389,38 @@ test("planning checklist page creates a lead magnet for newsletter and sponsor c
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+async function collectPublicPages(dir, base = dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const pages = [];
+
+  for (const entry of entries) {
+    if (entry.name === "_initial-vite-scaffold-backup") continue;
+
+    const entryPath = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      pages.push(...(await collectPublicPages(entryPath, base)));
+      continue;
+    }
+
+    if (entry.name === "index.html") {
+      pages.push(normalizePath(entryPath.slice(base.length + 1)));
+    }
+  }
+
+  return pages.sort();
+}
+
+function normalizePath(path) {
+  return path.replaceAll("\\", "/");
+}
+
+function selectorHasDeclaration(css, selector, declaration) {
+  const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const escapedDeclaration = declaration.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  return new RegExp(`${escapedSelector}\\s*\\{[^}]*${escapedDeclaration}`).test(css);
 }
 
 
