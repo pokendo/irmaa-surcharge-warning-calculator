@@ -29,6 +29,10 @@ const routes = [
   ["does-selling-a-house-affect-medicare-premiums/index.html", `${productionOrigin}/does-selling-a-house-affect-medicare-premiums/`],
   ["medicare-part-b-premium-2026/index.html", `${productionOrigin}/medicare-part-b-premium-2026/`],
   ["irmaa-planning-checklist/index.html", `${productionOrigin}/irmaa-planning-checklist/`],
+  ["irmaa-two-year-lookback/index.html", `${productionOrigin}/irmaa-two-year-lookback/`],
+  ["irmaa-cliff/index.html", `${productionOrigin}/irmaa-cliff/`],
+  ["ways-to-reduce-irmaa/index.html", `${productionOrigin}/ways-to-reduce-irmaa/`],
+  ["medicare-magi-vs-aca-magi/index.html", `${productionOrigin}/medicare-magi-vs-aca-magi/`],
   ["advertise/index.html", `${productionOrigin}/advertise/`],
 ];
 

@@ -29,6 +29,10 @@ const requiredRoutes = [
   "/does-selling-a-house-affect-medicare-premiums/",
   "/medicare-part-b-premium-2026/",
   "/irmaa-planning-checklist/",
+  "/irmaa-two-year-lookback/",
+  "/irmaa-cliff/",
+  "/ways-to-reduce-irmaa/",
+  "/medicare-magi-vs-aca-magi/",
   "/advertise/",
 ];
 

@@ -28,6 +28,10 @@ const pages = [
   ["does-selling-a-house-affect-medicare-premiums/index.html", "Does Selling a House Affect Medicare Premiums?"],
   ["medicare-part-b-premium-2026/index.html", "Medicare Part B Premium 2026"],
   ["irmaa-planning-checklist/index.html", "IRMAA Planning Checklist"],
+  ["irmaa-two-year-lookback/index.html", "IRMAA Two-Year Lookback"],
+  ["irmaa-cliff/index.html", "IRMAA Cliff"],
+  ["ways-to-reduce-irmaa/index.html", "Ways to Reduce IRMAA"],
+  ["medicare-magi-vs-aca-magi/index.html", "Medicare MAGI vs ACA MAGI"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
 
@@ -380,8 +384,32 @@ test("homepage exposes article links for organic discovery", async () => {
     "does-selling-a-house-affect-medicare-premiums",
     "medicare-part-b-premium-2026",
     "irmaa-planning-checklist",
+    "irmaa-two-year-lookback",
+    "irmaa-cliff",
+    "ways-to-reduce-irmaa",
+    "medicare-magi-vs-aca-magi",
   ]) {
     assert.match(html, new RegExp(`href="\\./${route}/"`), route);
+  }
+});
+
+test("transcript-inspired education pages are original easy-read IRMAA explainers", async () => {
+  const expectations = [
+    ["irmaa-two-year-lookback", /income you report this year can affect Medicare premiums two years later/i, /age 63/i],
+    ["irmaa-cliff", /one dollar over an IRMAA threshold can move the whole month into the next surcharge tier/i, /Do not stop just over a bracket/i],
+    ["ways-to-reduce-irmaa", /ways to reduce IRMAA surprises/i, /qualified charitable distribution/i],
+    ["medicare-magi-vs-aca-magi", /Medicare MAGI and ACA MAGI are not always the same planning number/i, /health insurance marketplace/i],
+  ];
+
+  for (const [route, firstPattern, secondPattern] of expectations) {
+    const html = await readFile(join(root, route, "index.html"), "utf8");
+
+    assert.match(html, firstPattern, route);
+    assert.match(html, secondPattern, route);
+    assert.match(html, /href="\.\.\/irmaa-calculator\/"/, route);
+    assert.match(html, /href="\.\.\/irmaa-planning-checklist\/"/, route);
+    assert.match(html, /ad-slot ad-slot-inline/, route);
+    assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/, route);
   }
 });
 
