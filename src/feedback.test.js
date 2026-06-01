@@ -54,6 +54,7 @@ test("profitability operations include sponsor outreach and PocketBase reporting
   const tracker = await readFile(join(root, "SPONSOR_TRACKER.csv"), "utf8");
   const contactQueue = await readFile(join(root, "CONTACT_FORM_OUTREACH_QUEUE.md"), "utf8");
   const keywords = await readFile(join(root, "KEYWORD_RESEARCH.md"), "utf8");
+  const redditResearch = await readFile(join(root, "REDDIT_PAIN_POINTS.md"), "utf8");
   const roadmap = await readFile(join(root, "CONTENT_ROADMAP.md"), "utf8");
   const infra = await readFile(join(root, "INFRASTRUCTURE.md"), "utf8");
   const report = await readFile(join(root, "scripts", "pocketbase-report.js"), "utf8");
@@ -87,6 +88,10 @@ test("profitability operations include sponsor outreach and PocketBase reporting
   assert.match(keywords, /Ubersuggest Batch 6/);
   assert.match(keywords, /does roth conversion affect irmaa/);
   assert.match(keywords, /do capital gains affect medicare premiums/);
+  assert.match(redditResearch, /SSA-44 timing confusion/);
+  assert.match(redditResearch, /401\(k\) contributions reduce Medicare MAGI/);
+  assert.match(redditResearch, /backdoor Roth conversions affect IRMAA/);
+  assert.match(redditResearch, /Ubersuggest cross-reference/);
   assert.match(roadmap, /First Content Sprint/);
   assert.match(roadmap, /medicare modified adjusted gross income/);
   assert.match(roadmap, /does-roth-conversion-affect-irmaa/);

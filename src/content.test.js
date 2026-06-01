@@ -32,6 +32,9 @@ const pages = [
   ["irmaa-cliff/index.html", "IRMAA Cliff"],
   ["ways-to-reduce-irmaa/index.html", "Ways to Reduce IRMAA"],
   ["medicare-magi-vs-aca-magi/index.html", "Medicare MAGI vs ACA MAGI"],
+  ["ssa-44-irmaa-appeal-timing-checker/index.html", "SSA-44 IRMAA Appeal Timing Checker"],
+  ["does-401k-contribution-reduce-irmaa-magi/index.html", "Does a 401(k) Contribution Reduce IRMAA MAGI?"],
+  ["backdoor-roth-irmaa/index.html", "Backdoor Roth and IRMAA"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
 
@@ -388,9 +391,29 @@ test("homepage exposes article links for organic discovery", async () => {
     "irmaa-cliff",
     "ways-to-reduce-irmaa",
     "medicare-magi-vs-aca-magi",
+    "ssa-44-irmaa-appeal-timing-checker",
+    "does-401k-contribution-reduce-irmaa-magi",
+    "backdoor-roth-irmaa",
   ]) {
     assert.match(html, new RegExp(`href="\\./${route}/"`), route);
   }
+});
+
+test("Reddit pain point pages answer SSA-44 timing, 401k MAGI, and backdoor Roth questions", async () => {
+  const ssa44 = await readFile(join(root, "ssa-44-irmaa-appeal-timing-checker", "index.html"), "utf8");
+  const k401 = await readFile(join(root, "does-401k-contribution-reduce-irmaa-magi", "index.html"), "utf8");
+  const backdoor = await readFile(join(root, "backdoor-roth-irmaa", "index.html"), "utf8");
+
+  assert.match(ssa44, /received an IRMAA notice/i);
+  assert.match(ssa44, /both spouses/i);
+  assert.match(ssa44, /data-ssa44-tool/);
+  assert.match(ssa44, /src\/ssa44-tool\.js|\.\.\/src\/ssa44-tool\.js/);
+  assert.match(k401, /pre-tax 401\(k\) contribution/i);
+  assert.match(k401, /Medicare Part B and Part D/i);
+  assert.match(k401, /AGI \+ tax-exempt interest/i);
+  assert.match(backdoor, /properly executed backdoor Roth/i);
+  assert.match(backdoor, /pro-rata rule/i);
+  assert.match(backdoor, /taxable amount/i);
 });
 
 test("transcript-inspired education pages are original easy-read IRMAA explainers", async () => {

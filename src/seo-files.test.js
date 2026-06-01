@@ -33,6 +33,9 @@ const requiredRoutes = [
   "/irmaa-cliff/",
   "/ways-to-reduce-irmaa/",
   "/medicare-magi-vs-aca-magi/",
+  "/ssa-44-irmaa-appeal-timing-checker/",
+  "/does-401k-contribution-reduce-irmaa-magi/",
+  "/backdoor-roth-irmaa/",
   "/advertise/",
 ];
 
