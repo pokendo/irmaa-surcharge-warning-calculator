@@ -68,15 +68,17 @@ The static MVP is built and deployed from this project folder. The site includes
 - Mobile header adjustment so the header does not cover the calculator on narrow screens.
 - PocketBase report run on May 31, 2026 showed 13 page views, 1 sponsor-slot click, 0 newsletter signups, and 0 saved sponsor inquiry records.
 - Automated test coverage for calculator logic, content, metadata, deployment notes, source links, and server behavior.
+- Competitor analysis captured in `COMPETITOR_ANALYSIS.md` with design, content, calculator, and monetization gaps.
+- "Max Roth conversion before next IRMAA bracket" result card added across calculator pages.
+- Spouse household impact selector added across calculator pages so users can compare one Medicare enrollee vs both spouses on Medicare.
+- Household monthly and annual IRMAA impact result cards added while preserving per-person surcharge amounts.
+- Visual IRMAA cliff meter added across calculator pages to show distance to the first or next surcharge bracket.
 
 ## Next Tasks
 
 - Execute the competitor-driven improvement plan in `COMPETITOR_ANALYSIS.md`, starting with calculator features that create a clearer planning decision and stronger monetization path.
-- Add "Max Roth conversion before next IRMAA bracket" to the calculator result cards across the homepage, main calculator, and scenario calculator pages.
-- Add a spouse impact toggle so married visitors can estimate whether one or both spouses on Medicare will pay the surcharge.
 - Add a premium-year selector for 2025 and 2026, with projected 2027 reserved for a clearly labeled future-planning mode.
 - Add a MAGI helper tool so users can build Medicare MAGI from AGI, tax-exempt interest, Roth conversions, RMDs, capital gains, taxable Social Security, pension, and consulting income.
-- Add a visual IRMAA cliff meter showing distance to the first or next surcharge bracket.
 - Continue content expansion from `CONTENT_ROADMAP.md`, prioritizing the next high-intent article or calculator page that can route visitors into lead capture and sponsor inventory.
 - Send or revise the two prepared Gmail sponsor drafts.
 - Submit contact-form outreach for MaxiFi Planner, Savvy Medicare Planning, AdvisorEdgeOS, Rothology Partner Desk, and AdvisorCal.

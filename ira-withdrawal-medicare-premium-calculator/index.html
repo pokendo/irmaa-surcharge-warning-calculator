@@ -104,6 +104,14 @@
               </select>
             </div>
             <div class="field">
+              <label for="coverageMode">Medicare coverage</label>
+              <select id="coverageMode" name="coverageMode">
+                <option value="one">One person on Medicare</option>
+                <option value="two">Both spouses on Medicare</option>
+              </select>
+              <span class="hint">IRMAA is charged per Medicare enrollee.</span>
+            </div>
+            <div class="field">
               <label for="baseMagi">Estimated Medicare MAGI</label>
               <input id="baseMagi" name="baseMagi" type="number" inputmode="decimal" min="0" step="100" value="105000">
               <span class="hint">MAGI is generally AGI plus tax-exempt interest for IRMAA.</span>
@@ -146,8 +154,17 @@
               <div class="result-item"><span class="result-label">Estimated MAGI</span><span class="result-value" data-result="magi">$0</span></div>
               <div class="result-item"><span class="result-label">Monthly surcharge</span><span class="result-value" data-result="monthly">$0.00</span></div>
               <div class="result-item"><span class="result-label">Annual surcharge</span><span class="result-value" data-result="annual">$0</span></div>
+              <div class="result-item"><span class="result-label">Household monthly impact</span><span class="result-value" data-result="household-monthly">$0.00</span></div>
+              <div class="result-item"><span class="result-label">Household annual impact</span><span class="result-value" data-result="household-annual">$0</span></div>
               <div class="result-item"><span class="result-label">Room before next bracket</span><span class="result-value" data-result="room">$0</span></div>
               <div class="result-item result-wide"><span class="result-label">Max Roth conversion before next bracket</span><span class="result-value" data-result="roth-room">$0</span></div>
+            </div>
+            <div class="cliff-meter" aria-label="IRMAA cliff meter">
+              <div class="cliff-meter-header">
+                <span data-result="cliff-label">Distance to IRMAA cliff</span>
+                <strong data-result="cliff-detail">$0 before the next bracket</strong>
+              </div>
+              <div class="cliff-track" aria-hidden="true"><span data-result="cliff-fill"></span></div>
             </div>
             <p class="disclaimer">This estimate is educational. Check final rules and your situation against official Medicare, SSA, and tax guidance.</p>
           </section>

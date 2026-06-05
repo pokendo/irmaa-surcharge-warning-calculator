@@ -9,8 +9,13 @@ if (typeof document !== "undefined") {
     const magiNode = document.querySelector("[data-result='magi']");
     const monthlyNode = document.querySelector("[data-result='monthly']");
     const annualNode = document.querySelector("[data-result='annual']");
+    const householdMonthlyNode = document.querySelector("[data-result='household-monthly']");
+    const householdAnnualNode = document.querySelector("[data-result='household-annual']");
     const roomNode = document.querySelector("[data-result='room']");
     const rothRoomNode = document.querySelector("[data-result='roth-room']");
+    const cliffLabelNode = document.querySelector("[data-result='cliff-label']");
+    const cliffDetailNode = document.querySelector("[data-result='cliff-detail']");
+    const cliffFillNode = document.querySelector("[data-result='cliff-fill']");
     const summaryNode = document.querySelector("[data-result='summary']");
     const printDetailsNode = document.querySelector("[data-print-details]");
     const shareLinkButton = document.querySelector("[data-share-link]");
@@ -62,11 +67,14 @@ if (typeof document !== "undefined") {
       magiNode.textContent = formatCurrency(result.totalMagi);
       monthlyNode.textContent = formatMoney(result.monthlySurcharge);
       annualNode.textContent = formatCurrency(result.annualSurcharge);
+      const householdImpact = calculateHouseholdImpact(result, data.get("coverageMode"));
+      updateHouseholdImpactNodes(householdMonthlyNode, householdAnnualNode, householdImpact);
       roomNode.textContent = result.roomBeforeNextBracket === null
         ? "Top bracket"
         : formatCurrency(result.roomBeforeNextBracket);
       const rothAmount = getActiveEventAmount(form, "roth");
       updateRothRoomNode(rothRoomNode, result, rothAmount);
+      updateCliffMeterNodes(cliffLabelNode, cliffDetailNode, cliffFillNode, calculateCliffMeter(result));
       updateSummaryNode(summaryNode, result);
       renderPrintDetails(printDetailsNode, buildPrintDetails(result));
       window.irmaaCurrentEstimate = {
@@ -76,6 +84,9 @@ if (typeof document !== "undefined") {
         totalMagi: result.totalMagi,
         monthlySurcharge: result.monthlySurcharge,
         annualSurcharge: result.annualSurcharge,
+        coverageMultiplier: householdImpact.coverageMultiplier,
+        householdMonthlySurcharge: householdImpact.householdMonthlySurcharge,
+        householdAnnualSurcharge: householdImpact.householdAnnualSurcharge,
         bracketName: result.bracket.name,
         maxRothConversionBeforeNextBracket: calculateMaxRothConversionBeforeNextBracket(result, rothAmount),
       };
@@ -111,6 +122,51 @@ export function calculateMaxRothConversionBeforeNextBracket(result, currentRothA
   if (result.roomBeforeNextBracket === null) return null;
 
   return Number(currentRothAmount) + result.roomBeforeNextBracket;
+}
+
+export function getCoverageMultiplier(coverageMode) {
+  return coverageMode === "two" ? 2 : 1;
+}
+
+export function calculateHouseholdImpact(result, coverageMode = "one") {
+  const coverageMultiplier = getCoverageMultiplier(coverageMode);
+  const householdMonthlySurcharge = roundMoney(result.monthlySurcharge * coverageMultiplier);
+  const householdAnnualSurcharge = roundMoney(householdMonthlySurcharge * 12);
+
+  return { coverageMultiplier, householdMonthlySurcharge, householdAnnualSurcharge };
+}
+
+export function updateHouseholdImpactNodes(monthlyNode, annualNode, householdImpact) {
+  if (monthlyNode) monthlyNode.textContent = formatMoney(householdImpact.householdMonthlySurcharge);
+  if (annualNode) annualNode.textContent = formatCurrency(householdImpact.householdAnnualSurcharge);
+}
+
+export function calculateCliffMeter(result) {
+  if (result.nextThreshold === null || result.roomBeforeNextBracket === null) {
+    return {
+      percent: 100,
+      label: "Top IRMAA bracket",
+      detail: "No higher IRMAA bracket remains.",
+    };
+  }
+
+  const bracketFloor = result.bracket?.min ?? 0;
+  const range = Math.max(1, result.nextThreshold - bracketFloor);
+  const rawPercent = ((result.totalMagi - bracketFloor) / range) * 100;
+  const percent = Math.max(0, Math.min(100, Math.round(rawPercent)));
+  const target = result.monthlySurcharge > 0 ? "the next bracket" : "the first surcharge bracket";
+
+  return {
+    percent,
+    label: `${percent}% of the way to ${target}`,
+    detail: `${formatCurrency(result.roomBeforeNextBracket)} before ${target}`,
+  };
+}
+
+export function updateCliffMeterNodes(labelNode, detailNode, fillNode, cliffMeter) {
+  if (labelNode) labelNode.textContent = cliffMeter.label;
+  if (detailNode) detailNode.textContent = cliffMeter.detail;
+  if (fillNode) fillNode.style.width = `${cliffMeter.percent}%`;
 }
 
 
@@ -157,6 +213,7 @@ export function parseCalculatorQuery(search) {
   const status = params.get("status");
   const magi = params.get("magi");
   const roth = params.get("roth");
+  const coverage = params.get("coverage");
 
   if (["single", "joint", "separate"].includes(status)) {
     parsed.filingStatus = status;
@@ -167,11 +224,14 @@ export function parseCalculatorQuery(search) {
   if (isSafeAmount(roth)) {
     parsed.rothAmount = String(Number(roth));
   }
+  if (["one", "two"].includes(coverage)) {
+    parsed.coverageMode = coverage;
+  }
 
   return parsed;
 }
 
-export function buildCalculatorQuery({ filingStatus, baseMagi, rothAmount }) {
+export function buildCalculatorQuery({ filingStatus, baseMagi, rothAmount, coverageMode }) {
   const params = new URLSearchParams();
 
   if (["single", "joint", "separate"].includes(filingStatus)) {
@@ -182,6 +242,9 @@ export function buildCalculatorQuery({ filingStatus, baseMagi, rothAmount }) {
   }
   if (isSafeAmount(rothAmount)) {
     params.set("roth", String(Number(rothAmount)));
+  }
+  if (["one", "two"].includes(coverageMode)) {
+    params.set("coverage", coverageMode);
   }
 
   const query = params.toString();
@@ -198,11 +261,13 @@ export function applyQueryParams(form, params) {
   if (!form || !params) return;
 
   const status = form.querySelector("[name='filingStatus']");
+  const coverage = form.querySelector("[name='coverageMode']");
   const magi = form.querySelector("[name='baseMagi']");
   const roth = form.querySelector("[data-event-key='roth']");
   const rothAmount = roth?.closest("[data-event]")?.querySelector("input[type='number']");
 
   if (params.filingStatus && status) status.value = params.filingStatus;
+  if (params.coverageMode && coverage) coverage.value = params.coverageMode;
   if (params.baseMagi && magi) magi.value = params.baseMagi;
   if (params.rothAmount && rothAmount) {
     roth.checked = true;
@@ -216,6 +281,7 @@ export function getCoreShareValues(form) {
 
   return {
     filingStatus: form.querySelector("[name='filingStatus']")?.value,
+    coverageMode: form.querySelector("[name='coverageMode']")?.value ?? "one",
     baseMagi: form.querySelector("[name='baseMagi']")?.value,
     rothAmount: roth?.checked ? rothAmount?.value : 0,
   };
@@ -226,6 +292,10 @@ function getActiveEventAmount(form, eventKey) {
   const amount = event?.closest("[data-event]")?.querySelector("input[type='number']");
 
   return event?.checked ? Number(amount?.value) || 0 : 0;
+}
+
+function roundMoney(value) {
+  return Math.round((value + Number.EPSILON) * 100) / 100;
 }
 
 export function buildShareUrl(location, values) {
