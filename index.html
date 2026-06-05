@@ -108,6 +108,46 @@
             </div>
           </div>
 
+          <details class="magi-helper" data-magi-helper>
+            <summary>Build Medicare MAGI from common income items</summary>
+            <div class="magi-helper-body">
+              <p class="field-note">Use this if you do not already have a Medicare MAGI estimate. AGI usually already includes taxable Social Security, pensions, consulting income, and taxable gains, so enter those only when they are not already counted in your AGI number.</p>
+              <div class="magi-helper-grid">
+                <div class="field">
+                  <label for="helper-agi">AGI before planned events</label>
+                  <input id="helper-agi" data-magi-helper-input="agi" type="number" inputmode="decimal" min="0" step="100" value="0">
+                </div>
+                <div class="field">
+                  <label for="helper-tax-exempt">Tax-exempt interest</label>
+                  <input id="helper-tax-exempt" data-magi-helper-input="taxExemptInterest" type="number" inputmode="decimal" min="0" step="100" value="0">
+                </div>
+                <div class="field">
+                  <label for="helper-social-security">Taxable Social Security not in AGI</label>
+                  <input id="helper-social-security" data-magi-helper-input="taxableSocialSecurity" type="number" inputmode="decimal" min="0" step="100" value="0">
+                </div>
+                <div class="field">
+                  <label for="helper-pension">Pension or consulting income not in AGI</label>
+                  <input id="helper-pension" data-magi-helper-input="pensionOrConsulting" type="number" inputmode="decimal" min="0" step="100" value="0">
+                </div>
+                <div class="field">
+                  <label for="helper-roth">Planned Roth conversion</label>
+                  <input id="helper-roth" data-magi-helper-input="roth" type="number" inputmode="decimal" min="0" step="100" value="0">
+                </div>
+                <div class="field">
+                  <label for="helper-rmd">Planned RMD or IRA withdrawal</label>
+                  <input id="helper-rmd" data-magi-helper-input="rmd" type="number" inputmode="decimal" min="0" step="100" value="0">
+                </div>
+                <div class="field">
+                  <label for="helper-gains">Planned capital gains</label>
+                  <input id="helper-gains" data-magi-helper-input="gains" type="number" inputmode="decimal" min="0" step="100" value="0">
+                </div>
+              </div>
+              <div class="magi-helper-actions">
+                <div><span class="result-label">Base MAGI subtotal</span><strong data-magi-helper-total>$0</strong></div>
+                <button type="button" class="button secondary" data-apply-magi-helper>Apply helper amounts</button>
+              </div>
+            </div>
+          </details>
           <fieldset class="core-events">
             <legend>Core launch flow</legend>
             <p class="field-note">Start with the decision most likely to be planned before it happens: a Roth conversion. Advanced income events are still available below.</p>

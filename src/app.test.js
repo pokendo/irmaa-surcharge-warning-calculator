@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { applyDefaultEvent, applyQueryParams, buildCalculatorQuery, buildShareUrl, copyShareUrl, getCoreShareValues, parseCalculatorQuery, renderPrintDetails, updateSummaryNode, buildPrintDetails, calculateCliffMeter, calculateMaxRothConversionBeforeNextBracket, calculateHouseholdImpact, getCoverageMultiplier, updateRothRoomNode } from "./app.js";
+import { applyDefaultEvent, applyMagiHelperValues, applyQueryParams, buildCalculatorQuery, buildShareUrl, calculateMagiHelperPlannedEvents, calculateMagiHelperTotal, copyShareUrl, getCoreShareValues, parseCalculatorQuery, renderPrintDetails, updateMagiHelperTotalNode, updateSummaryNode, buildPrintDetails, calculateCliffMeter, calculateMaxRothConversionBeforeNextBracket, calculateHouseholdImpact, getCoverageMultiplier, updateRothRoomNode } from "./app.js";
 
 test("applyDefaultEvent checks only the matching scenario event", () => {
   const events = [
@@ -76,6 +76,84 @@ test("calculateHouseholdImpact returns household monthly and annual surcharge es
     calculateHouseholdImpact({ monthlySurcharge: 95.7 }, "two"),
     { coverageMultiplier: 2, householdMonthlySurcharge: 191.4, householdAnnualSurcharge: 2296.8 },
   );
+});
+
+test("calculateMagiHelperTotal builds base Medicare MAGI components", () => {
+  assert.equal(
+    calculateMagiHelperTotal({
+      agi: 90_000,
+      taxExemptInterest: 2_500,
+      taxableSocialSecurity: 12_000,
+      pensionOrConsulting: 7_500,
+      roth: 30_000,
+    }),
+    112_000,
+  );
+});
+
+test("calculateMagiHelperPlannedEvents normalizes event amounts", () => {
+  assert.deepEqual(
+    calculateMagiHelperPlannedEvents({ roth: "30000", rmd: "-10", gains: "12500" }),
+    { roth: 30_000, rmd: 0, gains: 12_500 },
+  );
+});
+
+test("updateMagiHelperTotalNode writes the helper total", () => {
+  const totalNode = { textContent: "" };
+  const helper = {
+    querySelector(selector) {
+      return selector === "[data-magi-helper-total]" ? totalNode : null;
+    },
+    querySelectorAll() {
+      return [
+        { dataset: { magiHelperInput: "agi" }, value: "90000" },
+        { dataset: { magiHelperInput: "taxExemptInterest" }, value: "2500" },
+      ];
+    },
+  };
+
+  updateMagiHelperTotalNode(helper);
+
+  assert.equal(totalNode.textContent, "$92,500");
+});
+
+test("applyMagiHelperValues fills base MAGI and planned event rows", () => {
+  const baseMagi = { value: "0" };
+  const eventRows = {
+    roth: { checkbox: { checked: false }, amount: { value: "0" } },
+    rmd: { checkbox: { checked: true }, amount: { value: "100" } },
+    gains: { checkbox: { checked: false }, amount: { value: "0" } },
+  };
+  const form = {
+    querySelector(selector) {
+      if (selector === "[name='baseMagi']") return baseMagi;
+      const eventKey = selector.match(/data-event-key='([^']+)'/)?.[1];
+      const event = eventRows[eventKey];
+      if (!event) return null;
+      event.checkbox.closest = () => ({ querySelector: () => event.amount });
+      return event.checkbox;
+    },
+  };
+  const helper = {
+    querySelectorAll() {
+      return [
+        { dataset: { magiHelperInput: "agi" }, value: "90000" },
+        { dataset: { magiHelperInput: "taxExemptInterest" }, value: "2500" },
+        { dataset: { magiHelperInput: "roth" }, value: "30000" },
+        { dataset: { magiHelperInput: "rmd" }, value: "0" },
+        { dataset: { magiHelperInput: "gains" }, value: "12500" },
+      ];
+    },
+  };
+
+  applyMagiHelperValues(form, helper);
+
+  assert.equal(baseMagi.value, "92500");
+  assert.equal(eventRows.roth.checkbox.checked, true);
+  assert.equal(eventRows.roth.amount.value, "30000");
+  assert.equal(eventRows.rmd.checkbox.checked, false);
+  assert.equal(eventRows.gains.checkbox.checked, true);
+  assert.equal(eventRows.gains.amount.value, "12500");
 });
 
 test("calculateCliffMeter shows progress toward the first surcharge bracket", () => {

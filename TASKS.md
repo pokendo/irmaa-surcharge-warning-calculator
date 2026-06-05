@@ -74,11 +74,11 @@ The static MVP is built and deployed from this project folder. The site includes
 - Household monthly and annual IRMAA impact result cards added while preserving per-person surcharge amounts.
 - Visual IRMAA cliff meter added across calculator pages to show distance to the first or next surcharge bracket.
 - Premium-year selector added across calculator pages for 2025 and 2026, with income-year lookback shown in results and share links preserving the selected year.
+- Medicare MAGI helper added across calculator pages so users can build base MAGI from AGI, tax-exempt interest, additional taxable Social Security, pension or consulting income, and planned Roth/RMD/capital-gain events.
 
 ## Next Tasks
 
 - Execute the competitor-driven improvement plan in `COMPETITOR_ANALYSIS.md`, starting with calculator features that create a clearer planning decision and stronger monetization path.
-- Add a MAGI helper tool so users can build Medicare MAGI from AGI, tax-exempt interest, Roth conversions, RMDs, capital gains, taxable Social Security, pension, and consulting income.
 - Continue content expansion from `CONTENT_ROADMAP.md`, prioritizing the next high-intent article or calculator page that can route visitors into lead capture and sponsor inventory.
 - Send or revise the two prepared Gmail sponsor drafts.
 - Submit contact-form outreach for MaxiFi Planner, Savvy Medicare Planning, AdvisorEdgeOS, Rothology Partner Desk, and AdvisorCal.

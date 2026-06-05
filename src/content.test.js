@@ -132,6 +132,31 @@ test("calculator pages include premium year controls and income-year result card
   }
 });
 
+test("calculator pages include a Medicare MAGI helper", async () => {
+  for (const path of [
+    "index.html",
+    join("irmaa-calculator", "index.html"),
+    join("roth-conversion-irmaa-calculator", "index.html"),
+    join("rmd-irmaa-calculator", "index.html"),
+    join("home-sale-medicare-premium-calculator", "index.html"),
+    join("capital-gains-irmaa-calculator", "index.html"),
+    join("ira-withdrawal-medicare-premium-calculator", "index.html"),
+    join("401k-withdrawal-medicare-premium-calculator", "index.html"),
+  ]) {
+    const html = await readFile(join(root, path), "utf8");
+
+    assert.match(html, /data-magi-helper/, path);
+    assert.match(html, /data-magi-helper-input="agi"/, path);
+    assert.match(html, /data-magi-helper-input="taxExemptInterest"/, path);
+    assert.match(html, /data-magi-helper-input="taxableSocialSecurity"/, path);
+    assert.match(html, /data-magi-helper-input="pensionOrConsulting"/, path);
+    assert.match(html, /data-magi-helper-input="roth"/, path);
+    assert.match(html, /data-magi-helper-input="rmd"/, path);
+    assert.match(html, /data-magi-helper-input="gains"/, path);
+    assert.match(html, /data-apply-magi-helper/, path);
+  }
+});
+
 test("calculator pages include a visual IRMAA cliff meter", async () => {
   for (const path of [
     "index.html",

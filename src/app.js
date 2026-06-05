@@ -20,6 +20,7 @@ if (typeof document !== "undefined") {
     const summaryNode = document.querySelector("[data-result='summary']");
     const printDetailsNode = document.querySelector("[data-print-details]");
     const shareLinkButton = document.querySelector("[data-share-link]");
+    const magiHelper = form.querySelector("[data-magi-helper]");
 
     applyQueryParams(form, parseCalculatorQuery(window.location.search));
 
@@ -29,6 +30,15 @@ if (typeof document !== "undefined") {
     );
 
     form.addEventListener("input", updateResults);
+    if (magiHelper) {
+      updateMagiHelperTotalNode(magiHelper);
+      magiHelper.addEventListener("input", () => updateMagiHelperTotalNode(magiHelper));
+      magiHelper.querySelector("[data-apply-magi-helper]")?.addEventListener("click", () => {
+        applyMagiHelperValues(form, magiHelper);
+        updateResults();
+        window.irmaaTrack?.("magi_helper_apply", getCoreShareValues(form));
+      });
+    }
     if (shareLinkButton) {
       shareLinkButton.addEventListener("click", async () => {
         const shareUrl = buildShareUrl(window.location, getCoreShareValues(form));
@@ -174,6 +184,63 @@ export function updateCliffMeterNodes(labelNode, detailNode, fillNode, cliffMete
   if (fillNode) fillNode.style.width = `${cliffMeter.percent}%`;
 }
 
+export function calculateMagiHelperTotal(values = {}) {
+  return roundMoney([
+    values.agi,
+    values.taxExemptInterest,
+    values.taxableSocialSecurity,
+    values.pensionOrConsulting,
+  ].reduce((total, value) => total + normalizeSafeAmount(value), 0));
+}
+
+export function calculateMagiHelperPlannedEvents(values = {}) {
+  return {
+    roth: normalizeSafeAmount(values.roth),
+    rmd: normalizeSafeAmount(values.rmd),
+    gains: normalizeSafeAmount(values.gains),
+  };
+}
+
+export function readMagiHelperValues(helper) {
+  const values = {};
+
+  for (const input of helper?.querySelectorAll("[data-magi-helper-input]") ?? []) {
+    values[input.dataset.magiHelperInput] = input.value;
+  }
+
+  return values;
+}
+
+export function updateMagiHelperTotalNode(helper) {
+  const totalNode = helper?.querySelector("[data-magi-helper-total]");
+  if (!totalNode) return;
+
+  const values = readMagiHelperValues(helper);
+  totalNode.textContent = formatCurrency(calculateMagiHelperTotal(values));
+}
+
+export function applyMagiHelperValues(form, helper) {
+  const values = readMagiHelperValues(helper);
+  const baseMagi = form?.querySelector("[name='baseMagi']");
+  const plannedEvents = calculateMagiHelperPlannedEvents(values);
+
+  if (baseMagi) {
+    baseMagi.value = String(calculateMagiHelperTotal(values));
+  }
+
+  applyHelperEventValue(form, "roth", plannedEvents.roth);
+  applyHelperEventValue(form, "rmd", plannedEvents.rmd);
+  applyHelperEventValue(form, "gains", plannedEvents.gains);
+}
+
+function applyHelperEventValue(form, eventKey, value) {
+  const checkbox = form?.querySelector(`[data-event-key='${eventKey}']`);
+  const amount = checkbox?.closest("[data-event]")?.querySelector("input[type='number']");
+  if (!checkbox || !amount) return;
+
+  checkbox.checked = value > 0;
+  amount.value = String(value);
+}
 
 export function buildPrintDetails(result) {
   return [
@@ -270,6 +337,13 @@ function isSafeAmount(value) {
 
   const amount = Number(value);
   return Number.isFinite(amount) && amount >= 0;
+}
+
+function normalizeSafeAmount(value) {
+  if (value === null || value === undefined || value === "") return 0;
+
+  const amount = Number(value);
+  return Number.isFinite(amount) && amount > 0 ? amount : 0;
 }
 export function applyQueryParams(form, params) {
   if (!form || !params) return;
