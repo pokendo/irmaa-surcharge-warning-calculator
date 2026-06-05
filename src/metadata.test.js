@@ -34,6 +34,7 @@ const routes = [
   ["ways-to-reduce-irmaa/index.html", `${productionOrigin}/ways-to-reduce-irmaa/`],
   ["medicare-magi-vs-aca-magi/index.html", `${productionOrigin}/medicare-magi-vs-aca-magi/`],
   ["what-counts-toward-irmaa-magi/index.html", `${productionOrigin}/what-counts-toward-irmaa-magi/`],
+  ["do-both-spouses-pay-irmaa/index.html", `${productionOrigin}/do-both-spouses-pay-irmaa/`],
   ["ssa-44-irmaa-appeal-timing-checker/index.html", `${productionOrigin}/ssa-44-irmaa-appeal-timing-checker/`],
   ["does-401k-contribution-reduce-irmaa-magi/index.html", `${productionOrigin}/does-401k-contribution-reduce-irmaa-magi/`],
   ["backdoor-roth-irmaa/index.html", `${productionOrigin}/backdoor-roth-irmaa/`],
