@@ -77,6 +77,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Medicare MAGI helper added across calculator pages so users can build base MAGI from AGI, tax-exempt interest, additional taxable Social Security, pension or consulting income, and planned Roth/RMD/capital-gain events.
 - Social Security and IRMAA article added at `/does-social-security-count-toward-irmaa/`, with homepage discovery, sitemap entry, sponsor placements, related guides, and source links.
 - Scenario comparison cards added across calculator pages so users can compare no added events, planned events, and fill-to-bracket outcomes.
+- One-time income spike article added at `/one-time-income-spike-irmaa/`, with calculator routing, SSA-44 guidance, sponsor placements, homepage discovery, and sitemap entry.
 
 ## Next Tasks
 

@@ -35,6 +35,7 @@ const pages = [
   ["ssa-44-irmaa-appeal-timing-checker/index.html", "SSA-44 IRMAA Appeal Timing Checker"],
   ["does-401k-contribution-reduce-irmaa-magi/index.html", "Does a 401(k) Contribution Reduce IRMAA MAGI?"],
   ["does-social-security-count-toward-irmaa/index.html", "Does Social Security Count Toward IRMAA?"],
+  ["one-time-income-spike-irmaa/index.html", "One-Time Income Spike and IRMAA"],
   ["backdoor-roth-irmaa/index.html", "Backdoor Roth and IRMAA"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
@@ -594,6 +595,7 @@ test("homepage exposes article links for organic discovery", async () => {
     "ssa-44-irmaa-appeal-timing-checker",
     "does-401k-contribution-reduce-irmaa-magi",
     "does-social-security-count-toward-irmaa",
+    "one-time-income-spike-irmaa",
     "backdoor-roth-irmaa",
   ]) {
     assert.match(html, new RegExp(`href="\\./${route}/"`), route);
@@ -627,6 +629,21 @@ test("Social Security IRMAA page explains taxable benefits without double-counti
   assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
   assert.match(html, /href="\.\.\/medicare-magi\/"/);
   assert.match(html, /data-track|src\/profit\.js|\.\.\/src\/profit\.js/);
+});
+
+test("one-time income spike page routes users to calculator and SSA-44 guidance", async () => {
+  const html = await readFile(join(root, "one-time-income-spike-irmaa", "index.html"), "utf8");
+
+  assert.match(html, /One-Time Income Spike and IRMAA/i);
+  assert.match(html, /Roth conversion/i);
+  assert.match(html, /home sale/i);
+  assert.match(html, /capital gain/i);
+  assert.match(html, /SSA-44/i);
+  assert.match(html, /life-changing event/i);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/irmaa-appeal-ssa-44-form\/"/);
+  assert.match(html, /ad-slot ad-slot-inline/);
+  assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
 });
 
 test("transcript-inspired education pages are original easy-read IRMAA explainers", async () => {

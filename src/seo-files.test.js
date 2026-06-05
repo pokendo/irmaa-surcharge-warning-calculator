@@ -36,6 +36,7 @@ const requiredRoutes = [
   "/ssa-44-irmaa-appeal-timing-checker/",
   "/does-401k-contribution-reduce-irmaa-magi/",
   "/does-social-security-count-toward-irmaa/",
+  "/one-time-income-spike-irmaa/",
   "/backdoor-roth-irmaa/",
   "/advertise/",
 ];
