@@ -633,6 +633,9 @@ test("Reddit pain point pages answer SSA-44 timing, 401k MAGI, and backdoor Roth
   assert.match(ssa44, /received an IRMAA notice/i);
   assert.match(ssa44, /both spouses/i);
   assert.match(ssa44, /data-ssa44-tool/);
+  assert.match(ssa44, /data-ssa44-next-steps/);
+  assert.match(ssa44, /Next steps/i);
+  assert.match(ssa44, /official SSA-44 form/i);
   assert.match(ssa44, /src\/ssa44-tool\.js|\.\.\/src\/ssa44-tool\.js/);
   assert.match(k401, /pre-tax 401\(k\) contribution/i);
   assert.match(k401, /Medicare Part B and Part D/i);
