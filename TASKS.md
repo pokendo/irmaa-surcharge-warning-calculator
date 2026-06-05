@@ -78,6 +78,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Social Security and IRMAA article added at `/does-social-security-count-toward-irmaa/`, with homepage discovery, sitemap entry, sponsor placements, related guides, and source links.
 - Scenario comparison cards added across calculator pages so users can compare no added events, planned events, and fill-to-bracket outcomes.
 - One-time income spike article added at `/one-time-income-spike-irmaa/`, with calculator routing, SSA-44 guidance, sponsor placements, homepage discovery, and sitemap entry.
+- Result-level conversion actions added across calculator pages so high-intent users are routed to the IRMAA planning checklist and sponsor inquiry immediately after seeing an estimate.
 
 ## Next Tasks
 

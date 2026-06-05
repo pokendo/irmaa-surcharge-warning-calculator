@@ -9,12 +9,14 @@ const {
   applyQueryParams,
   buildCalculatorQuery,
   buildShareUrl,
+  buildResultAction,
   calculateMagiHelperPlannedEvents,
   calculateMagiHelperTotal,
   copyShareUrl,
   getCoreShareValues,
   parseCalculatorQuery,
   renderPrintDetails,
+  updateResultActionNodes,
   updateMagiHelperTotalNode,
   updateSummaryNode,
   buildPrintDetails,
@@ -63,6 +65,41 @@ test("updateSummaryNode writes the plain-English calculator summary", () => {
     node.textContent,
     "Your estimated Medicare MAGI is in the First IRMAA bracket for 2026. This adds about $95.70 per month, or $1,148 per year, before any plan premium. You have about $24,000 before the next bracket.",
   );
+});
+
+test("buildResultAction prompts checklist capture when no surcharge is estimated", () => {
+  assert.deepEqual(
+    buildResultAction({ monthlySurcharge: 0, roomBeforeNextBracket: 4_000 }),
+    {
+      title: "Stay under the next bracket",
+      copy: "You have about $4,000 before the first surcharge bracket. Save the planning checklist before a Roth conversion, RMD, capital gain, or home sale changes the estimate.",
+    },
+  );
+});
+
+test("buildResultAction prompts review when a surcharge is estimated", () => {
+  assert.deepEqual(
+    buildResultAction({ monthlySurcharge: 95.7, roomBeforeNextBracket: 24_000 }),
+    {
+      title: "Review before you lock this in",
+      copy: "This estimate shows about $95.70 per month in IRMAA. Use the checklist before the tax-year decision becomes hard to unwind.",
+    },
+  );
+});
+
+test("updateResultActionNodes writes the result action copy", () => {
+  const nodes = {
+    title: { textContent: "" },
+    copy: { textContent: "" },
+  };
+
+  updateResultActionNodes(nodes, {
+    title: "Review before you lock this in",
+    copy: "Use the checklist before the tax-year decision becomes hard to unwind.",
+  });
+
+  assert.equal(nodes.title.textContent, "Review before you lock this in");
+  assert.equal(nodes.copy.textContent, "Use the checklist before the tax-year decision becomes hard to unwind.");
 });
 
 test("calculateMaxRothConversionBeforeNextBracket adds current Roth amount to remaining bracket room", () => {

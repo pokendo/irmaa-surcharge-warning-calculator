@@ -356,6 +356,36 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 12px; }
   margin: 0;
   color: var(--ink);
 }
+.result-action {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  align-items: center;
+}
+.result-action h4 {
+  margin: 0 0 6px;
+  font-size: 19px;
+}
+.result-action p {
+  margin: 0;
+  color: var(--muted);
+}
+.result-action-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.result-action-links a:not(.button) {
+  font-size: 14px;
+  font-weight: 800;
+}
 .cliff-meter {
   margin-top: 14px;
   border: 1px solid var(--line);

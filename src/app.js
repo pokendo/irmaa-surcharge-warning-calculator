@@ -26,6 +26,10 @@ if (typeof document !== "undefined") {
     const cliffDetailNode = document.querySelector("[data-result='cliff-detail']");
     const cliffFillNode = document.querySelector("[data-result='cliff-fill']");
     const summaryNode = document.querySelector("[data-result='summary']");
+    const resultActionNodes = {
+      title: document.querySelector("[data-result-action='title']"),
+      copy: document.querySelector("[data-result-action='copy']"),
+    };
     const printDetailsNode = document.querySelector("[data-print-details]");
     const shareLinkButton = document.querySelector("[data-share-link]");
     const magiHelper = form.querySelector("[data-magi-helper]");
@@ -103,6 +107,7 @@ if (typeof document !== "undefined") {
       updateRothRoomNode(rothRoomNode, result, rothAmount);
       updateCliffMeterNodes(cliffLabelNode, cliffDetailNode, cliffFillNode, calculateCliffMeter(result));
       updateSummaryNode(summaryNode, result);
+      updateResultActionNodes(resultActionNodes, buildResultAction(result));
       renderPrintDetails(printDetailsNode, buildPrintDetails(result));
       window.irmaaCurrentEstimate = {
         filingStatus: result.filingStatus,
@@ -138,6 +143,27 @@ export function updateSummaryNode(node, result) {
   if (!node) return;
 
   node.textContent = describeIrmaaResult(result);
+}
+
+export function buildResultAction(result) {
+  if (result.monthlySurcharge > 0) {
+    return {
+      title: "Review before you lock this in",
+      copy: `This estimate shows about ${formatMoney(result.monthlySurcharge)} per month in IRMAA. Use the checklist before the tax-year decision becomes hard to unwind.`,
+    };
+  }
+
+  return {
+    title: "Stay under the next bracket",
+    copy: `You have about ${formatCurrency(result.roomBeforeNextBracket)} before the first surcharge bracket. Save the planning checklist before a Roth conversion, RMD, capital gain, or home sale changes the estimate.`,
+  };
+}
+
+export function updateResultActionNodes(nodes = {}, action) {
+  if (!action) return;
+
+  if (nodes.title) nodes.title.textContent = action.title;
+  if (nodes.copy) nodes.copy.textContent = action.copy;
 }
 
 export function updateRothRoomNode(node, result, currentRothAmount) {

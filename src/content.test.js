@@ -182,6 +182,29 @@ test("calculator pages include scenario comparison cards", async () => {
   }
 });
 
+test("calculator pages include result conversion actions", async () => {
+  for (const path of [
+    "index.html",
+    join("irmaa-calculator", "index.html"),
+    join("roth-conversion-irmaa-calculator", "index.html"),
+    join("rmd-irmaa-calculator", "index.html"),
+    join("home-sale-medicare-premium-calculator", "index.html"),
+    join("capital-gains-irmaa-calculator", "index.html"),
+    join("ira-withdrawal-medicare-premium-calculator", "index.html"),
+    join("401k-withdrawal-medicare-premium-calculator", "index.html"),
+  ]) {
+    const html = await readFile(join(root, path), "utf8");
+
+    assert.match(html, /class="result-action"/, path);
+    assert.match(html, /data-result-action="title"/, path);
+    assert.match(html, /data-result-action="copy"/, path);
+    assert.match(html, /IRMAA planning checklist/i, path);
+    assert.match(html, /data-track-event="result_checklist_click"/, path);
+    assert.match(html, /data-track-event="result_sponsor_click"/, path);
+    assert.match(html, /#sponsor-inquiry/, path);
+  }
+});
+
 test("calculator pages include a visual IRMAA cliff meter", async () => {
   for (const path of [
     "index.html",
