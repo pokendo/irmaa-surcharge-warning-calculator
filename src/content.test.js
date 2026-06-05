@@ -34,6 +34,7 @@ const pages = [
   ["medicare-magi-vs-aca-magi/index.html", "Medicare MAGI vs ACA MAGI"],
   ["ssa-44-irmaa-appeal-timing-checker/index.html", "SSA-44 IRMAA Appeal Timing Checker"],
   ["does-401k-contribution-reduce-irmaa-magi/index.html", "Does a 401(k) Contribution Reduce IRMAA MAGI?"],
+  ["does-social-security-count-toward-irmaa/index.html", "Does Social Security Count Toward IRMAA?"],
   ["backdoor-roth-irmaa/index.html", "Backdoor Roth and IRMAA"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
@@ -569,6 +570,7 @@ test("homepage exposes article links for organic discovery", async () => {
     "medicare-magi-vs-aca-magi",
     "ssa-44-irmaa-appeal-timing-checker",
     "does-401k-contribution-reduce-irmaa-magi",
+    "does-social-security-count-toward-irmaa",
     "backdoor-roth-irmaa",
   ]) {
     assert.match(html, new RegExp(`href="\\./${route}/"`), route);
@@ -590,6 +592,18 @@ test("Reddit pain point pages answer SSA-44 timing, 401k MAGI, and backdoor Roth
   assert.match(backdoor, /properly executed backdoor Roth/i);
   assert.match(backdoor, /pro-rata rule/i);
   assert.match(backdoor, /taxable amount/i);
+});
+
+test("Social Security IRMAA page explains taxable benefits without double-counting gross benefits", async () => {
+  const html = await readFile(join(root, "does-social-security-count-toward-irmaa", "index.html"), "utf8");
+
+  assert.match(html, /Social Security can matter for IRMAA when part of the benefit is taxable/i);
+  assert.match(html, /IRMAA Medicare MAGI = AGI \+ tax-exempt interest/i);
+  assert.match(html, /nontaxable portion/i);
+  assert.match(html, /Adding all gross Social Security benefits on top of AGI/i);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/medicare-magi\/"/);
+  assert.match(html, /data-track|src\/profit\.js|\.\.\/src\/profit\.js/);
 });
 
 test("transcript-inspired education pages are original easy-read IRMAA explainers", async () => {
