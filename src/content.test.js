@@ -112,6 +112,26 @@ test("calculator pages include spouse household impact controls and result cards
   }
 });
 
+test("calculator pages include premium year controls and income-year result cards", async () => {
+  for (const path of [
+    "index.html",
+    join("irmaa-calculator", "index.html"),
+    join("roth-conversion-irmaa-calculator", "index.html"),
+    join("rmd-irmaa-calculator", "index.html"),
+    join("home-sale-medicare-premium-calculator", "index.html"),
+    join("capital-gains-irmaa-calculator", "index.html"),
+    join("ira-withdrawal-medicare-premium-calculator", "index.html"),
+    join("401k-withdrawal-medicare-premium-calculator", "index.html"),
+  ]) {
+    const html = await readFile(join(root, path), "utf8");
+
+    assert.match(html, /name="premiumYear"/, path);
+    assert.match(html, /2026 premiums \(uses 2024 MAGI\)/, path);
+    assert.match(html, /2025 premiums \(uses 2023 MAGI\)/, path);
+    assert.match(html, /data-result="income-year"/, path);
+  }
+});
+
 test("calculator pages include a visual IRMAA cliff meter", async () => {
   for (const path of [
     "index.html",

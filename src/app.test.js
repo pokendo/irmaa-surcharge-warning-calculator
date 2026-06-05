@@ -39,7 +39,7 @@ test("updateSummaryNode writes the plain-English calculator summary", () => {
 
   assert.equal(
     node.textContent,
-    "Your estimated Medicare MAGI is in the First IRMAA bracket. This adds about $95.70 per month, or $1,148 per year, before any plan premium. You have about $24,000 before the next bracket.",
+    "Your estimated Medicare MAGI is in the First IRMAA bracket for 2026. This adds about $95.70 per month, or $1,148 per year, before any plan premium. You have about $24,000 before the next bracket.",
   );
 });
 
@@ -114,6 +114,8 @@ test("calculateCliffMeter shows top bracket status", () => {
 
 test("buildPrintDetails creates a concise decision record", () => {
   const details = buildPrintDetails({
+    premiumYear: 2026,
+    incomeYear: 2024,
     filingStatus: "single",
     baseMagi: 105_000,
     eventTotal: 8_000,
@@ -124,6 +126,8 @@ test("buildPrintDetails creates a concise decision record", () => {
   });
 
   assert.deepEqual(details, [
+    ["Premium year", "2026"],
+    ["Income year used", "2024"],
     ["Filing status", "Single"],
     ["Base Medicare MAGI", "$105,000"],
     ["Added income events", "$8,000"],
@@ -152,8 +156,8 @@ test("renderPrintDetails writes definition-list rows", () => {
 
 test("parseCalculatorQuery reads safe shareable calculator values", () => {
   assert.deepEqual(
-    parseCalculatorQuery("?status=joint&magi=210000&roth=40000&coverage=two"),
-    { filingStatus: "joint", baseMagi: "210000", rothAmount: "40000", coverageMode: "two" },
+    parseCalculatorQuery("?status=joint&year=2025&magi=210000&roth=40000&coverage=two"),
+    { filingStatus: "joint", premiumYear: "2025", baseMagi: "210000", rothAmount: "40000", coverageMode: "two" },
   );
 });
 
@@ -171,14 +175,14 @@ test("parseCalculatorQuery ignores missing calculator values instead of turning 
 
 test("buildCalculatorQuery serializes the shareable core flow", () => {
   assert.equal(
-    buildCalculatorQuery({ filingStatus: "single", baseMagi: 105000, rothAmount: 8000, coverageMode: "two" }),
-    "?status=single&magi=105000&roth=8000&coverage=two",
+    buildCalculatorQuery({ filingStatus: "single", premiumYear: 2025, baseMagi: 105000, rothAmount: 8000, coverageMode: "two" }),
+    "?status=single&year=2025&magi=105000&roth=8000&coverage=two",
   );
 });
 test("buildShareUrl keeps only core calculator values", () => {
   assert.equal(
-    buildShareUrl({ origin: "https://example.com", pathname: "/irmaa-calculator/" }, { filingStatus: "joint", baseMagi: "210000", rothAmount: "40000", coverageMode: "two" }),
-    "https://example.com/irmaa-calculator/?status=joint&magi=210000&roth=40000&coverage=two",
+    buildShareUrl({ origin: "https://example.com", pathname: "/irmaa-calculator/" }, { filingStatus: "joint", premiumYear: "2025", baseMagi: "210000", rothAmount: "40000", coverageMode: "two" }),
+    "https://example.com/irmaa-calculator/?status=joint&year=2025&magi=210000&roth=40000&coverage=two",
   );
 });
 
@@ -194,12 +198,14 @@ test("applyQueryParams fills core form controls", () => {
   const rothAmount = { value: "0" };
   const roth = { checked: false, closest: () => ({ querySelector: () => rothAmount }) };
   const status = { value: "single" };
+  const premiumYear = { value: "2026" };
   const coverage = { value: "one" };
   const magi = { value: "0" };
   const form = {
     querySelector(selector) {
       return {
         "[name='filingStatus']": status,
+        "[name='premiumYear']": premiumYear,
         "[name='coverageMode']": coverage,
         "[name='baseMagi']": magi,
         "[data-event-key='roth']": roth,
@@ -207,9 +213,10 @@ test("applyQueryParams fills core form controls", () => {
     },
   };
 
-  applyQueryParams(form, { filingStatus: "joint", coverageMode: "two", baseMagi: "210000", rothAmount: "40000" });
+  applyQueryParams(form, { filingStatus: "joint", premiumYear: "2025", coverageMode: "two", baseMagi: "210000", rothAmount: "40000" });
 
   assert.equal(status.value, "joint");
+  assert.equal(premiumYear.value, "2025");
   assert.equal(coverage.value, "two");
   assert.equal(magi.value, "210000");
   assert.equal(roth.checked, true);
@@ -223,6 +230,7 @@ test("getCoreShareValues reads core form controls", () => {
     querySelector(selector) {
       return {
         "[name='filingStatus']": { value: "single" },
+        "[name='premiumYear']": { value: "2025" },
         "[name='coverageMode']": { value: "two" },
         "[name='baseMagi']": { value: "105000" },
         "[data-event-key='roth']": roth,
@@ -230,5 +238,5 @@ test("getCoreShareValues reads core form controls", () => {
     },
   };
 
-  assert.deepEqual(getCoreShareValues(form), { filingStatus: "single", coverageMode: "two", baseMagi: "105000", rothAmount: "8000" });
+  assert.deepEqual(getCoreShareValues(form), { filingStatus: "single", premiumYear: "2025", coverageMode: "two", baseMagi: "105000", rothAmount: "8000" });
 });

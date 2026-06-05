@@ -96,6 +96,14 @@
         <form class="calculator-form" data-calculator-form data-default-event="rmd">
           <div class="field-grid">
             <div class="field">
+              <label for="premiumYear">Premium year</label>
+              <select id="premiumYear" name="premiumYear">
+                <option value="2026">2026 premiums (uses 2024 MAGI)</option>
+                <option value="2025">2025 premiums (uses 2023 MAGI)</option>
+              </select>
+              <span class="hint">Medicare usually looks back two tax years.</span>
+            </div>
+            <div class="field">
               <label for="filingStatus">Filing status</label>
               <select id="filingStatus" name="filingStatus">
                 <option value="single">Single</option>
@@ -151,6 +159,7 @@
             <h3>Your estimate</h3>
             <div class="result-grid">
               <div class="result-item result-wide"><span class="result-label">Estimated bracket</span><span class="result-value" data-result="status">Standard premium</span></div>
+              <div class="result-item"><span class="result-label">Income year used</span><span class="result-value" data-result="income-year">2024</span></div>
               <div class="result-item"><span class="result-label">Estimated MAGI</span><span class="result-value" data-result="magi">$0</span></div>
               <div class="result-item"><span class="result-label">Monthly surcharge</span><span class="result-value" data-result="monthly">$0.00</span></div>
               <div class="result-item"><span class="result-label">Annual surcharge</span><span class="result-value" data-result="annual">$0</span></div>

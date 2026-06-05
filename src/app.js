@@ -6,6 +6,7 @@ if (typeof document !== "undefined") {
   if (form) {
     const resultBox = document.querySelector("[data-results]");
     const statusNode = document.querySelector("[data-result='status']");
+    const incomeYearNode = document.querySelector("[data-result='income-year']");
     const magiNode = document.querySelector("[data-result='magi']");
     const monthlyNode = document.querySelector("[data-result='monthly']");
     const annualNode = document.querySelector("[data-result='annual']");
@@ -56,6 +57,7 @@ if (typeof document !== "undefined") {
         };
       });
       const result = calculateIrmaaImpact({
+        premiumYear: data.get("premiumYear"),
         filingStatus: data.get("filingStatus"),
         baseMagi: data.get("baseMagi"),
         events,
@@ -64,6 +66,7 @@ if (typeof document !== "undefined") {
       const hasSurcharge = result.monthlySurcharge > 0;
       resultBox.classList.toggle("warning", hasSurcharge);
       statusNode.textContent = result.bracket.name;
+      if (incomeYearNode) incomeYearNode.textContent = String(result.incomeYear);
       magiNode.textContent = formatCurrency(result.totalMagi);
       monthlyNode.textContent = formatMoney(result.monthlySurcharge);
       annualNode.textContent = formatCurrency(result.annualSurcharge);
@@ -79,6 +82,8 @@ if (typeof document !== "undefined") {
       renderPrintDetails(printDetailsNode, buildPrintDetails(result));
       window.irmaaCurrentEstimate = {
         filingStatus: result.filingStatus,
+        premiumYear: result.premiumYear,
+        incomeYear: result.incomeYear,
         baseMagi: result.baseMagi,
         eventTotal: result.eventTotal,
         totalMagi: result.totalMagi,
@@ -172,6 +177,8 @@ export function updateCliffMeterNodes(labelNode, detailNode, fillNode, cliffMete
 
 export function buildPrintDetails(result) {
   return [
+    ["Premium year", String(result.premiumYear ?? "")],
+    ["Income year used", String(result.incomeYear ?? "")],
     ["Filing status", FILING_STATUSES[result.filingStatus] ?? result.filingStatus],
     ["Base Medicare MAGI", formatCurrency(result.baseMagi)],
     ["Added income events", formatCurrency(result.eventTotal)],
@@ -211,12 +218,16 @@ export function parseCalculatorQuery(search) {
   const params = new URLSearchParams(search);
   const parsed = {};
   const status = params.get("status");
+  const year = params.get("year");
   const magi = params.get("magi");
   const roth = params.get("roth");
   const coverage = params.get("coverage");
 
   if (["single", "joint", "separate"].includes(status)) {
     parsed.filingStatus = status;
+  }
+  if (["2025", "2026"].includes(year)) {
+    parsed.premiumYear = year;
   }
   if (isSafeAmount(magi)) {
     parsed.baseMagi = String(Number(magi));
@@ -231,11 +242,14 @@ export function parseCalculatorQuery(search) {
   return parsed;
 }
 
-export function buildCalculatorQuery({ filingStatus, baseMagi, rothAmount, coverageMode }) {
+export function buildCalculatorQuery({ filingStatus, premiumYear, baseMagi, rothAmount, coverageMode }) {
   const params = new URLSearchParams();
 
   if (["single", "joint", "separate"].includes(filingStatus)) {
     params.set("status", filingStatus);
+  }
+  if (["2025", "2026"].includes(String(premiumYear))) {
+    params.set("year", String(premiumYear));
   }
   if (isSafeAmount(baseMagi)) {
     params.set("magi", String(Number(baseMagi)));
@@ -261,12 +275,14 @@ export function applyQueryParams(form, params) {
   if (!form || !params) return;
 
   const status = form.querySelector("[name='filingStatus']");
+  const premiumYear = form.querySelector("[name='premiumYear']");
   const coverage = form.querySelector("[name='coverageMode']");
   const magi = form.querySelector("[name='baseMagi']");
   const roth = form.querySelector("[data-event-key='roth']");
   const rothAmount = roth?.closest("[data-event]")?.querySelector("input[type='number']");
 
   if (params.filingStatus && status) status.value = params.filingStatus;
+  if (params.premiumYear && premiumYear) premiumYear.value = params.premiumYear;
   if (params.coverageMode && coverage) coverage.value = params.coverageMode;
   if (params.baseMagi && magi) magi.value = params.baseMagi;
   if (params.rothAmount && rothAmount) {
@@ -281,6 +297,7 @@ export function getCoreShareValues(form) {
 
   return {
     filingStatus: form.querySelector("[name='filingStatus']")?.value,
+    premiumYear: form.querySelector("[name='premiumYear']")?.value ?? "2026",
     coverageMode: form.querySelector("[name='coverageMode']")?.value ?? "one",
     baseMagi: form.querySelector("[name='baseMagi']")?.value,
     rothAmount: roth?.checked ? rothAmount?.value : 0,

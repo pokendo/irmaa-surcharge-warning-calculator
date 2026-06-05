@@ -9,6 +9,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 
 test("IRMAA data records official source URLs and review date", () => {
   assert.equal(IRMAA_DATA_LAST_REVIEWED, "2026-05-18");
+  assert.equal(IRMAA_DATA_SOURCES.cms2025Premiums.url, "https://www.cms.gov/newsroom/fact-sheets/2025-medicare-parts-b-premiums-and-deductibles");
   assert.equal(IRMAA_DATA_SOURCES.cms2026Premiums.url, "https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles");
   assert.equal(IRMAA_DATA_SOURCES.medicareCosts.url, "https://www.medicare.gov/basics/costs/medicare-costs");
   assert.equal(IRMAA_DATA_SOURCES.ssaLowerIrmaa.url, "https://www.ssa.gov/medicare/lower-irmaa");
@@ -20,6 +21,9 @@ for (const route of ["index.html", join("irmaa-calculator", "index.html"), join(
 
     assert.match(html, /Official sources/i);
     assert.match(html, /Last reviewed: May 18, 2026/);
+    if (route !== join("irmaa-brackets-2026", "index.html") && route !== join("medicare-part-b-premium-2026", "index.html")) {
+      assert.match(html, /href="https:\/\/www\.cms\.gov\/newsroom\/fact-sheets\/2025-medicare-parts-b-premiums-and-deductibles"/);
+    }
     assert.match(html, /href="https:\/\/www\.cms\.gov\/newsroom\/fact-sheets\/2026-medicare-parts-b-premiums-deductibles"/);
     assert.match(html, /href="https:\/\/www\.medicare\.gov\/basics\/costs\/medicare-costs"/);
     assert.match(html, /href="https:\/\/www\.ssa\.gov\/medicare\/lower-irmaa"/);

@@ -27,6 +27,14 @@ test("finds the 2026 single bracket for Medicare MAGI", () => {
   assert.equal(bracket.partDMonthly, 14.5);
 });
 
+test("finds the 2025 single bracket for Medicare MAGI", () => {
+  const bracket = getBracketForIncome("single", 112_000, 2025);
+
+  assert.equal(bracket.name, "First IRMAA bracket");
+  assert.equal(bracket.partBMonthly, 74);
+  assert.equal(bracket.partDMonthly, 13.7);
+});
+
 test("shows room before the next bracket when income is below the next threshold", () => {
   const result = calculateIrmaaImpact({
     filingStatus: "single",
@@ -56,6 +64,21 @@ test("formats currency for senior-friendly result labels", () => {
   assert.equal(formatCurrency(24_000), "\$24,000");
 });
 
+test("calculates 2025 monthly and annual surcharge impact", () => {
+  const result = calculateIrmaaImpact({
+    premiumYear: 2025,
+    filingStatus: "joint",
+    baseMagi: 210_000,
+    events: [{ label: "Capital gains", amount: 40_000, active: true }],
+  });
+
+  assert.equal(result.premiumYear, 2025);
+  assert.equal(result.incomeYear, 2023);
+  assert.equal(result.bracket.name, "First IRMAA bracket");
+  assert.equal(result.monthlySurcharge, 87.7);
+  assert.equal(result.annualSurcharge, 1052.4);
+});
+
 test("describes a surcharge result in plain English", () => {
   const result = calculateIrmaaImpact({
     filingStatus: "single",
@@ -65,7 +88,7 @@ test("describes a surcharge result in plain English", () => {
 
   assert.equal(
     describeIrmaaResult(result),
-    "Your estimated Medicare MAGI is in the First IRMAA bracket. This adds about $95.70 per month, or $1,148 per year, before any plan premium. You have about $24,000 before the next bracket.",
+    "Your estimated Medicare MAGI is in the First IRMAA bracket for 2026. This adds about $95.70 per month, or $1,148 per year, before any plan premium. You have about $24,000 before the next bracket.",
   );
 });
 
