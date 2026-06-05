@@ -76,6 +76,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Premium-year selector added across calculator pages for 2025 and 2026, with income-year lookback shown in results and share links preserving the selected year.
 - Medicare MAGI helper added across calculator pages so users can build base MAGI from AGI, tax-exempt interest, additional taxable Social Security, pension or consulting income, and planned Roth/RMD/capital-gain events.
 - Social Security and IRMAA article added at `/does-social-security-count-toward-irmaa/`, with homepage discovery, sitemap entry, sponsor placements, related guides, and source links.
+- Scenario comparison cards added across calculator pages so users can compare no added events, planned events, and fill-to-bracket outcomes.
 
 ## Next Tasks
 

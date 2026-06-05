@@ -14,6 +14,14 @@ if (typeof document !== "undefined") {
     const householdAnnualNode = document.querySelector("[data-result='household-annual']");
     const roomNode = document.querySelector("[data-result='room']");
     const rothRoomNode = document.querySelector("[data-result='roth-room']");
+    const scenarioNodes = {
+      baselineMagi: document.querySelector("[data-scenario-result='baseline-magi']"),
+      baselineMonthly: document.querySelector("[data-scenario-result='baseline-monthly']"),
+      plannedMagi: document.querySelector("[data-scenario-result='planned-magi']"),
+      plannedMonthly: document.querySelector("[data-scenario-result='planned-monthly']"),
+      fillMagi: document.querySelector("[data-scenario-result='fill-magi']"),
+      fillMonthly: document.querySelector("[data-scenario-result='fill-monthly']"),
+    };
     const cliffLabelNode = document.querySelector("[data-result='cliff-label']");
     const cliffDetailNode = document.querySelector("[data-result='cliff-detail']");
     const cliffFillNode = document.querySelector("[data-result='cliff-fill']");
@@ -82,6 +90,12 @@ if (typeof document !== "undefined") {
       annualNode.textContent = formatCurrency(result.annualSurcharge);
       const householdImpact = calculateHouseholdImpact(result, data.get("coverageMode"));
       updateHouseholdImpactNodes(householdMonthlyNode, householdAnnualNode, householdImpact);
+      updateScenarioComparisonNodes(scenarioNodes, calculateScenarioComparison({
+        premiumYear: data.get("premiumYear"),
+        filingStatus: data.get("filingStatus"),
+        baseMagi: data.get("baseMagi"),
+        events,
+      }));
       roomNode.textContent = result.roomBeforeNextBracket === null
         ? "Top bracket"
         : formatCurrency(result.roomBeforeNextBracket);
@@ -149,6 +163,44 @@ export function calculateHouseholdImpact(result, coverageMode = "one") {
   const householdAnnualSurcharge = roundMoney(householdMonthlySurcharge * 12);
 
   return { coverageMultiplier, householdMonthlySurcharge, householdAnnualSurcharge };
+}
+
+export function calculateScenarioComparison({ premiumYear, filingStatus, baseMagi = 0, events = [] } = {}) {
+  const baselineResult = calculateIrmaaImpact({ premiumYear, filingStatus, baseMagi, events: [] });
+  const plannedResult = calculateIrmaaImpact({ premiumYear, filingStatus, baseMagi, events });
+  const fillToBracketMagi = plannedResult.nextThreshold ?? plannedResult.totalMagi;
+  const fillToBracketResult = calculateIrmaaImpact({
+    premiumYear,
+    filingStatus,
+    baseMagi: fillToBracketMagi,
+    events: [],
+  });
+
+  return {
+    baseline: scenarioFromResult("Baseline", baselineResult),
+    planned: scenarioFromResult("Planned", plannedResult),
+    fillToBracket: scenarioFromResult("Fill to bracket", fillToBracketResult),
+  };
+}
+
+export function updateScenarioComparisonNodes(nodes = {}, comparison) {
+  if (!comparison) return;
+
+  if (nodes.baselineMagi) nodes.baselineMagi.textContent = formatCurrency(comparison.baseline.magi);
+  if (nodes.baselineMonthly) nodes.baselineMonthly.textContent = `${formatMoney(comparison.baseline.monthlySurcharge)}/mo`;
+  if (nodes.plannedMagi) nodes.plannedMagi.textContent = formatCurrency(comparison.planned.magi);
+  if (nodes.plannedMonthly) nodes.plannedMonthly.textContent = `${formatMoney(comparison.planned.monthlySurcharge)}/mo`;
+  if (nodes.fillMagi) nodes.fillMagi.textContent = formatCurrency(comparison.fillToBracket.magi);
+  if (nodes.fillMonthly) nodes.fillMonthly.textContent = `${formatMoney(comparison.fillToBracket.monthlySurcharge)}/mo`;
+}
+
+function scenarioFromResult(label, result) {
+  return {
+    label,
+    magi: result.totalMagi,
+    monthlySurcharge: result.monthlySurcharge,
+    annualSurcharge: result.annualSurcharge,
+  };
 }
 
 export function updateHouseholdImpactNodes(monthlyNode, annualNode, householdImpact) {

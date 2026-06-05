@@ -158,6 +158,29 @@ test("calculator pages include a Medicare MAGI helper", async () => {
   }
 });
 
+test("calculator pages include scenario comparison cards", async () => {
+  for (const path of [
+    "index.html",
+    join("irmaa-calculator", "index.html"),
+    join("roth-conversion-irmaa-calculator", "index.html"),
+    join("rmd-irmaa-calculator", "index.html"),
+    join("home-sale-medicare-premium-calculator", "index.html"),
+    join("capital-gains-irmaa-calculator", "index.html"),
+    join("ira-withdrawal-medicare-premium-calculator", "index.html"),
+    join("401k-withdrawal-medicare-premium-calculator", "index.html"),
+  ]) {
+    const html = await readFile(join(root, path), "utf8");
+
+    assert.match(html, /class="scenario-comparison"/, path);
+    assert.match(html, /No added events/i, path);
+    assert.match(html, /Planned events/i, path);
+    assert.match(html, /Fill to bracket/i, path);
+    assert.match(html, /data-scenario-result="baseline-magi"/, path);
+    assert.match(html, /data-scenario-result="planned-monthly"/, path);
+    assert.match(html, /data-scenario-result="fill-magi"/, path);
+  }
+});
+
 test("calculator pages include a visual IRMAA cliff meter", async () => {
   for (const path of [
     "index.html",

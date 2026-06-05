@@ -318,6 +318,29 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 12px; }
 .result-item { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
 .result-label { color: var(--muted); font-size: 14px; font-weight: 800; text-transform: uppercase; }
 .result-value { display: block; margin-top: 4px; font-size: 24px; font-weight: 800; }
+.scenario-comparison {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+.scenario-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  padding: 12px;
+}
+.scenario-card strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 22px;
+}
+.scenario-card small {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+}
 .result-explainer {
   margin-top: 14px;
   border: 1px solid var(--line);
@@ -474,7 +497,7 @@ tr:last-child td { border-bottom: 0; }
   .planner-hero, .planner-next, .civic-shell, .editorial-shell { grid-template-columns: 1fr; }
   .utility-rail, .editorial-rail { position: static; }
   .layout-editorial-guide { background: #ffffff; }
-  .field-grid, .result-grid, .magi-helper-grid { grid-template-columns: 1fr; }
+  .field-grid, .result-grid, .magi-helper-grid, .scenario-comparison { grid-template-columns: 1fr; }
   .result-wide { grid-column: auto; }
   .magi-helper-actions { align-items: stretch; flex-direction: column; }
   .ad-slot-sponsor, .ad-slot-leaderboard { grid-template-columns: 1fr; }

@@ -1,7 +1,29 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { applyDefaultEvent, applyMagiHelperValues, applyQueryParams, buildCalculatorQuery, buildShareUrl, calculateMagiHelperPlannedEvents, calculateMagiHelperTotal, copyShareUrl, getCoreShareValues, parseCalculatorQuery, renderPrintDetails, updateMagiHelperTotalNode, updateSummaryNode, buildPrintDetails, calculateCliffMeter, calculateMaxRothConversionBeforeNextBracket, calculateHouseholdImpact, getCoverageMultiplier, updateRothRoomNode } from "./app.js";
+import * as app from "./app.js";
+
+const {
+  applyDefaultEvent,
+  applyMagiHelperValues,
+  applyQueryParams,
+  buildCalculatorQuery,
+  buildShareUrl,
+  calculateMagiHelperPlannedEvents,
+  calculateMagiHelperTotal,
+  copyShareUrl,
+  getCoreShareValues,
+  parseCalculatorQuery,
+  renderPrintDetails,
+  updateMagiHelperTotalNode,
+  updateSummaryNode,
+  buildPrintDetails,
+  calculateCliffMeter,
+  calculateMaxRothConversionBeforeNextBracket,
+  calculateHouseholdImpact,
+  getCoverageMultiplier,
+  updateRothRoomNode,
+} = app;
 
 test("applyDefaultEvent checks only the matching scenario event", () => {
   const events = [
@@ -76,6 +98,62 @@ test("calculateHouseholdImpact returns household monthly and annual surcharge es
     calculateHouseholdImpact({ monthlySurcharge: 95.7 }, "two"),
     { coverageMultiplier: 2, householdMonthlySurcharge: 191.4, householdAnnualSurcharge: 2296.8 },
   );
+});
+
+test("calculateScenarioComparison compares baseline, planned events, and fill-to-bracket scenarios", () => {
+  assert.equal(typeof app.calculateScenarioComparison, "function");
+
+  const comparison = app.calculateScenarioComparison({
+    premiumYear: 2026,
+    filingStatus: "single",
+    baseMagi: 105_000,
+    events: [{ label: "Roth conversion", amount: 8_000, active: true }],
+  });
+
+  assert.deepEqual(comparison.baseline, {
+    label: "Baseline",
+    magi: 105_000,
+    monthlySurcharge: 0,
+    annualSurcharge: 0,
+  });
+  assert.deepEqual(comparison.planned, {
+    label: "Planned",
+    magi: 113_000,
+    monthlySurcharge: 95.7,
+    annualSurcharge: 1148.4,
+  });
+  assert.deepEqual(comparison.fillToBracket, {
+    label: "Fill to bracket",
+    magi: 137_000,
+    monthlySurcharge: 95.7,
+    annualSurcharge: 1148.4,
+  });
+});
+
+test("updateScenarioComparisonNodes writes comparison card values", () => {
+  assert.equal(typeof app.updateScenarioComparisonNodes, "function");
+
+  const nodes = {
+    baselineMagi: { textContent: "" },
+    baselineMonthly: { textContent: "" },
+    plannedMagi: { textContent: "" },
+    plannedMonthly: { textContent: "" },
+    fillMagi: { textContent: "" },
+    fillMonthly: { textContent: "" },
+  };
+
+  app.updateScenarioComparisonNodes(nodes, {
+    baseline: { magi: 105_000, monthlySurcharge: 0 },
+    planned: { magi: 113_000, monthlySurcharge: 95.7 },
+    fillToBracket: { magi: 137_000, monthlySurcharge: 95.7 },
+  });
+
+  assert.equal(nodes.baselineMagi.textContent, "$105,000");
+  assert.equal(nodes.baselineMonthly.textContent, "$0.00/mo");
+  assert.equal(nodes.plannedMagi.textContent, "$113,000");
+  assert.equal(nodes.plannedMonthly.textContent, "$95.70/mo");
+  assert.equal(nodes.fillMagi.textContent, "$137,000");
+  assert.equal(nodes.fillMonthly.textContent, "$95.70/mo");
 });
 
 test("calculateMagiHelperTotal builds base Medicare MAGI components", () => {
