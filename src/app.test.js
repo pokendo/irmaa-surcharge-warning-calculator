@@ -306,17 +306,21 @@ test("calculateCliffMeter shows top bracket status", () => {
 });
 
 test("buildPrintDetails creates a concise decision record", () => {
-  const details = buildPrintDetails({
-    premiumYear: 2026,
-    incomeYear: 2024,
-    filingStatus: "single",
-    baseMagi: 105_000,
-    eventTotal: 8_000,
-    totalMagi: 113_000,
-    bracket: { name: "First IRMAA bracket" },
-    monthlySurcharge: 95.7,
-    annualSurcharge: 1148.4,
-  });
+  const details = buildPrintDetails(
+    {
+      premiumYear: 2026,
+      incomeYear: 2024,
+      filingStatus: "single",
+      baseMagi: 105_000,
+      eventTotal: 8_000,
+      totalMagi: 113_000,
+      bracket: { name: "First IRMAA bracket" },
+      monthlySurcharge: 95.7,
+      annualSurcharge: 1148.4,
+      roomBeforeNextBracket: 24_000,
+    },
+    { currentRothAmount: 8_000 },
+  );
 
   assert.deepEqual(details, [
     ["Premium year", "2026"],
@@ -328,8 +332,31 @@ test("buildPrintDetails creates a concise decision record", () => {
     ["Estimated bracket", "First IRMAA bracket"],
     ["Estimated monthly surcharge", "$95.70"],
     ["Estimated annual surcharge", "$1,148"],
+    ["Room before next bracket", "$24,000"],
+    ["Max Roth conversion before next bracket", "$32,000"],
     ["Source review date", "May 18, 2026"],
   ]);
+});
+
+test("buildPrintDetails handles top-bracket decision fields", () => {
+  const details = buildPrintDetails(
+    {
+      premiumYear: 2026,
+      incomeYear: 2024,
+      filingStatus: "single",
+      baseMagi: 700_000,
+      eventTotal: 0,
+      totalMagi: 700_000,
+      bracket: { name: "Top IRMAA bracket" },
+      monthlySurcharge: 472.5,
+      annualSurcharge: 5670,
+      roomBeforeNextBracket: null,
+    },
+    { currentRothAmount: 0 },
+  );
+
+  assert.ok(details.some(([label, value]) => label === "Room before next bracket" && value === "Top bracket"));
+  assert.ok(details.some(([label, value]) => label === "Max Roth conversion before next bracket" && value === "Top bracket"));
 });
 
 

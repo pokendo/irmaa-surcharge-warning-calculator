@@ -108,7 +108,7 @@ if (typeof document !== "undefined") {
       updateCliffMeterNodes(cliffLabelNode, cliffDetailNode, cliffFillNode, calculateCliffMeter(result));
       updateSummaryNode(summaryNode, result);
       updateResultActionNodes(resultActionNodes, buildResultAction(result));
-      renderPrintDetails(printDetailsNode, buildPrintDetails(result));
+      renderPrintDetails(printDetailsNode, buildPrintDetails(result, { currentRothAmount: rothAmount }));
       window.irmaaCurrentEstimate = {
         filingStatus: result.filingStatus,
         premiumYear: result.premiumYear,
@@ -320,7 +320,15 @@ function applyHelperEventValue(form, eventKey, value) {
   amount.value = String(value);
 }
 
-export function buildPrintDetails(result) {
+export function buildPrintDetails(result, options = {}) {
+  const roomBeforeNextBracket = result.roomBeforeNextBracket === null
+    ? "Top bracket"
+    : formatCurrency(result.roomBeforeNextBracket);
+  const maxRothConversion = calculateMaxRothConversionBeforeNextBracket(result, options.currentRothAmount ?? 0);
+  const maxRothConversionLabel = maxRothConversion === null
+    ? "Top bracket"
+    : formatCurrency(maxRothConversion);
+
   return [
     ["Premium year", String(result.premiumYear ?? "")],
     ["Income year used", String(result.incomeYear ?? "")],
@@ -331,6 +339,8 @@ export function buildPrintDetails(result) {
     ["Estimated bracket", result.bracket.name],
     ["Estimated monthly surcharge", formatMoney(result.monthlySurcharge)],
     ["Estimated annual surcharge", formatCurrency(result.annualSurcharge)],
+    ["Room before next bracket", roomBeforeNextBracket],
+    ["Max Roth conversion before next bracket", maxRothConversionLabel],
     ["Source review date", formatReviewDate(IRMAA_DATA_LAST_REVIEWED)],
   ];
 }
