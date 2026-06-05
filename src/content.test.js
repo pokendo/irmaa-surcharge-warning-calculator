@@ -32,6 +32,7 @@ const pages = [
   ["irmaa-cliff/index.html", "IRMAA Cliff"],
   ["ways-to-reduce-irmaa/index.html", "Ways to Reduce IRMAA"],
   ["medicare-magi-vs-aca-magi/index.html", "Medicare MAGI vs ACA MAGI"],
+  ["what-counts-toward-irmaa-magi/index.html", "What Counts Toward IRMAA MAGI?"],
   ["ssa-44-irmaa-appeal-timing-checker/index.html", "SSA-44 IRMAA Appeal Timing Checker"],
   ["does-401k-contribution-reduce-irmaa-magi/index.html", "Does a 401(k) Contribution Reduce IRMAA MAGI?"],
   ["does-social-security-count-toward-irmaa/index.html", "Does Social Security Count Toward IRMAA?"],
@@ -615,6 +616,7 @@ test("homepage exposes article links for organic discovery", async () => {
     "irmaa-cliff",
     "ways-to-reduce-irmaa",
     "medicare-magi-vs-aca-magi",
+    "what-counts-toward-irmaa-magi",
     "ssa-44-irmaa-appeal-timing-checker",
     "does-401k-contribution-reduce-irmaa-magi",
     "does-social-security-count-toward-irmaa",
@@ -623,6 +625,22 @@ test("homepage exposes article links for organic discovery", async () => {
   ]) {
     assert.match(html, new RegExp(`href="\\./${route}/"`), route);
   }
+});
+
+test("IRMAA MAGI checklist tool answers income-count questions and routes to conversion surfaces", async () => {
+  const html = await readFile(join(root, "what-counts-toward-irmaa-magi", "index.html"), "utf8");
+
+  assert.match(html, /What Counts Toward IRMAA MAGI\?/i);
+  assert.match(html, /AGI \+ tax-exempt interest/i);
+  assert.match(html, /Roth conversions/i);
+  assert.match(html, /RMDs/i);
+  assert.match(html, /qualified Roth IRA withdrawals/i);
+  assert.match(html, /municipal bond interest/i);
+  assert.match(html, /data-newsletter-form/);
+  assert.match(html, /IRMAA planning checklist/i);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/advertise\/#sponsor-inquiry"/);
+  assert.match(html, /Advertisement/i);
 });
 
 test("Reddit pain point pages answer SSA-44 timing, 401k MAGI, and backdoor Roth questions", async () => {

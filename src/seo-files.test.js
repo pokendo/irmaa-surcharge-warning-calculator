@@ -33,6 +33,7 @@ const requiredRoutes = [
   "/irmaa-cliff/",
   "/ways-to-reduce-irmaa/",
   "/medicare-magi-vs-aca-magi/",
+  "/what-counts-toward-irmaa-magi/",
   "/ssa-44-irmaa-appeal-timing-checker/",
   "/does-401k-contribution-reduce-irmaa-magi/",
   "/does-social-security-count-toward-irmaa/",
