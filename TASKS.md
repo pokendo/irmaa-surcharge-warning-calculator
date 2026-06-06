@@ -88,14 +88,15 @@ The static MVP is built and deployed from this project folder. The site includes
 - Widow penalty and IRMAA guide added at `/widow-penalty-irmaa/`, with filing-status timeline, surviving-spouse income checklist, SSA-44 routing, newsletter capture, sponsor placement, and discovery links.
 - Municipal bond interest and IRMAA guide added at `/municipal-bond-interest-irmaa/`, explaining why tax-exempt interest counts toward Medicare MAGI with calculator routing, lead capture, sponsor placement, and discovery links.
 - Direct checklist email capture added inside calculator result actions so visitors can save the next step immediately after receiving an estimate.
+- First sponsor outreach emails sent to Income Lab and RothAware on June 6, 2026 with intent-matched, UTM-tagged landing pages; follow-ups scheduled in the tracker for June 13.
+- Rothology Partner Desk sponsor outreach sent and AdvisorCal sponsor contact form submitted on June 6, 2026; MaxiFi is prepared but blocked by CAPTCHA, Savvy Medicare timed out, and AdvisorEdgeOS has a broken contact path.
 
 ## Next Tasks
 
 - Execute the competitor-driven improvement plan in `COMPETITOR_ANALYSIS.md`, starting with calculator features that create a clearer planning decision and stronger monetization path.
 - Continue content expansion from `CONTENT_ROADMAP.md`, prioritizing the next high-intent article or calculator page that can route visitors into lead capture and sponsor inventory.
-- Send or revise the two prepared Gmail sponsor drafts.
-- Submit contact-form outreach for MaxiFi Planner, Savvy Medicare Planning, AdvisorEdgeOS, Rothology Partner Desk, and AdvisorCal.
-- Send the first sponsor outreach batch and track replies.
+- Complete the prepared MaxiFi contact form after the owner clears its CAPTCHA; retry Savvy Medicare and locate a working AdvisorEdgeOS contact path.
+- Track replies to the first sponsor outreach batch and send follow-ups on June 13 if needed.
 - Review PocketBase `site_events` and `newsletter_signups` again after traffic starts; the May 31, 2026 report showed tracking is working but lead capture is still at 0 signups.
 
 ## Open Deployment Details

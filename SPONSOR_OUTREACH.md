@@ -186,17 +186,17 @@ Use the prospect-specific Sponsor Landing URL in outreach messages so PocketBase
 
 ## First Batch Status
 
-As of May 30, 2026:
+As of June 6, 2026:
 
 | Prospect | Contact path | Status | Notes |
 | --- | --- | --- | --- |
-| Income Lab | info@incomelab.io | Gmail draft created | Public contact page lists general info email. |
-| RothAware | support@rothaware.com | Gmail draft created | Public FAQ/contact page lists support email. |
-| MaxiFi Planner | https://maxifiplanner.com/contact | Contact form next | No direct sponsor email confirmed; use contact form or support ticket. |
-| Savvy Medicare Planning | https://www.savvymedicare.com/ | Contact form next | Public site points users to contact options. |
-| AdvisorEdgeOS / RothEdge | https://www.advisoredgeos.com/ | Contact form next | Good fit; no public outreach email confirmed yet. |
-| Rothology Partner Desk | https://q3partnerdesk.com/ | Contact form next | Good fit; use site CTA/contact path. |
-| AdvisorCal | https://www.advisorcal.com/ | Contact form next | Strong fit; no public outreach email confirmed yet. |
+| Income Lab | info@incomelab.io | First outreach sent June 6, 2026 | Follow up June 13 if no reply. |
+| RothAware | support@rothaware.com | First outreach sent June 6, 2026 | Follow up June 13 if no reply. |
+| MaxiFi Planner | https://maxifiplanner.com/contact | Blocked by CAPTCHA | Form is filled and ready for the owner to complete the CAPTCHA and submit. |
+| Savvy Medicare Planning | https://www.savvymedicare.com/ | Site inaccessible | Public site timed out during the June 6 outreach attempt. |
+| AdvisorEdgeOS / RothEdge | https://www.advisoredgeos.com/ | No working contact path | Homepage contact link leads to a 404 and no public email was found. |
+| Rothology Partner Desk | partners@q3adv.com | First outreach sent June 6, 2026 | Follow up June 13 if no reply. |
+| AdvisorCal | https://www.advisorcal.com/ | Contact form submitted June 6, 2026 | Confirmation received; follow up June 13 if no reply. |
 
 ## Rules
 

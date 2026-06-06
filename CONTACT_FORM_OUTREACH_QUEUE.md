@@ -1,6 +1,6 @@
 # Prepared Contact-Form Outreach Queue
 
-Do not submit these messages until the owner explicitly approves sending sponsor outreach. This file is a preparation queue only.
+The owner approved sponsor outreach on June 6, 2026. This file records prepared messages and contact-form outcomes.
 
 ## Usage Notes
 
@@ -9,6 +9,8 @@ Do not submit these messages until the owner explicitly approves sending sponsor
 - Mark the sent date and notes in `SPONSOR_TRACKER.csv` after sending.
 
 ## MaxiFi
+
+Status: Form filled on June 6, 2026; submission is blocked by CAPTCHA and ready for the owner to finish.
 
 Contact path:
 
@@ -32,6 +34,8 @@ Sponsor info: https://www.irmaacheck.com/advertise/?utm_source=maxifi&utm_medium
 
 ## Savvy Medicare Planning
 
+Status: Public site timed out during the June 6, 2026 outreach attempt.
+
 Contact path:
 
 - https://www.savvymedicare.com/
@@ -51,6 +55,8 @@ Sponsor info: https://www.irmaacheck.com/advertise/?utm_source=savvy_medicare&ut
 ```
 
 ## AdvisorEdgeOS
+
+Status: Homepage contact link leads to a 404 and no public email was found during the June 6, 2026 outreach attempt.
 
 Contact path:
 
@@ -92,6 +98,8 @@ Sponsor info: https://www.irmaacheck.com/advertise/?utm_source=rothaware&utm_med
 ```
 
 ## AdvisorCal
+
+Status: Contact form submitted successfully on June 6, 2026; confirmation received.
 
 Contact path:
 

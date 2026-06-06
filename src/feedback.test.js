@@ -75,14 +75,15 @@ test("profitability operations include sponsor outreach and PocketBase reporting
   assert.match(tracker, /does-roth-conversion-affect-irmaa\/\?utm_source=rothaware/);
   assert.match(tracker, /medicare-part-b-premium-2026\/\?utm_source=savvy_medicare/);
   assert.match(tracker, /Income Lab/);
-  assert.match(tracker, /Gmail draft created/);
+  assert.match(tracker, /First outreach sent/);
+  assert.match(tracker, /Contact form submitted/);
   assert.match(contactQueue, /Prepared contact-form outreach queue/i);
   assert.match(contactQueue, /MaxiFi/);
   assert.match(contactQueue, /Savvy Medicare Planning/);
   assert.match(contactQueue, /AdvisorEdgeOS/);
   assert.match(contactQueue, /RothAware/);
   assert.match(contactQueue, /AdvisorCal/);
-  assert.match(contactQueue, /Do not submit/i);
+  assert.match(contactQueue, /owner approved sponsor outreach/i);
   assert.match(keywords, /Google Search Console Setup/);
   assert.match(keywords, /Ubersuggest Batch 1/);
   assert.match(keywords, /Ubersuggest Batch 6/);
