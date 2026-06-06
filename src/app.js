@@ -40,6 +40,9 @@ if (typeof document !== "undefined") {
       [...form.querySelectorAll("[data-event]")].map((row) => row.querySelector("input[type='checkbox']")),
       form.dataset.defaultEvent ?? "",
     );
+    if (!form.parentElement?.querySelector(".result-signup")) {
+      form.insertAdjacentHTML("afterend", buildResultSignupMarkup(form.dataset.defaultEvent || "general"));
+    }
 
     form.addEventListener("input", updateResults);
     if (magiHelper) {
@@ -164,6 +167,21 @@ export function updateResultActionNodes(nodes = {}, action) {
 
   if (nodes.title) nodes.title.textContent = action.title;
   if (nodes.copy) nodes.copy.textContent = action.copy;
+}
+
+export function buildResultSignupMarkup(context = "general") {
+  return `
+    <form class="result-signup" data-newsletter-form data-source="calculator-result-${context}">
+      <label>
+        Email the checklist and annual IRMAA updates
+        <span class="result-signup-row">
+          <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <button type="submit">Send checklist</button>
+        </span>
+      </label>
+      <p class="form-status" data-newsletter-status aria-live="polite"></p>
+    </form>
+  `;
 }
 
 export function updateRothRoomNode(node, result, currentRothAmount) {

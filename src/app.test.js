@@ -10,6 +10,7 @@ const {
   buildCalculatorQuery,
   buildShareUrl,
   buildResultAction,
+  buildResultSignupMarkup,
   calculateMagiHelperPlannedEvents,
   calculateMagiHelperTotal,
   copyShareUrl,
@@ -100,6 +101,15 @@ test("updateResultActionNodes writes the result action copy", () => {
 
   assert.equal(nodes.title.textContent, "Review before you lock this in");
   assert.equal(nodes.copy.textContent, "Use the checklist before the tax-year decision becomes hard to unwind.");
+});
+
+test("buildResultSignupMarkup creates a direct result checklist signup", () => {
+  const markup = buildResultSignupMarkup("roth");
+
+  assert.match(markup, /data-newsletter-form/);
+  assert.match(markup, /data-source="calculator-result-roth"/);
+  assert.match(markup, /Email the checklist/i);
+  assert.match(markup, /data-newsletter-status/);
 });
 
 test("calculateMaxRothConversionBeforeNextBracket adds current Roth amount to remaining bracket room", () => {
