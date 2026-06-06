@@ -36,6 +36,7 @@ const routes = [
   ["what-counts-toward-irmaa-magi/index.html", `${productionOrigin}/what-counts-toward-irmaa-magi/`],
   ["do-both-spouses-pay-irmaa/index.html", `${productionOrigin}/do-both-spouses-pay-irmaa/`],
   ["guides/index.html", `${productionOrigin}/guides/`],
+  ["how-long-does-irmaa-last/index.html", `${productionOrigin}/how-long-does-irmaa-last/`],
   ["ssa-44-irmaa-appeal-timing-checker/index.html", `${productionOrigin}/ssa-44-irmaa-appeal-timing-checker/`],
   ["does-401k-contribution-reduce-irmaa-magi/index.html", `${productionOrigin}/does-401k-contribution-reduce-irmaa-magi/`],
   ["backdoor-roth-irmaa/index.html", `${productionOrigin}/backdoor-roth-irmaa/`],

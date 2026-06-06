@@ -39,6 +39,7 @@ const pages = [
   ["does-401k-contribution-reduce-irmaa-magi/index.html", "Does a 401(k) Contribution Reduce IRMAA MAGI?"],
   ["does-social-security-count-toward-irmaa/index.html", "Does Social Security Count Toward IRMAA?"],
   ["one-time-income-spike-irmaa/index.html", "One-Time Income Spike and IRMAA"],
+  ["how-long-does-irmaa-last/index.html", "How Long Does IRMAA Last?"],
   ["backdoor-roth-irmaa/index.html", "Backdoor Roth and IRMAA"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
@@ -642,6 +643,7 @@ test("homepage exposes article links for organic discovery", async () => {
     "does-401k-contribution-reduce-irmaa-magi",
     "does-social-security-count-toward-irmaa",
     "one-time-income-spike-irmaa",
+    "how-long-does-irmaa-last",
     "backdoor-roth-irmaa",
   ]) {
     assert.match(html, new RegExp(`href="\\./${route}/"`), route);
@@ -737,6 +739,22 @@ test("one-time income spike page routes users to calculator and SSA-44 guidance"
   assert.match(html, /href="\.\.\/irmaa-appeal-ssa-44-form\/"/);
   assert.match(html, /ad-slot ad-slot-inline/);
   assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
+});
+
+test("IRMAA duration guide explains annual recalculation, corrections, and refunds", async () => {
+  const html = await readFile(join(root, "how-long-does-irmaa-last", "index.html"), "utf8");
+
+  assert.match(html, /How Long Does IRMAA Last\?/i);
+  assert.match(html, /not automatically permanent/i);
+  assert.match(html, /effective year/i);
+  assert.match(html, /determined again/i);
+  assert.match(html, /retroactive adjustment/i);
+  assert.match(html, /amended tax return/i);
+  assert.match(html, /new initial determination/i);
+  assert.match(html, /href="\.\.\/ssa-44-irmaa-appeal-timing-checker\/"/);
+  assert.match(html, /href="\.\.\/irmaa-planning-checklist\/"/);
+  assert.match(html, /data-newsletter-form/);
+  assert.match(html, /href="\.\.\/advertise\/#sponsor-inquiry"/);
 });
 
 test("transcript-inspired education pages are original easy-read IRMAA explainers", async () => {

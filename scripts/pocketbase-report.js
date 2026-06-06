@@ -65,9 +65,18 @@ for (const item of sponsorInquiries.items.slice(0, 10)) {
 }
 
 async function listRecords(collection) {
-  const records = await request(`/api/collections/${collection}/records?perPage=200`, { headers });
-  records.items.sort((a, b) => String(b.created || "").localeCompare(String(a.created || "")));
-  return records;
+  const firstPage = await request(`/api/collections/${collection}/records?page=1&perPage=200`, { headers });
+  const items = [...firstPage.items];
+  const totalPages = firstPage.totalPages;
+
+  for (let page = 1; page <= totalPages; page += 1) {
+    if (page === 1) continue;
+    const records = await request(`/api/collections/${collection}/records?page=${page}&perPage=200`, { headers });
+    items.push(...records.items);
+  }
+
+  items.sort((a, b) => String(b.created || "").localeCompare(String(a.created || "")));
+  return { ...firstPage, items };
 }
 
 async function request(path, options = {}) {

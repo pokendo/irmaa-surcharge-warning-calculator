@@ -104,6 +104,8 @@ test("profitability operations include sponsor outreach and PocketBase reporting
   assert.match(report, /Newsletter signups by page/);
   assert.match(report, /topPages/);
   assert.match(report, /Sponsor inquiries by source/);
+  assert.match(report, /for \(let page = 1; page <= totalPages; page \+= 1\)/);
+  assert.match(report, /page=\$\{page\}&perPage=200/);
   assert.doesNotMatch(report, /F3jJYgf0aA9mEbKcQnUMl7sOPCpv/);
   assert.match(workflow, /Deploy to Coolify/);
   assert.match(workflow, /api\/v1\/deploy\?uuid=n2muhudfe48a2x48bc7edbou/);

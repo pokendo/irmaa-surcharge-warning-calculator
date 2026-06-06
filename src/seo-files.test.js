@@ -36,6 +36,7 @@ const requiredRoutes = [
   "/what-counts-toward-irmaa-magi/",
   "/do-both-spouses-pay-irmaa/",
   "/guides/",
+  "/how-long-does-irmaa-last/",
   "/ssa-44-irmaa-appeal-timing-checker/",
   "/does-401k-contribution-reduce-irmaa-magi/",
   "/does-social-security-count-toward-irmaa/",
