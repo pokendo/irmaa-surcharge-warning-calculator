@@ -710,6 +710,20 @@ test("guide library makes the article collection easy to browse", async () => {
   assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
 });
 
+test("guide library prominently routes visitors into interactive planning tools", async () => {
+  const html = await readFile(join(root, "guides", "index.html"), "utf8");
+  const toolsIndex = html.indexOf("Interactive IRMAA planning tools");
+  const startHereIndex = html.indexOf("Start here");
+
+  assert.ok(toolsIndex > 0 && toolsIndex < startHereIndex);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/roth-conversion-irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/rmd-irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/capital-gains-irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/home-sale-medicare-premium-calculator\/"/);
+  assert.match(html, /href="\.\.\/ssa-44-irmaa-appeal-timing-checker\/"/);
+});
+
 test("Reddit pain point pages answer SSA-44 timing, 401k MAGI, and backdoor Roth questions", async () => {
   const ssa44 = await readFile(join(root, "ssa-44-irmaa-appeal-timing-checker", "index.html"), "utf8");
   const k401 = await readFile(join(root, "does-401k-contribution-reduce-irmaa-magi", "index.html"), "utf8");
