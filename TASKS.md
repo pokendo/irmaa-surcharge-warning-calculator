@@ -100,6 +100,8 @@ The static MVP is built and deployed from this project folder. The site includes
 - Every public page now includes a related editorial image with descriptive alt text, using topic-specific visual families for retirement accounts, home sales and gains, Medicare/SSA paperwork, MAGI calculations, household changes, and planning guides.
 - All related editorial images were resized and converted from large PNG source files to production WebP assets with lazy loading outside the homepage, reducing their combined size by 95.2%.
 - The two-year-lookback search cluster now has a clearer internal path from the homepage timeline into Medicare MAGI education, the calculator, and the planning checklist.
+- Production route audit completed on June 6, 2026: all 40 sitemap pages and all 41 unique internal destinations returned successfully.
+- The two-year-lookback guide now answers high-intent tax-year, annual-review, and age-63 questions with matching FAQ structured data.
 
 ## Next Tasks
 

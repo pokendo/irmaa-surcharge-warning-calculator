@@ -96,6 +96,15 @@ test("lookback cluster gives visitors a clear understand calculate act path", as
   assert.match(lookback, /href="\.\.\/irmaa-planning-checklist\/"[\s\S]*?Act with a checklist/);
 });
 
+test("two-year lookback guide answers high-intent timing questions with FAQ schema", async () => {
+  const lookback = await readFile(join(root, "irmaa-two-year-lookback", "index.html"), "utf8");
+
+  assert.match(lookback, /"@type": "FAQPage"/);
+  assert.match(lookback, /What tax year does Medicare use for IRMAA\?/i);
+  assert.match(lookback, /Does IRMAA change every year\?/i);
+  assert.match(lookback, /Why do people talk about age 63 for IRMAA\?/i);
+});
+
 test("homepage and calculator expose revenue capture surfaces", async () => {
   for (const path of ["index.html", join("irmaa-calculator", "index.html")]) {
     const html = await readFile(join(root, path), "utf8");
