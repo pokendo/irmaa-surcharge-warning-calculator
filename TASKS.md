@@ -83,6 +83,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - SSA-44 appeal timing checker strengthened with outcome-specific next steps for strong appeal cases, weak one-time-income cases, waiting for a notice, and separate-spouse filing reminders.
 - IRMAA MAGI checklist page added at `/what-counts-toward-irmaa-magi/` with income-count guidance, newsletter capture, calculator routing, sponsor placement, homepage discovery, and sitemap entry.
 - Married-couple IRMAA page added at `/do-both-spouses-pay-irmaa/` explaining per-enrollee surcharges, one spouse vs both spouses on Medicare, separate SSA-44 handling, newsletter capture, sponsor placement, homepage discovery, and sitemap entry.
+- Article discovery improved with a dedicated `/guides/` library, a site-wide Guides navigation link, and an early homepage Browse all IRMAA guides action.
 
 ## Next Tasks
 

@@ -34,6 +34,7 @@ const pages = [
   ["medicare-magi-vs-aca-magi/index.html", "Medicare MAGI vs ACA MAGI"],
   ["what-counts-toward-irmaa-magi/index.html", "What Counts Toward IRMAA MAGI?"],
   ["do-both-spouses-pay-irmaa/index.html", "Do Both Spouses Pay IRMAA?"],
+  ["guides/index.html", "IRMAA Guides and Planning Tools"],
   ["ssa-44-irmaa-appeal-timing-checker/index.html", "SSA-44 IRMAA Appeal Timing Checker"],
   ["does-401k-contribution-reduce-irmaa-magi/index.html", "Does a 401(k) Contribution Reduce IRMAA MAGI?"],
   ["does-social-security-count-toward-irmaa/index.html", "Does Social Security Count Toward IRMAA?"],
@@ -76,6 +77,24 @@ test("homepage and calculator expose revenue capture surfaces", async () => {
     assert.match(html, /Sponsor this placement/i);
     assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
   }
+});
+
+test("every public page exposes the guide library in navigation", async () => {
+  for (const [path] of pages) {
+    const html = await readFile(join(root, path), "utf8");
+    const guidesHref = path === "index.html" ? "./guides/" : "../guides/";
+
+    assert.match(html, new RegExp(`<nav class="nav"[\\s\\S]*?href="${escapeRegExp(guidesHref)}"[\\s\\S]*?</nav>`), path);
+  }
+});
+
+test("homepage routes visitors to the guide library before the long article grid", async () => {
+  const html = await readFile(join(root, "index.html"), "utf8");
+  const guideLinkIndex = html.indexOf('href="./guides/"');
+  const calculatorIndex = html.indexOf('id="calculator"');
+
+  assert.match(html, /Browse all IRMAA guides/i);
+  assert.ok(guideLinkIndex > 0 && guideLinkIndex < calculatorIndex);
 });
 
 test("calculator result cards answer Roth conversion room before the next IRMAA bracket", async () => {
@@ -657,6 +676,20 @@ test("married-couple IRMAA page explains per-person surcharge and spouse plannin
   assert.match(html, /data-newsletter-form/);
   assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
   assert.match(html, /href="\.\.\/advertise\/#sponsor-inquiry"/);
+});
+
+test("guide library makes the article collection easy to browse", async () => {
+  const html = await readFile(join(root, "guides", "index.html"), "utf8");
+
+  assert.match(html, /Start here/i);
+  assert.match(html, /Income decisions/i);
+  assert.match(html, /Appeals and special situations/i);
+  assert.match(html, /What counts toward IRMAA MAGI\?/i);
+  assert.match(html, /Do both spouses pay IRMAA\?/i);
+  assert.match(html, /Does a Roth conversion affect IRMAA\?/i);
+  assert.match(html, /SSA-44 appeal timing checker/i);
+  assert.match(html, /data-newsletter-form/);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
 });
 
 test("Reddit pain point pages answer SSA-44 timing, 401k MAGI, and backdoor Roth questions", async () => {
