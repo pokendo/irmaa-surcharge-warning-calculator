@@ -7,7 +7,7 @@ import test from "node:test";
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 
 const pages = [
-  ["index.html", "Estimate your Medicare premium surcharge before a big income decision"],
+  ["index.html", "Avoid IRMAA surprises. Plan with confidence."],
   ["irmaa-calculator/index.html", "IRMAA Calculator"],
   ["irmaa-brackets-2026/index.html", "2026 IRMAA Brackets"],
   ["medicare-magi/index.html", "Medicare MAGI"],
@@ -63,14 +63,16 @@ for (const [path, heading] of pages) {
   });
 }
 
-test("calculator pages use the guided planner layout with sponsor placements", async () => {
+test("homepage uses the image-led guided planner layout without an ad before the primary experience", async () => {
   const html = await readFile(join(root, "index.html"), "utf8");
 
   assert.match(html, /class="[^"]*layout-guided-planner/);
-  assert.match(html, /planner-progress/);
-  assert.match(html, /ad-slot ad-slot-sponsor/);
-  assert.match(html, /Education partner/);
-  assert.match(html, /Advertisement/);
+  assert.match(html, /class="hero-media"/);
+  assert.match(html, /src="\.\/assets\/irmaa-planning-couple\.png"/);
+  assert.match(html, /class="calculator-workspace"/);
+  assert.match(html, /class="lookback-timeline"/);
+  assert.match(html, /2024 income[\s\S]*2026 premium/i);
+  assert.ok(html.indexOf('id="calculator"') < html.indexOf("Advertisement"));
 });
 
 test("homepage and calculator expose revenue capture surfaces", async () => {
@@ -110,7 +112,7 @@ test("homepage routes visitors to the guide library before the long article grid
   const guideLinkIndex = html.indexOf('href="./guides/"');
   const calculatorIndex = html.indexOf('id="calculator"');
 
-  assert.match(html, /Browse all IRMAA guides/i);
+  assert.match(html, /Browse IRMAA guides/i);
   assert.ok(guideLinkIndex > 0 && guideLinkIndex < calculatorIndex);
 });
 

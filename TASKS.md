@@ -94,6 +94,8 @@ The static MVP is built and deployed from this project folder. The site includes
 - Successful newsletter signups now receive an immediate tracked link to the IRMAA planning checklist instead of waiting for an email delivery service.
 - Guide library now places interactive IRMAA planning tools before the article collection so visitors can quickly enter a high-intent calculator flow.
 - About, privacy, and contact pages added for sponsor trust and future display-ad review, with site-wide footer links and sitemap coverage.
+- Homepage redesign started with a relevant retirement-planning hero image, ad-free first impression, concise confidence-led copy, a visible two-year lookback timeline, and a side-by-side calculator input/result workspace.
+- June 6 Search Console baseline captured in `SEARCH_CONSOLE_BASELINE_2026-06-06.md`; the two-year lookback guide has the strongest early ranking signal.
 
 ## Next Tasks
 
@@ -101,9 +103,9 @@ The static MVP is built and deployed from this project folder. The site includes
 
 - Pause new sponsor outreach and sponsor follow-ups until the site is visually credible, major issues are resolved, and traffic demonstrates sponsor value.
 - Complete a full production quality audit: real production smoke tests, broken internal links, browser console errors, mobile overflow, layout consistency, form behavior, and calculator correctness.
-- Redesign the homepage and shared page system so the site feels trustworthy, visually distinctive, and easier to scan without weakening calculator usability.
+- Continue the homepage and shared page redesign so the site feels trustworthy, visually distinctive, and easier to scan without weakening calculator usability.
 - Add purposeful visual assets such as clear IRMAA timeline, bracket-cliff, MAGI, and income-event graphics; avoid decorative stock imagery that does not help explain the decision.
-- Continue traffic work after quality improvements: strengthen high-intent pages, review Search Console queries, improve internal linking, and publish content based on measured demand.
+- Continue traffic work after quality improvements: strengthen the two-year-lookback and calculator clusters, review Search Console queries, improve internal linking, and publish content based on measured demand.
 - Review PocketBase analytics after meaningful organic traffic arrives, then define minimum traffic and conversion benchmarks before resuming sponsor outreach or applying for display ads.
 
 ### Deferred Until Traffic and Quality Benchmarks

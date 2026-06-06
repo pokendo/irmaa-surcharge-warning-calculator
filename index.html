@@ -30,7 +30,7 @@
   </script>
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body class="layout-guided-planner">
+<body class="layout-guided-planner homepage">
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">IW</span>IRMAA Warning Calculator</a>
@@ -46,39 +46,46 @@
   </header>
 
   <main>
-    <div class="ad-slot ad-slot-sponsor" aria-label="Advertisement">
-      <span>Advertisement</span>
-      <strong>Education partner</strong>
-      <p>Quiet sponsor space for Medicare education, annual threshold updates, or retirement planning resources.</p>
-      <a href="./advertise/#sponsor-inquiry" data-track-event="sponsor_slot_click" data-track-label="homepage top sponsor">Sponsor this placement</a>
-    </div>
-
     <section class="hero planner-hero">
       <div class="hero-copy planner-intro">
-        <h1>Estimate your Medicare premium surcharge before a big income decision</h1>
-        <p>Start with a Roth conversion estimate, then open advanced income events only if you need to model RMDs, home sale gains, capital gains, or work income.</p>
-        <p><a class="button secondary" href="./guides/">Browse all IRMAA guides</a></p>
-        <div class="planner-progress" aria-label="Calculator steps">
-          <div><span>1</span><strong>Filing status</strong></div>
-          <div><span>2</span><strong>MAGI estimate</strong></div>
-          <div><span>3</span><strong>Roth conversion</strong></div>
-          <div><span>4</span><strong>Premium impact</strong></div>
+        <h1>Avoid IRMAA surprises. Plan with confidence.</h1>
+        <p>See how a Roth conversion, RMD, capital gain, or other income decision could change your Medicare premiums before you act.</p>
+        <div class="hero-actions">
+          <a class="button" href="#calculator">Check your estimate</a>
+          <a class="button secondary" href="./guides/">Browse IRMAA guides</a>
         </div>
         <ul class="trust-list">
-          <li>Uses 2026 CMS Part B and Part D IRMAA surcharge amounts.</li>
-          <li>Shows monthly and annual surcharge estimates in plain English.</li>
-          <li>Built for planning conversations, not tax, legal, or Medicare enrollment advice.</li>
+          <li>Uses current CMS surcharge amounts</li>
+          <li>Your estimate stays in your browser</li>
+          <li>Plain-English planning, no account required</li>
         </ul>
       </div>
+      <figure class="hero-media">
+        <img src="./assets/irmaa-planning-couple.png" alt="Retired couple reviewing Medicare and retirement income paperwork together" width="1536" height="1024">
+        <figcaption>Make the income decision with the Medicare impact in view.</figcaption>
+      </figure>
+    </section>
 
+    <section class="calculator-shell">
       <div id="calculator" class="calculator-panel planner-panel" aria-label="IRMAA calculator">
         <div class="panel-header">
-          <p class="step-label">Step-by-step estimate</p>
-          <h2>Check your estimated IRMAA risk</h2>
-          <p>Enter your expected Medicare MAGI, then test a Roth conversion before adding advanced events.</p>
+          <div>
+            <p class="step-label">2026 Medicare premium estimate</p>
+            <h2>Check your estimated IRMAA risk</h2>
+            <p>Start with your filing status, Medicare MAGI, and planned Roth conversion.</p>
+          </div>
+          <div class="lookback-timeline" aria-label="Medicare IRMAA two-year lookback">
+            <div><strong>2024 income</strong><span>Tax return MAGI</span></div>
+            <span class="timeline-arrow" aria-hidden="true">→</span>
+            <div><strong>2025 planning</strong><span>Review notice and changes</span></div>
+            <span class="timeline-arrow" aria-hidden="true">→</span>
+            <div><strong>2026 premium</strong><span>IRMAA may apply</span></div>
+          </div>
         </div>
         <form class="calculator-form" data-calculator-form>
-          <div class="field-grid">
+          <div class="calculator-workspace">
+          <div class="calculator-inputs">
+          <div class="field-grid primary-fields">
             <div class="field">
               <label for="premiumYear">Premium year</label>
               <select id="premiumYear" name="premiumYear">
@@ -186,6 +193,7 @@
               </div>
             </fieldset>
           </details>
+          </div>
 
           <section class="results planner-results" data-results aria-live="polite">
             <h3>Your estimate</h3>
@@ -254,6 +262,7 @@
             </ul>
           </section>
           </section>
+          </div>
 
           <div class="ad-slot ad-slot-inline" aria-label="Advertisement">
             <span>Advertisement</span>
