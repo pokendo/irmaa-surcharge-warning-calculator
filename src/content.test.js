@@ -75,6 +75,16 @@ test("homepage uses the image-led guided planner layout without an ad before the
   assert.ok(html.indexOf('id="calculator"') < html.indexOf("Advertisement"));
 });
 
+test("high-intent lookback and cliff guides include purpose-built explanatory visuals", async () => {
+  const lookback = await readFile(join(root, "irmaa-two-year-lookback", "index.html"), "utf8");
+  const cliff = await readFile(join(root, "irmaa-cliff", "index.html"), "utf8");
+
+  assert.match(lookback, /class="decision-visual lookback-visual"/);
+  assert.match(lookback, /Age 63[\s\S]*Age 65/i);
+  assert.match(cliff, /class="decision-visual cliff-visual"/);
+  assert.match(cliff, /Below threshold[\s\S]*One dollar over/i);
+});
+
 test("homepage and calculator expose revenue capture surfaces", async () => {
   for (const path of ["index.html", join("irmaa-calculator", "index.html")]) {
     const html = await readFile(join(root, path), "utf8");

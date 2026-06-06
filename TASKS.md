@@ -96,6 +96,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - About, privacy, and contact pages added for sponsor trust and future display-ad review, with site-wide footer links and sitemap coverage.
 - Homepage redesign started with a relevant retirement-planning hero image, ad-free first impression, concise confidence-led copy, a visible two-year lookback timeline, and a side-by-side calculator input/result workspace.
 - June 6 Search Console baseline captured in `SEARCH_CONSOLE_BASELINE_2026-06-06.md`; the two-year lookback guide has the strongest early ranking signal.
+- Purpose-built explanatory visuals added to the two-year-lookback and IRMAA-cliff guides so readers can understand the timing and threshold risks without reading a wall of text.
 
 ## Next Tasks
 
