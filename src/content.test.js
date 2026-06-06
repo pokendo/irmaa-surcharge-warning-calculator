@@ -68,7 +68,7 @@ test("homepage uses the image-led guided planner layout without an ad before the
 
   assert.match(html, /class="[^"]*layout-guided-planner/);
   assert.match(html, /class="hero-media"/);
-  assert.match(html, /src="\.\/assets\/irmaa-planning-couple\.png"/);
+  assert.match(html, /src="\.\/assets\/irmaa-planning-couple\.webp"/);
   assert.match(html, /class="calculator-workspace"/);
   assert.match(html, /class="lookback-timeline"/);
   assert.match(html, /2024 income[\s\S]*2026 premium/i);
@@ -83,6 +83,17 @@ test("high-intent lookback and cliff guides include purpose-built explanatory vi
   assert.match(lookback, /Age 63[\s\S]*Age 65/i);
   assert.match(cliff, /class="decision-visual cliff-visual"/);
   assert.match(cliff, /Below threshold[\s\S]*One dollar over/i);
+});
+
+test("lookback cluster gives visitors a clear understand calculate act path", async () => {
+  const homepage = await readFile(join(root, "index.html"), "utf8");
+  const lookback = await readFile(join(root, "irmaa-two-year-lookback", "index.html"), "utf8");
+
+  assert.match(homepage, /class="timeline-guide-link"[^>]+href="\.\/irmaa-two-year-lookback\/"/);
+  assert.match(lookback, /class="planning-path"/);
+  assert.match(lookback, /href="\.\.\/medicare-magi\/"[\s\S]*?Understand Medicare MAGI/);
+  assert.match(lookback, /href="\.\.\/irmaa-calculator\/"[\s\S]*?Calculate the impact/);
+  assert.match(lookback, /href="\.\.\/irmaa-planning-checklist\/"[\s\S]*?Act with a checklist/);
 });
 
 test("homepage and calculator expose revenue capture surfaces", async () => {
@@ -347,6 +358,13 @@ test("mobile layout keeps the header out of the calculator viewport", async () =
   assert.match(css, /@media \(max-width: 980px\)[\s\S]*\.site-header \{ position: static; \}/);
 });
 
+test("mobile navigation shows a compact unclipped route set", async () => {
+  const css = await readFile(join(root, "styles.css"), "utf8");
+
+  assert.match(css, /@media \(max-width: 680px\)[\s\S]*\.nav a:nth-child\(3\)[\s\S]*display: none/);
+  assert.match(css, /@media \(max-width: 680px\)[\s\S]*\.nav \{[^}]*overflow-x: visible/);
+});
+
 test("editorial and civic heroes stay centered on desktop", async () => {
   const css = await readFile(join(root, "styles.css"), "utf8");
 
@@ -608,6 +626,12 @@ test("every public page includes a relevant content image with alt text", async 
     const html = await readFile(join(root, path), "utf8");
 
     assert.match(html, /<img[^>]+class="[^"]*page-visual-image[^"]*"[^>]+alt="[^"]+"/, path);
+    assert.match(html, /<img[^>]+class="[^"]*page-visual-image[^"]*"[^>]+src="[^"]+\.webp"/, path);
+    if (path === "index.html") {
+      assert.match(html, /<img[^>]+class="[^"]*page-visual-image[^"]*"[^>]+fetchpriority="high"/, path);
+    } else {
+      assert.match(html, /<img[^>]+class="[^"]*page-visual-image[^"]*"[^>]+loading="lazy"/, path);
+    }
   }
 });
 
