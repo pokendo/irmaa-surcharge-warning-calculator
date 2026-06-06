@@ -40,6 +40,8 @@ const pages = [
   ["does-social-security-count-toward-irmaa/index.html", "Does Social Security Count Toward IRMAA?"],
   ["one-time-income-spike-irmaa/index.html", "One-Time Income Spike and IRMAA"],
   ["how-long-does-irmaa-last/index.html", "How Long Does IRMAA Last?"],
+  ["widow-penalty-irmaa/index.html", "Widow Penalty and IRMAA"],
+  ["municipal-bond-interest-irmaa/index.html", "Municipal Bond Interest and IRMAA"],
   ["backdoor-roth-irmaa/index.html", "Backdoor Roth and IRMAA"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
 ];
@@ -644,6 +646,8 @@ test("homepage exposes article links for organic discovery", async () => {
     "does-social-security-count-toward-irmaa",
     "one-time-income-spike-irmaa",
     "how-long-does-irmaa-last",
+    "widow-penalty-irmaa",
+    "municipal-bond-interest-irmaa",
     "backdoor-roth-irmaa",
   ]) {
     assert.match(html, new RegExp(`href="\\./${route}/"`), route);
@@ -753,6 +757,36 @@ test("IRMAA duration guide explains annual recalculation, corrections, and refun
   assert.match(html, /new initial determination/i);
   assert.match(html, /href="\.\.\/ssa-44-irmaa-appeal-timing-checker\/"/);
   assert.match(html, /href="\.\.\/irmaa-planning-checklist\/"/);
+  assert.match(html, /data-newsletter-form/);
+  assert.match(html, /href="\.\.\/advertise\/#sponsor-inquiry"/);
+});
+
+test("widow penalty guide explains filing-status changes and appeal routing", async () => {
+  const html = await readFile(join(root, "widow-penalty-irmaa", "index.html"), "utf8");
+
+  assert.match(html, /Widow Penalty and IRMAA/i);
+  assert.match(html, /single-filer IRMAA thresholds/i);
+  assert.match(html, /death of a spouse/i);
+  assert.match(html, /life-changing event/i);
+  assert.match(html, /year of death/i);
+  assert.match(html, /qualifying surviving spouse/i);
+  assert.match(html, /inherited retirement income/i);
+  assert.match(html, /href="\.\.\/ssa-44-irmaa-appeal-timing-checker\/"/);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
+  assert.match(html, /data-newsletter-form/);
+  assert.match(html, /href="\.\.\/advertise\/#sponsor-inquiry"/);
+});
+
+test("municipal bond guide explains why tax-exempt interest counts for IRMAA", async () => {
+  const html = await readFile(join(root, "municipal-bond-interest-irmaa", "index.html"), "utf8");
+
+  assert.match(html, /Municipal Bond Interest and IRMAA/i);
+  assert.match(html, /tax-exempt interest/i);
+  assert.match(html, /AGI \+ tax-exempt interest/i);
+  assert.match(html, /tax-free does not mean IRMAA-free/i);
+  assert.match(html, /Form 1040/i);
+  assert.match(html, /href="\.\.\/what-counts-toward-irmaa-magi\/"/);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
   assert.match(html, /data-newsletter-form/);
   assert.match(html, /href="\.\.\/advertise\/#sponsor-inquiry"/);
 });

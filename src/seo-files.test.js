@@ -37,6 +37,8 @@ const requiredRoutes = [
   "/do-both-spouses-pay-irmaa/",
   "/guides/",
   "/how-long-does-irmaa-last/",
+  "/widow-penalty-irmaa/",
+  "/municipal-bond-interest-irmaa/",
   "/ssa-44-irmaa-appeal-timing-checker/",
   "/does-401k-contribution-reduce-irmaa-magi/",
   "/does-social-security-count-toward-irmaa/",

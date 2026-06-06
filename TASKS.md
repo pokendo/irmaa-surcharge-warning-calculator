@@ -85,6 +85,8 @@ The static MVP is built and deployed from this project folder. The site includes
 - Married-couple IRMAA page added at `/do-both-spouses-pay-irmaa/` explaining per-enrollee surcharges, one spouse vs both spouses on Medicare, separate SSA-44 handling, newsletter capture, sponsor placement, homepage discovery, and sitemap entry.
 - Article discovery improved with a dedicated `/guides/` library, a site-wide Guides navigation link, and an early homepage Browse all IRMAA guides action.
 - IRMAA duration, annual recalculation, correction, and refund guide added at `/how-long-does-irmaa-last/`, with official SSA sources, appeal routing, newsletter capture, sponsor placement, homepage discovery, and guide-library discovery.
+- Widow penalty and IRMAA guide added at `/widow-penalty-irmaa/`, with filing-status timeline, surviving-spouse income checklist, SSA-44 routing, newsletter capture, sponsor placement, and discovery links.
+- Municipal bond interest and IRMAA guide added at `/municipal-bond-interest-irmaa/`, explaining why tax-exempt interest counts toward Medicare MAGI with calculator routing, lead capture, sponsor placement, and discovery links.
 
 ## Next Tasks
 
