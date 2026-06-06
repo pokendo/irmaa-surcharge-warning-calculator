@@ -45,6 +45,9 @@ const requiredRoutes = [
   "/one-time-income-spike-irmaa/",
   "/backdoor-roth-irmaa/",
   "/advertise/",
+  "/about/",
+  "/privacy/",
+  "/contact/",
 ];
 
 test("sitemap includes the launch SEO routes", async () => {

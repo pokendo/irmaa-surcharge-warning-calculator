@@ -44,6 +44,9 @@ const pages = [
   ["municipal-bond-interest-irmaa/index.html", "Municipal Bond Interest and IRMAA"],
   ["backdoor-roth-irmaa/index.html", "Backdoor Roth and IRMAA"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
+  ["about/index.html", "About IRMAA Check"],
+  ["privacy/index.html", "Privacy Policy"],
+  ["contact/index.html", "Contact IRMAA Check"],
 ];
 
 test("all public pages are covered by content and layout tests", async () => {
@@ -88,6 +91,17 @@ test("every public page exposes the guide library in navigation", async () => {
     const guidesHref = path === "index.html" ? "./guides/" : "../guides/";
 
     assert.match(html, new RegExp(`<nav class="nav"[\\s\\S]*?href="${escapeRegExp(guidesHref)}"[\\s\\S]*?</nav>`), path);
+  }
+});
+
+test("every public page exposes trust and contact links in the footer", async () => {
+  for (const [path] of pages) {
+    const html = await readFile(join(root, path), "utf8");
+    const prefix = path === "index.html" ? "./" : "../";
+
+    assert.match(html, new RegExp(`<footer class="site-footer"[\\s\\S]*?href="${escapeRegExp(prefix)}about/"`), path);
+    assert.match(html, new RegExp(`<footer class="site-footer"[\\s\\S]*?href="${escapeRegExp(prefix)}privacy/"`), path);
+    assert.match(html, new RegExp(`<footer class="site-footer"[\\s\\S]*?href="${escapeRegExp(prefix)}contact/"`), path);
   }
 });
 

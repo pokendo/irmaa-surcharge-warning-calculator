@@ -43,6 +43,9 @@ const routes = [
   ["does-401k-contribution-reduce-irmaa-magi/index.html", `${productionOrigin}/does-401k-contribution-reduce-irmaa-magi/`],
   ["backdoor-roth-irmaa/index.html", `${productionOrigin}/backdoor-roth-irmaa/`],
   ["advertise/index.html", `${productionOrigin}/advertise/`],
+  ["about/index.html", `${productionOrigin}/about/`],
+  ["privacy/index.html", `${productionOrigin}/privacy/`],
+  ["contact/index.html", `${productionOrigin}/contact/`],
 ];
 
 test("all public pages include canonical links", async () => {

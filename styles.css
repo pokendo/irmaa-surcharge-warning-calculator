@@ -604,12 +604,17 @@ tr:last-child td { border-bottom: 0; }
 .tool-link-grid a:hover { border-color: var(--teal); }
 
 .site-footer { border-top: 1px solid var(--line); background: var(--soft); }
-.footer-inner { padding: 28px 0; color: var(--muted); font-size: 15px; }
+.footer-inner { padding: 28px 0; color: var(--muted); font-size: 15px; display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+.footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+.footer-links a { font-weight: 800; }
+.contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 28px; }
+.contact-grid section { border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: white; }
+.contact-grid h2 { margin-top: 0; font-size: 24px; }
 
 @media (max-width: 980px) {
   .site-header { position: static; }
   .header-inner { align-items: flex-start; flex-direction: column; padding: 18px 0; }
-  .planner-hero, .planner-next, .roth-schedule-section, .civic-shell, .editorial-shell { grid-template-columns: 1fr; }
+  .planner-hero, .planner-next, .roth-schedule-section, .civic-shell, .editorial-shell, .contact-grid { grid-template-columns: 1fr; }
   .utility-rail, .editorial-rail { position: static; }
   .layout-editorial-guide { background: #ffffff; }
   .field-grid, .result-grid, .magi-helper-grid, .scenario-comparison, .roth-schedule-results, .tool-link-grid { grid-template-columns: 1fr; }

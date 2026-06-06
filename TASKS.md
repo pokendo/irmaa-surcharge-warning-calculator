@@ -93,6 +93,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Roth conversion schedule worksheet added to the Roth calculator, comparing the planned annual conversion with the fill-to-next-bracket amount and routing high-intent users into checklist signup.
 - Successful newsletter signups now receive an immediate tracked link to the IRMAA planning checklist instead of waiting for an email delivery service.
 - Guide library now places interactive IRMAA planning tools before the article collection so visitors can quickly enter a high-intent calculator flow.
+- About, privacy, and contact pages added for sponsor trust and future display-ad review, with site-wide footer links and sitemap coverage.
 
 ## Next Tasks
 
