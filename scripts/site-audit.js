@@ -4,23 +4,36 @@ const cliBaseUrl = inlineUrlFlag?.slice("--url=".length) || (urlFlagIndex >= 0 ?
 const baseUrl = new URL(cliBaseUrl || "https://www.irmaacheck.com/");
 const failures = [];
 const checked = new Set();
+const retryableStatuses = [502, 503, 504];
 
 async function checkUrl(url, label) {
   const key = url.href;
   if (checked.has(key)) return "";
   checked.add(key);
 
-  try {
-    const response = await fetch(url, { redirect: "follow" });
-    if (!response.ok) {
-      failures.push(`${response.status} ${label}: ${url.href}`);
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      const response = await fetch(url, { redirect: "follow" });
+      if (retryableStatuses.includes(response.status) && attempt < 3) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
+        continue;
+      }
+      if (!response.ok) {
+        failures.push(`${response.status} ${label}: ${url.href}`);
+        return "";
+      }
+      return await response.text();
+    } catch (error) {
+      if (attempt < 3) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
+        continue;
+      }
+      failures.push(`ERROR ${label}: ${url.href} (${error.message})`);
       return "";
     }
-    return await response.text();
-  } catch (error) {
-    failures.push(`ERROR ${label}: ${url.href} (${error.message})`);
-    return "";
   }
+
+  return "";
 }
 
 function sameSiteUrl(value, pageUrl) {

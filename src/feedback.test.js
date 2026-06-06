@@ -148,6 +148,8 @@ test("project includes a reusable live-site route link and image audit", async (
   assert.match(auditScript, /href=/);
   assert.match(auditScript, /img\\s\+\[\^>\]\*src=/);
   assert.match(auditScript, /Site audit passed/);
+  assert.match(auditScript, /\[502, 503, 504\]/);
+  assert.match(auditScript, /attempt < 3/);
   assert.match(auditScript, /process\.exitCode = 1/);
 });
 
