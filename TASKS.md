@@ -105,6 +105,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Lead-capture forms now show a clear in-progress state and prevent repeat submissions while PocketBase requests are running.
 - The main calculator now puts the useful tool before sponsor inventory, and mobile calculator pages hide the large editorial preview so visitors reach the calculator sooner.
 - Premium-year guidance across all calculator pages now links directly to the two-year-lookback guide.
+- Reusable `scripts/site-audit.js` added to verify every sitemap page, internal link, and content image against localhost or production; both environments currently pass with 40 sitemap pages and 44 unique URLs checked.
 
 ## Next Tasks
 

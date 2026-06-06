@@ -141,6 +141,16 @@ test("lead forms show an in-progress state and prevent repeat submissions", asyn
   assert.match(profitScript, /setFormPending\(form, status, "Sending inquiry\.\.\.", true\)/);
 });
 
+test("project includes a reusable live-site route link and image audit", async () => {
+  const auditScript = await readFile(join(root, "scripts", "site-audit.js"), "utf8");
+
+  assert.match(auditScript, /sitemap\.xml/);
+  assert.match(auditScript, /href=/);
+  assert.match(auditScript, /img\\s\+\[\^>\]\*src=/);
+  assert.match(auditScript, /Site audit passed/);
+  assert.match(auditScript, /process\.exitCode = 1/);
+});
+
 test("SSA-44 page prominently warns that common one-time income events usually do not qualify", async () => {
   const html = await readFile(join(root, "irmaa-appeal-ssa-44-form", "index.html"), "utf8");
 
