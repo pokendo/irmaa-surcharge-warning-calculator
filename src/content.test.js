@@ -603,6 +603,14 @@ function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+test("every public page includes a relevant content image with alt text", async () => {
+  for (const [path] of pages) {
+    const html = await readFile(join(root, path), "utf8");
+
+    assert.match(html, /<img[^>]+class="[^"]*page-visual-image[^"]*"[^>]+alt="[^"]+"/, path);
+  }
+});
+
 async function collectPublicPages(dir, base = dir) {
   const entries = await readdir(dir, { withFileTypes: true });
   const pages = [];

@@ -97,6 +97,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Homepage redesign started with a relevant retirement-planning hero image, ad-free first impression, concise confidence-led copy, a visible two-year lookback timeline, and a side-by-side calculator input/result workspace.
 - June 6 Search Console baseline captured in `SEARCH_CONSOLE_BASELINE_2026-06-06.md`; the two-year lookback guide has the strongest early ranking signal.
 - Purpose-built explanatory visuals added to the two-year-lookback and IRMAA-cliff guides so readers can understand the timing and threshold risks without reading a wall of text.
+- Every public page now includes a related editorial image with descriptive alt text, using topic-specific visual families for retirement accounts, home sales and gains, Medicare/SSA paperwork, MAGI calculations, household changes, and planning guides.
 
 ## Next Tasks
 
