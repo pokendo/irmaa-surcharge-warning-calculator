@@ -102,6 +102,9 @@ The static MVP is built and deployed from this project folder. The site includes
 - The two-year-lookback search cluster now has a clearer internal path from the homepage timeline into Medicare MAGI education, the calculator, and the planning checklist.
 - Production route audit completed on June 6, 2026: all 40 sitemap pages and all 41 unique internal destinations returned successfully.
 - The two-year-lookback guide now answers high-intent tax-year, annual-review, and age-63 questions with matching FAQ structured data.
+- Lead-capture forms now show a clear in-progress state and prevent repeat submissions while PocketBase requests are running.
+- The main calculator now puts the useful tool before sponsor inventory, and mobile calculator pages hide the large editorial preview so visitors reach the calculator sooner.
+- Premium-year guidance across all calculator pages now links directly to the two-year-lookback guide.
 
 ## Next Tasks
 

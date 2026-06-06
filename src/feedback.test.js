@@ -130,6 +130,17 @@ test("newsletter signup confirmation reinforces the checklist lead magnet", asyn
   assert.match(profitScript, /practical IRMAA updates/i);
 });
 
+test("lead forms show an in-progress state and prevent repeat submissions", async () => {
+  const profitScript = await readFile(join(root, "src", "profit.js"), "utf8");
+
+  assert.match(profitScript, /function setFormPending/);
+  assert.match(profitScript, /form\.dataset\.submitting === "true"/);
+  assert.match(profitScript, /button\.disabled = pending/);
+  assert.match(profitScript, /setAttribute\("aria-busy", String\(pending\)\)/);
+  assert.match(profitScript, /setFormPending\(form, status, "Saving signup\.\.\.", true\)/);
+  assert.match(profitScript, /setFormPending\(form, status, "Sending inquiry\.\.\.", true\)/);
+});
+
 test("SSA-44 page prominently warns that common one-time income events usually do not qualify", async () => {
   const html = await readFile(join(root, "irmaa-appeal-ssa-44-form", "index.html"), "utf8");
 

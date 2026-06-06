@@ -75,6 +75,12 @@ test("homepage uses the image-led guided planner layout without an ad before the
   assert.ok(html.indexOf('id="calculator"') < html.indexOf("Advertisement"));
 });
 
+test("main calculator puts the useful tool before sponsor inventory", async () => {
+  const html = await readFile(join(root, "irmaa-calculator", "index.html"), "utf8");
+
+  assert.ok(html.indexOf('id="calculator"') < html.indexOf("Advertisement"));
+});
+
 test("high-intent lookback and cliff guides include purpose-built explanatory visuals", async () => {
   const lookback = await readFile(join(root, "irmaa-two-year-lookback", "index.html"), "utf8");
   const cliff = await readFile(join(root, "irmaa-cliff", "index.html"), "utf8");
@@ -213,6 +219,24 @@ test("calculator pages include premium year controls and income-year result card
     assert.match(html, /2026 premiums \(uses 2024 MAGI\)/, path);
     assert.match(html, /2025 premiums \(uses 2023 MAGI\)/, path);
     assert.match(html, /data-result="income-year"/, path);
+  }
+});
+
+test("calculator premium-year guidance links to the two-year lookback guide", async () => {
+  for (const path of [
+    "index.html",
+    join("irmaa-calculator", "index.html"),
+    join("roth-conversion-irmaa-calculator", "index.html"),
+    join("rmd-irmaa-calculator", "index.html"),
+    join("home-sale-medicare-premium-calculator", "index.html"),
+    join("capital-gains-irmaa-calculator", "index.html"),
+    join("ira-withdrawal-medicare-premium-calculator", "index.html"),
+    join("401k-withdrawal-medicare-premium-calculator", "index.html"),
+  ]) {
+    const html = await readFile(join(root, path), "utf8");
+    const prefix = path === "index.html" ? "./" : "../";
+
+    assert.match(html, new RegExp(`Medicare usually looks back two tax years[\\s\\S]*?href="${escapeRegExp(prefix)}irmaa-two-year-lookback/"`), path);
   }
 });
 
@@ -372,6 +396,14 @@ test("mobile navigation shows a compact unclipped route set", async () => {
 
   assert.match(css, /@media \(max-width: 680px\)[\s\S]*\.nav a:nth-child\(3\)[\s\S]*display: none/);
   assert.match(css, /@media \(max-width: 680px\)[\s\S]*\.nav \{[^}]*overflow-x: visible/);
+});
+
+test("mobile calculator pages prioritize the tool over the editorial preview", async () => {
+  const css = await readFile(join(root, "styles.css"), "utf8");
+
+  assert.match(css, /@media \(max-width: 680px\)[\s\S]*\.layout-guided-planner:not\(\.homepage\) \.page-visual-compact/);
+  assert.match(css, /@media \(max-width: 680px\)[\s\S]*\.layout-guided-planner:not\(\.homepage\) \.planner-progress/);
+  assert.match(css, /@media \(max-width: 680px\)[\s\S]*display: none/);
 });
 
 test("editorial and civic heroes stay centered on desktop", async () => {

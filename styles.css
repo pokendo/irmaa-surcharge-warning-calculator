@@ -1233,6 +1233,12 @@ tr:last-child td { border-bottom: 0; }
   .nav a:nth-child(3),
   .nav a:nth-child(4),
   .nav a:nth-child(6) { display: none; }
+  .layout-guided-planner:not(.homepage) .page-visual-compact,
+  .layout-guided-planner:not(.homepage) .planner-progress,
+  .layout-guided-planner:not(.homepage) .trust-list { display: none; }
+  .layout-guided-planner:not(.homepage) .planner-hero { padding-top: 24px; }
+  .layout-guided-planner:not(.homepage) .planner-intro h1 { font-size: 38px; }
+  .layout-guided-planner:not(.homepage) .planner-intro > p { margin-bottom: 0; font-size: 18px; }
   .homepage.layout-guided-planner .planner-hero { width: min(100% - 28px, 1320px); padding: 24px 0 18px; gap: 20px; }
   .homepage.layout-guided-planner .planner-intro h1 { font-size: 38px; }
   .homepage.layout-guided-planner .planner-intro > p { font-size: 18px; }

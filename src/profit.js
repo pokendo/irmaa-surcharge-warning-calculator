@@ -11,6 +11,20 @@ function postPocketBase(collection, payload) {
   }).catch(() => {});
 }
 
+function setFormPending(form, status, message, pending) {
+  form.dataset.submitting = String(pending);
+  form.setAttribute("aria-busy", String(pending));
+  const button = form.querySelector("button[type='submit']");
+
+  if (button) {
+    if (pending) button.dataset.readyText = button.textContent;
+    button.disabled = pending;
+    button.textContent = pending ? message : button.dataset.readyText || button.textContent;
+  }
+
+  if (pending && status) status.textContent = message;
+}
+
 function getAttribution() {
   const params = new URLSearchParams(window.location.search);
   const utm = {
@@ -69,9 +83,11 @@ document.addEventListener("submit", async (event) => {
   if (!form) return;
 
   event.preventDefault();
+  if (form.dataset.submitting === "true") return;
   const email = form.querySelector("[name='email']")?.value?.trim();
   const status = form.querySelector("[data-newsletter-status]");
   if (!email) return;
+  setFormPending(form, status, "Saving signup...", true);
 
   const attribution = getAttribution();
   const calculatorContext = window.irmaaGetCalculatorContext ? window.irmaaGetCalculatorContext() : {};
@@ -100,6 +116,8 @@ document.addEventListener("submit", async (event) => {
     track("newsletter_signup", { source: payload.source });
   } catch {
     if (status) status.textContent = "We could not save that signup. Please try again in a moment.";
+  } finally {
+    setFormPending(form, status, "", false);
   }
 });
 
@@ -108,6 +126,7 @@ document.addEventListener("submit", async (event) => {
   if (!form) return;
 
   event.preventDefault();
+  if (form.dataset.submitting === "true") return;
   const status = form.querySelector("[data-sponsor-inquiry-status]");
   const formData = new FormData(form);
   const attribution = getAttribution();
@@ -122,6 +141,7 @@ document.addEventListener("submit", async (event) => {
   };
 
   if (!payload.company || !payload.email) return;
+  setFormPending(form, status, "Sending inquiry...", true);
 
   try {
     const response = await fetch(`${POCKETBASE_URL}/api/collections/sponsor_inquiries/records`, {
@@ -135,5 +155,7 @@ document.addEventListener("submit", async (event) => {
     track("sponsor_inquiry_form", { placement: payload.placement });
   } catch {
     if (status) status.textContent = "We could not save that inquiry. Please email sponsors@irmaacheck.com.";
+  } finally {
+    setFormPending(form, status, "", false);
   }
 });
