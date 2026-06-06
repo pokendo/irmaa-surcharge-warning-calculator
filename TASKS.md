@@ -91,6 +91,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - First sponsor outreach emails sent to Income Lab and RothAware on June 6, 2026 with intent-matched, UTM-tagged landing pages; follow-ups scheduled in the tracker for June 13.
 - Rothology Partner Desk sponsor outreach sent and AdvisorCal sponsor contact form submitted on June 6, 2026; MaxiFi is prepared but blocked by CAPTCHA, Savvy Medicare timed out, and AdvisorEdgeOS has a broken contact path.
 - Roth conversion schedule worksheet added to the Roth calculator, comparing the planned annual conversion with the fill-to-next-bracket amount and routing high-intent users into checklist signup.
+- Successful newsletter signups now receive an immediate tracked link to the IRMAA planning checklist instead of waiting for an email delivery service.
 
 ## Next Tasks
 

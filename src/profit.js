@@ -94,7 +94,9 @@ document.addEventListener("submit", async (event) => {
     });
     if (!response.ok) throw new Error("Signup failed");
     form.reset();
-    if (status) status.textContent = "You're on the list. We'll send the IRMAA planning checklist and practical IRMAA updates.";
+    if (status) {
+      status.innerHTML = `Signup saved. <a href="/irmaa-planning-checklist/" data-track-event="checklist_open_after_signup">Open the IRMAA planning checklist now</a>. Practical IRMAA updates will follow.`;
+    }
     track("newsletter_signup", { source: payload.source });
   } catch {
     if (status) status.textContent = "We could not save that signup. Please try again in a moment.";

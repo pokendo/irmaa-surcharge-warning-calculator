@@ -124,7 +124,9 @@ test("docs frame scenario pages as UX flows instead of primary SEO pages", async
 test("newsletter signup confirmation reinforces the checklist lead magnet", async () => {
   const profitScript = await readFile(join(root, "src", "profit.js"), "utf8");
 
-  assert.match(profitScript, /send the IRMAA planning checklist/i);
+  assert.match(profitScript, /Open the IRMAA planning checklist now/i);
+  assert.match(profitScript, /href="\/irmaa-planning-checklist\/"/i);
+  assert.match(profitScript, /data-track-event="checklist_open_after_signup"/i);
   assert.match(profitScript, /practical IRMAA updates/i);
 });
 
