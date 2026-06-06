@@ -1,4 +1,11 @@
-const baseUrl = process.env.SMOKE_BASE_URL || "http://127.0.0.1:4173";
+const urlFlagIndex = process.argv.indexOf("--url");
+const inlineUrlFlag = process.argv.find((arg) => arg.startsWith("--url="));
+const cliBaseUrl = inlineUrlFlag?.slice("--url=".length) || (urlFlagIndex >= 0 ? process.argv[urlFlagIndex + 1] : "");
+const baseUrl = cliBaseUrl || process.env.SMOKE_BASE_URL || "http://127.0.0.1:4173";
+
+if (urlFlagIndex >= 0 && !cliBaseUrl) {
+  throw new Error("--url requires a base URL");
+}
 
 const checks = [
   {

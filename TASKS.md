@@ -97,11 +97,19 @@ The static MVP is built and deployed from this project folder. The site includes
 
 ## Next Tasks
 
-- Execute the competitor-driven improvement plan in `COMPETITOR_ANALYSIS.md`, starting with calculator features that create a clearer planning decision and stronger monetization path.
-- Continue content expansion from `CONTENT_ROADMAP.md`, prioritizing the next high-intent article or calculator page that can route visitors into lead capture and sponsor inventory.
-- Complete the prepared MaxiFi contact form after the owner clears its CAPTCHA; retry Savvy Medicare and locate a working AdvisorEdgeOS contact path.
-- Track replies to the first sponsor outreach batch and send follow-ups on June 13 if needed.
-- Review PocketBase `site_events` and `newsletter_signups` again after traffic starts; the May 31, 2026 report showed tracking is working but lead capture is still at 0 signups.
+### Current Priority: Quality, Design, and Traffic
+
+- Pause new sponsor outreach and sponsor follow-ups until the site is visually credible, major issues are resolved, and traffic demonstrates sponsor value.
+- Complete a full production quality audit: real production smoke tests, broken internal links, browser console errors, mobile overflow, layout consistency, form behavior, and calculator correctness.
+- Redesign the homepage and shared page system so the site feels trustworthy, visually distinctive, and easier to scan without weakening calculator usability.
+- Add purposeful visual assets such as clear IRMAA timeline, bracket-cliff, MAGI, and income-event graphics; avoid decorative stock imagery that does not help explain the decision.
+- Continue traffic work after quality improvements: strengthen high-intent pages, review Search Console queries, improve internal linking, and publish content based on measured demand.
+- Review PocketBase analytics after meaningful organic traffic arrives, then define minimum traffic and conversion benchmarks before resuming sponsor outreach or applying for display ads.
+
+### Deferred Until Traffic and Quality Benchmarks
+
+- Complete additional sponsor contact forms or send sponsor follow-ups.
+- Apply for display ad networks or promise paid sponsor inventory.
 
 ## Open Deployment Details
 

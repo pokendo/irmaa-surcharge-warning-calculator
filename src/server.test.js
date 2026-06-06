@@ -38,4 +38,7 @@ test("project exposes a production smoke-test script", async () => {
   assert.match(smokeScript, /\/healthz/);
   assert.match(smokeScript, /\/does-not-exist-smoke-test/);
   assert.match(smokeScript, /IRMAA Warning Calculator/);
+  assert.match(smokeScript, /process\.argv/);
+  assert.match(smokeScript, /--url/);
+  assert.match(smokeScript, /startsWith\("--url="\)/);
 });
