@@ -126,6 +126,36 @@ test("calculateMaxRothConversionBeforeNextBracket returns null in the top bracke
   );
 });
 
+test("calculateRothConversionSchedule compares planned and fill-to-bracket timelines", () => {
+  assert.deepEqual(
+    app.calculateRothConversionSchedule({
+      targetBalance: 240_000,
+      plannedAnnualConversion: 30_000,
+      maxAnnualConversion: 60_000,
+    }),
+    {
+      targetBalance: 240_000,
+      planned: { annualConversion: 30_000, years: 8 },
+      fillToBracket: { annualConversion: 60_000, years: 4 },
+    },
+  );
+});
+
+test("calculateRothConversionSchedule handles missing conversion room", () => {
+  assert.deepEqual(
+    app.calculateRothConversionSchedule({
+      targetBalance: 240_000,
+      plannedAnnualConversion: 0,
+      maxAnnualConversion: null,
+    }),
+    {
+      targetBalance: 240_000,
+      planned: { annualConversion: 0, years: null },
+      fillToBracket: { annualConversion: 0, years: null },
+    },
+  );
+});
+
 test("updateRothRoomNode writes a high-intent Roth conversion result", () => {
   const node = { textContent: "" };
 

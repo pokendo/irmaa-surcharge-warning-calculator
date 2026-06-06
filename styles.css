@@ -504,6 +504,37 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 12px; }
 
 .section { padding: 52px 0; }
 .planner-next { display: grid; grid-template-columns: 0.75fr 1.25fr; gap: 30px; align-items: start; }
+.roth-schedule-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 30px;
+  align-items: start;
+  border-top: 1px solid var(--line);
+}
+.roth-schedule-copy h2 { margin-top: 4px; }
+.roth-schedule-results {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.roth-schedule-results article,
+.roth-schedule-signup {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  padding: 18px;
+}
+.roth-schedule-results article strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 28px;
+}
+.roth-schedule-results article p {
+  margin: 4px 0 0;
+  color: var(--teal-dark);
+  font-weight: 800;
+}
+.roth-schedule-signup { grid-column: 1 / -1; }
 .section h2 { margin: 0 0 14px; font-size: 38px; line-height: 1.1; }
 .section p { color: var(--muted); }
 
@@ -557,10 +588,11 @@ tr:last-child td { border-bottom: 0; }
 @media (max-width: 980px) {
   .site-header { position: static; }
   .header-inner { align-items: flex-start; flex-direction: column; padding: 18px 0; }
-  .planner-hero, .planner-next, .civic-shell, .editorial-shell { grid-template-columns: 1fr; }
+  .planner-hero, .planner-next, .roth-schedule-section, .civic-shell, .editorial-shell { grid-template-columns: 1fr; }
   .utility-rail, .editorial-rail { position: static; }
   .layout-editorial-guide { background: #ffffff; }
-  .field-grid, .result-grid, .magi-helper-grid, .scenario-comparison { grid-template-columns: 1fr; }
+  .field-grid, .result-grid, .magi-helper-grid, .scenario-comparison, .roth-schedule-results { grid-template-columns: 1fr; }
+  .roth-schedule-signup { grid-column: auto; }
   .result-wide { grid-column: auto; }
   .magi-helper-actions { align-items: stretch; flex-direction: column; }
   .ad-slot-sponsor, .ad-slot-leaderboard { grid-template-columns: 1fr; }

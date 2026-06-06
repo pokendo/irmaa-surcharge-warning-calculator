@@ -109,7 +109,11 @@ Ubersuggest cross-reference:
 
 ## Next Build Ideas
 
-- Widow penalty and IRMAA page for surviving spouses inheriting combined retirement income into a single filing status.
-- Social Security and IRMAA page focused on taxable Social Security versus gross Social Security.
-- Municipal bond interest and IRMAA page, especially for Bogleheads/taxable-account audiences.
-- A Roth conversion schedule worksheet that compares staying below a bracket versus intentionally filling a bracket.
+- Continue expanding practical planning tools from new audience questions and measured Search Console queries.
+
+## Additional Built Responses
+
+- `/widow-penalty-irmaa/` for surviving spouses inheriting combined retirement income into a single filing status.
+- `/does-social-security-count-toward-irmaa/` focused on taxable Social Security versus gross Social Security.
+- `/municipal-bond-interest-irmaa/` explaining why tax-exempt interest counts toward Medicare MAGI.
+- A Roth conversion schedule worksheet inside `/roth-conversion-irmaa-calculator/` comparing a planned annual conversion with filling the next IRMAA bracket.

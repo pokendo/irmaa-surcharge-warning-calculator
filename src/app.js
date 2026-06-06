@@ -33,6 +33,14 @@ if (typeof document !== "undefined") {
     const printDetailsNode = document.querySelector("[data-print-details]");
     const shareLinkButton = document.querySelector("[data-share-link]");
     const magiHelper = form.querySelector("[data-magi-helper]");
+    const rothSchedule = document.querySelector("[data-roth-schedule]");
+    const rothScheduleTarget = rothSchedule?.querySelector("[data-roth-target-balance]");
+    const rothScheduleNodes = {
+      plannedAmount: rothSchedule?.querySelector("[data-roth-schedule-result='planned-amount']"),
+      plannedYears: rothSchedule?.querySelector("[data-roth-schedule-result='planned-years']"),
+      fillAmount: rothSchedule?.querySelector("[data-roth-schedule-result='fill-amount']"),
+      fillYears: rothSchedule?.querySelector("[data-roth-schedule-result='fill-years']"),
+    };
 
     applyQueryParams(form, parseCalculatorQuery(window.location.search));
 
@@ -45,6 +53,7 @@ if (typeof document !== "undefined") {
     }
 
     form.addEventListener("input", updateResults);
+    rothScheduleTarget?.addEventListener("input", updateResults);
     if (magiHelper) {
       updateMagiHelperTotalNode(magiHelper);
       magiHelper.addEventListener("input", () => updateMagiHelperTotalNode(magiHelper));
@@ -108,6 +117,11 @@ if (typeof document !== "undefined") {
         : formatCurrency(result.roomBeforeNextBracket);
       const rothAmount = getActiveEventAmount(form, "roth");
       updateRothRoomNode(rothRoomNode, result, rothAmount);
+      updateRothConversionScheduleNodes(rothScheduleNodes, calculateRothConversionSchedule({
+        targetBalance: rothScheduleTarget?.value,
+        plannedAnnualConversion: rothAmount,
+        maxAnnualConversion: calculateMaxRothConversionBeforeNextBracket(result, rothAmount),
+      }));
       updateCliffMeterNodes(cliffLabelNode, cliffDetailNode, cliffFillNode, calculateCliffMeter(result));
       updateSummaryNode(summaryNode, result);
       updateResultActionNodes(resultActionNodes, buildResultAction(result));
@@ -195,6 +209,42 @@ export function calculateMaxRothConversionBeforeNextBracket(result, currentRothA
   if (result.roomBeforeNextBracket === null) return null;
 
   return Number(currentRothAmount) + result.roomBeforeNextBracket;
+}
+
+export function calculateRothConversionSchedule({
+  targetBalance = 0,
+  plannedAnnualConversion = 0,
+  maxAnnualConversion = 0,
+} = {}) {
+  const target = normalizeSafeAmount(targetBalance);
+  const planned = normalizeSafeAmount(plannedAnnualConversion);
+  const fill = normalizeSafeAmount(maxAnnualConversion);
+
+  return {
+    targetBalance: target,
+    planned: {
+      annualConversion: planned,
+      years: target > 0 && planned > 0 ? Math.ceil(target / planned) : null,
+    },
+    fillToBracket: {
+      annualConversion: fill,
+      years: target > 0 && fill > 0 ? Math.ceil(target / fill) : null,
+    },
+  };
+}
+
+export function updateRothConversionScheduleNodes(nodes = {}, schedule) {
+  if (!schedule) return;
+
+  if (nodes.plannedAmount) nodes.plannedAmount.textContent = formatCurrency(schedule.planned.annualConversion);
+  if (nodes.plannedYears) nodes.plannedYears.textContent = formatScheduleYears(schedule.planned.years);
+  if (nodes.fillAmount) nodes.fillAmount.textContent = formatCurrency(schedule.fillToBracket.annualConversion);
+  if (nodes.fillYears) nodes.fillYears.textContent = formatScheduleYears(schedule.fillToBracket.years);
+}
+
+function formatScheduleYears(years) {
+  if (years === null) return "Enter an annual conversion";
+  return `${years} ${years === 1 ? "year" : "years"}`;
 }
 
 export function getCoverageMultiplier(coverageMode) {

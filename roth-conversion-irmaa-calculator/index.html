@@ -256,6 +256,39 @@
       </div>
     </section>
 
+    <section class="section roth-schedule-section" data-roth-schedule>
+      <div class="roth-schedule-copy">
+        <p class="step-label">Planning worksheet</p>
+        <h2>Roth conversion schedule worksheet</h2>
+        <p>Compare your planned annual conversion with the largest conversion that fits before the next IRMAA bracket shown above.</p>
+        <div class="field">
+          <label for="roth-target-balance">Amount you may want to convert over time</label>
+          <input id="roth-target-balance" data-roth-target-balance type="number" inputmode="decimal" min="0" step="1000" value="240000">
+          <span class="hint">This simple timeline assumes the same annual amount and does not project investment growth, taxes, or future bracket changes.</span>
+        </div>
+      </div>
+      <div class="roth-schedule-results" aria-live="polite">
+        <article>
+          <span class="result-label">Your planned annual conversion</span>
+          <strong data-roth-schedule-result="planned-amount">$0</strong>
+          <p data-roth-schedule-result="planned-years">Enter an annual conversion</p>
+        </article>
+        <article>
+          <span class="result-label">Fill to next IRMAA bracket</span>
+          <strong data-roth-schedule-result="fill-amount">$0</strong>
+          <p data-roth-schedule-result="fill-years">Enter an annual conversion</p>
+        </article>
+        <form class="signup-form roth-schedule-signup" data-newsletter-form data-source="roth-schedule-worksheet">
+          <label for="roth-schedule-email">Email the IRMAA planning checklist</label>
+          <div class="signup-row">
+            <input id="roth-schedule-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <button type="submit">Send checklist</button>
+          </div>
+          <p class="form-status" data-newsletter-status aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
     <section class="section planner-next" id="brackets-preview">
       <div>
         <h2>2026 IRMAA brackets at a glance</h2>

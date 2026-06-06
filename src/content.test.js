@@ -118,6 +118,18 @@ test("calculator result cards answer Roth conversion room before the next IRMAA 
   }
 });
 
+test("Roth conversion calculator includes a schedule worksheet and lead capture", async () => {
+  const html = await readFile(join(root, "roth-conversion-irmaa-calculator", "index.html"), "utf8");
+
+  assert.match(html, /Roth conversion schedule worksheet/i);
+  assert.match(html, /data-roth-schedule/);
+  assert.match(html, /data-roth-target-balance/);
+  assert.match(html, /data-roth-schedule-result="planned-years"/);
+  assert.match(html, /data-roth-schedule-result="fill-years"/);
+  assert.match(html, /data-newsletter-form/);
+  assert.match(html, /data-source="roth-schedule-worksheet"/);
+});
+
 test("calculator pages include spouse household impact controls and result cards", async () => {
   for (const path of [
     "index.html",
