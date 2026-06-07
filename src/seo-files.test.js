@@ -74,7 +74,7 @@ test("sitemap includes lastmod dates for every public URL", async () => {
 
   assert.equal(urlBlocks.length, requiredRoutes.length);
   for (const block of urlBlocks) {
-    assert.match(block, /<lastmod>2026-(05-(14|29|31)|06-(05|06))<\/lastmod>/);
+    assert.match(block, /<lastmod>2026-(05-(14|29|31)|06-(05|06|07))<\/lastmod>/);
   }
 });
 test("custom 404 page points users back to useful IRMAA pages", async () => {
