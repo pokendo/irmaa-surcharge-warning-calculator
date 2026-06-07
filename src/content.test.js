@@ -413,6 +413,14 @@ test("mobile calculator pages prioritize the tool over the editorial preview", a
   assert.match(css, /@media \(max-width: 680px\)[\s\S]*display: none/);
 });
 
+test("wide civic tables stay inside their mobile scroll container", async () => {
+  const css = await readFile(join(root, "styles.css"), "utf8");
+
+  assert.ok(selectorHasDeclaration(css, ".civic-article", "min-width: 0"));
+  assert.ok(selectorHasDeclaration(css, ".table-wrap", "max-width: 100%"));
+  assert.ok(selectorHasDeclaration(css, ".table-wrap", "overflow-x: auto"));
+});
+
 test("editorial and civic heroes stay centered on desktop", async () => {
   const css = await readFile(join(root, "styles.css"), "utf8");
 
@@ -454,6 +462,7 @@ test("bracket page uses the calm civic utility layout with quiet ad inventory", 
   assert.match(html, /class="[^"]*layout-civic-utility/);
   assert.match(html, /ad-slot ad-slot-leaderboard/);
   assert.match(html, /ad-slot ad-slot-rail/);
+  assert.ok(html.indexOf('id="quick-answer"') < html.indexOf("ad-slot ad-slot-leaderboard"));
 });
 
 test("bracket page targets 2026 bracket search intent with answer block and jump links", async () => {

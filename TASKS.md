@@ -109,6 +109,8 @@ The static MVP is built and deployed from this project folder. The site includes
 - Live Chrome quality audit verified centered page framing, no desktop overflow, no browser warnings or errors, and correct calculator updates for MAGI, filing status, and spouse coverage.
 - Calculator share links now report blocked clipboard access honestly, preserve calculator values when copied, and reset the copy button for reuse.
 - Unused multi-megabyte design PNGs were removed from live assets, with an automated test enforcing WebP for future raster assets.
+- Full mobile layout audit passed across all 40 sitemap pages at 390px and 430px with no root overflow or browser errors.
+- The 2026 brackets page mobile overflow was fixed by containing wide tables inside their scroll frames, and its top advertisement was moved below useful bracket content.
 
 ## Next Tasks
 

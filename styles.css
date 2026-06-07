@@ -538,7 +538,7 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 12px; }
 .section h2 { margin: 0 0 14px; font-size: 38px; line-height: 1.1; }
 .section p { color: var(--muted); }
 
-.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+.table-wrap { max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
 table { width: 100%; border-collapse: collapse; min-width: 760px; background: white; }
 th, td { padding: 14px 16px; border-bottom: 1px solid var(--line); text-align: left; }
 th { background: var(--soft); font-size: 16px; }
@@ -549,7 +549,7 @@ tr:last-child td { border-bottom: 0; }
 .civic-hero { width: min(980px, calc(100% - 40px)); margin: 0 auto; padding: 44px 0 20px; }
 .civic-hero h1 { font-size: clamp(38px, 4vw, 56px); }
 .civic-shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto 56px; display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 28px; align-items: start; }
-.civic-article { width: auto; padding: 0; }
+.civic-article { width: auto; min-width: 0; padding: 0; }
 .utility-rail { display: grid; gap: 18px; position: sticky; top: 96px; }
 .rail-box { border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: var(--soft); }
 .rail-box p { color: var(--muted); margin: 8px 0 12px; }
