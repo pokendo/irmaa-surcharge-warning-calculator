@@ -116,6 +116,10 @@ test("two-year lookback guide answers high-intent timing questions with FAQ sche
   assert.match(lookback, /What tax year does Medicare use for IRMAA\?/i);
   assert.match(lookback, /Does IRMAA change every year\?/i);
   assert.match(lookback, /Why do people talk about age 63 for IRMAA\?/i);
+  assert.match(lookback, /What income year will 2027 IRMAA use\?/i);
+  assert.match(lookback, /2027 surcharge amounts have not been officially published/i);
+  assert.match(lookback, /2025 income/i);
+  assert.match(lookback, /SSA Handbook/i);
 });
 
 test("homepage and calculator expose revenue capture surfaces", async () => {
@@ -417,6 +421,7 @@ test("wide civic tables stay inside their mobile scroll container", async () => 
   const css = await readFile(join(root, "styles.css"), "utf8");
 
   assert.ok(selectorHasDeclaration(css, ".civic-article", "min-width: 0"));
+  assert.ok(selectorHasDeclaration(css, ".editorial-article", "min-width: 0"));
   assert.ok(selectorHasDeclaration(css, ".table-wrap", "max-width: 100%"));
   assert.ok(selectorHasDeclaration(css, ".table-wrap", "overflow-x: auto"));
 });

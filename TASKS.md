@@ -111,6 +111,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Unused multi-megabyte design PNGs were removed from live assets, with an automated test enforcing WebP for future raster assets.
 - Full mobile layout audit passed across all 40 sitemap pages at 390px and 430px with no root overflow or browser errors.
 - The 2026 brackets page mobile overflow was fixed by containing wide tables inside their scroll frames, and its top advertisement was moved below useful bracket content.
+- The two-year-lookback guide now includes a 2025/2026/expected-2027 income-year table, an age-63 planning explanation, and a clear warning that official 2027 surcharge amounts are not yet published.
 
 ## Next Tasks
 
