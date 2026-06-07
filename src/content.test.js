@@ -6,6 +6,13 @@ import test from "node:test";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 
+test("live raster assets use WebP instead of PNG or JPEG", async () => {
+  const assets = await readdir(join(root, "assets"));
+  const oversizedRasterSources = assets.filter((asset) => /\.(png|jpe?g)$/i.test(asset));
+
+  assert.deepEqual(oversizedRasterSources, []);
+});
+
 const pages = [
   ["index.html", "Avoid IRMAA surprises. Plan with confidence."],
   ["irmaa-calculator/index.html", "IRMAA Calculator"],

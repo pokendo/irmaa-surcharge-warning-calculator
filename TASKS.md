@@ -106,6 +106,9 @@ The static MVP is built and deployed from this project folder. The site includes
 - The main calculator now puts the useful tool before sponsor inventory, and mobile calculator pages hide the large editorial preview so visitors reach the calculator sooner.
 - Premium-year guidance across all calculator pages now links directly to the two-year-lookback guide.
 - Reusable `scripts/site-audit.js` added to verify every sitemap page, internal link, and content image against localhost or production; both environments currently pass with 40 sitemap pages and 44 unique URLs checked.
+- Live Chrome quality audit verified centered page framing, no desktop overflow, no browser warnings or errors, and correct calculator updates for MAGI, filing status, and spouse coverage.
+- Calculator share links now report blocked clipboard access honestly, preserve calculator values when copied, and reset the copy button for reuse.
+- Unused multi-megabyte design PNGs were removed from live assets, with an automated test enforcing WebP for future raster assets.
 
 ## Next Tasks
 
