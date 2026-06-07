@@ -66,9 +66,12 @@ if (typeof document !== "undefined") {
     if (shareLinkButton) {
       shareLinkButton.addEventListener("click", async () => {
         const shareUrl = buildShareUrl(window.location, getCoreShareValues(form));
-        await copyShareUrl(shareUrl, navigator.clipboard);
-        shareLinkButton.textContent = "Link copied";
-        window.irmaaTrack?.("share_link", getCoreShareValues(form));
+        const copied = await copyShareUrl(shareUrl, navigator.clipboard);
+        shareLinkButton.textContent = copied ? "Link copied" : "Copy unavailable";
+        if (copied) window.irmaaTrack?.("share_link", getCoreShareValues(form));
+        window.setTimeout(() => {
+          shareLinkButton.textContent = "Copy share link";
+        }, 2500);
       });
     }
 
@@ -550,8 +553,11 @@ export function buildShareUrl(location, values) {
 }
 
 export async function copyShareUrl(url, clipboard) {
-  if (clipboard?.writeText) {
+  if (!clipboard?.writeText) return false;
+  try {
     await clipboard.writeText(url);
+    return true;
+  } catch {
+    return false;
   }
-  return url;
 }

@@ -446,12 +446,17 @@ test("buildShareUrl keeps only core calculator values", () => {
   );
 });
 
-test("copyShareUrl returns the URL after writing to clipboard", async () => {
+test("copyShareUrl confirms the URL was written to clipboard", async () => {
   const writes = [];
-  const url = await copyShareUrl("https://example.com/?status=single", { writeText: async (value) => writes.push(value) });
+  const copied = await copyShareUrl("https://example.com/?status=single", { writeText: async (value) => writes.push(value) });
 
-  assert.equal(url, "https://example.com/?status=single");
+  assert.equal(copied, true);
   assert.deepEqual(writes, ["https://example.com/?status=single"]);
+});
+
+test("copyShareUrl reports when clipboard access is unavailable or rejected", async () => {
+  assert.equal(await copyShareUrl("https://example.com/", undefined), false);
+  assert.equal(await copyShareUrl("https://example.com/", { writeText: async () => { throw new Error("blocked"); } }), false);
 });
 
 test("applyQueryParams fills core form controls", () => {
