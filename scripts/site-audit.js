@@ -76,6 +76,30 @@ async function checkCanonicalRedirect(url, expectedUrl, label) {
   }
 }
 
+async function checkCanonicalOriginVariant(value) {
+  let url = new URL(value);
+
+  for (let hop = 0; hop < 4; hop += 1) {
+    const response = await fetch(url, {
+      redirect: "manual",
+      signal: AbortSignal.timeout(15000),
+    });
+    const location = response.headers.get("location");
+
+    if (response.status >= 300 && response.status < 400 && location) {
+      url = new URL(location, url);
+      continue;
+    }
+
+    if (response.status === 200 && url.href === canonicalOrigin.href) return;
+
+    failures.push(`BAD CANONICAL ORIGIN VARIANT: ${value} ended at ${response.status} ${url.href}`);
+    return;
+  }
+
+  failures.push(`CANONICAL ORIGIN REDIRECT LOOP: ${value}`);
+}
+
 const sitemapUrl = new URL("/sitemap.xml", baseUrl);
 const sitemap = await checkTextUrl(sitemapUrl, "sitemap");
 const sitemapEntries = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => {
@@ -131,6 +155,15 @@ await Promise.all(sitemapEntries.map(async ({ canonicalUrl, pageUrl }) => {
     ]);
   }
 }));
+
+if (baseUrl.origin === canonicalOrigin.origin) {
+  const rootHost = canonicalOrigin.hostname.replace(/^www\./, "");
+  await Promise.all([
+    checkCanonicalOriginVariant(`http://${canonicalOrigin.host}/`),
+    checkCanonicalOriginVariant(`https://${rootHost}/`),
+    checkCanonicalOriginVariant(`http://${rootHost}/`),
+  ]);
+}
 
 if (failures.length) {
   console.error(`Site audit failed with ${failures.length} issue(s):`);

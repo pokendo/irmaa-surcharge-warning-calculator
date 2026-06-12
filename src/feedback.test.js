@@ -153,6 +153,8 @@ test("project includes a strict live-site indexability link and image audit", as
   assert.match(auditScript, /NOINDEX SITEMAP PAGE/);
   assert.match(auditScript, /missing trailing slash URL/);
   assert.match(auditScript, /duplicate index\.html URL/);
+  assert.match(auditScript, /BAD CANONICAL ORIGIN VARIANT/);
+  assert.match(auditScript, /CANONICAL ORIGIN REDIRECT LOOP/);
   assert.match(auditScript, /\[502, 503, 504\]/);
   assert.match(auditScript, /attempt < 3/);
   assert.match(auditScript, /process\.exitCode = 1/);

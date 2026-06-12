@@ -35,6 +35,7 @@ These variants can waste crawl attention, create duplicate URLs, and account for
 - Production requests that reach the app on a non-canonical host or protocol permanently redirect to `https://www.irmaacheck.com`.
 - Real 404 responses include `X-Robots-Tag: noindex`.
 - The site audit now checks direct responses without silently following redirects, canonical agreement, indexability, internal links, images, and every canonical URL variant.
+- The production audit verifies that the three expected HTTP and non-`www` domain aliases still redirect to the canonical HTTPS origin without breaking or looping.
 - Deployment now runs the full test suite and strict local indexability audit before triggering Coolify.
 - A scheduled GitHub Actions workflow runs the strict audit and smoke checks against production every day.
 
