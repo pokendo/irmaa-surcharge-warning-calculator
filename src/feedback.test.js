@@ -141,13 +141,18 @@ test("lead forms show an in-progress state and prevent repeat submissions", asyn
   assert.match(profitScript, /setFormPending\(form, status, "Sending inquiry\.\.\.", true\)/);
 });
 
-test("project includes a reusable live-site route link and image audit", async () => {
+test("project includes a strict live-site indexability link and image audit", async () => {
   const auditScript = await readFile(join(root, "scripts", "site-audit.js"), "utf8");
 
   assert.match(auditScript, /sitemap\.xml/);
   assert.match(auditScript, /href=/);
   assert.match(auditScript, /img\\s\+\[\^>\]\*src=/);
-  assert.match(auditScript, /Site audit passed/);
+  assert.match(auditScript, /Strict indexability audit passed/);
+  assert.match(auditScript, /redirect: "manual"/);
+  assert.match(auditScript, /CANONICAL MISMATCH/);
+  assert.match(auditScript, /NOINDEX SITEMAP PAGE/);
+  assert.match(auditScript, /missing trailing slash URL/);
+  assert.match(auditScript, /duplicate index\.html URL/);
   assert.match(auditScript, /\[502, 503, 504\]/);
   assert.match(auditScript, /attempt < 3/);
   assert.match(auditScript, /process\.exitCode = 1/);

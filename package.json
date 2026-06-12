@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "audit": "node scripts/site-audit.js",
     "test": "node --test src/*.test.js",
     "smoke": "node scripts/smoke-test.js",
     "start": "node server.js"

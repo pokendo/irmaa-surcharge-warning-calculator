@@ -112,6 +112,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Full mobile layout audit passed across all 40 sitemap pages at 390px and 430px with no root overflow or browser errors.
 - The 2026 brackets page mobile overflow was fixed by containing wide tables inside their scroll frames, and its top advertisement was moved below useful bracket content.
 - The two-year-lookback guide now includes a 2025/2026/expected-2027 income-year table, an age-63 planning explanation, and a clear warning that official 2027 surcharge amounts are not yet published.
+- June 12 Search Console coverage review found the prior audit missed 40 duplicate `/index.html` URLs and 39 missing-trailing-slash 404 variants; canonical 308 redirects, a strict indexability audit, a pre-deployment quality gate, and a daily production audit were added.
 
 ## Next Tasks
 

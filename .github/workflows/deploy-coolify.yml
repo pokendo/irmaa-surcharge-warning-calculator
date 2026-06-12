@@ -10,6 +10,32 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run automated tests
+        run: npm test
+
+      - name: Start local site
+        run: npm start > /tmp/irmaacheck-server.log 2>&1 &
+
+      - name: Wait for local site
+        run: |
+          for attempt in {1..30}; do
+            curl --fail --silent http://127.0.0.1:4173/healthz && exit 0
+            sleep 1
+          done
+          cat /tmp/irmaacheck-server.log
+          exit 1
+
+      - name: Run strict indexability audit
+        run: npm run audit -- --url=http://127.0.0.1:4173/
+
       - name: Trigger Coolify deploy
         env:
           COOLIFY_DEPLOY_URL: http://204.168.236.236:8000/api/v1/deploy?uuid=n2muhudfe48a2x48bc7edbou&force=false
