@@ -14,7 +14,7 @@ test("live raster assets use WebP instead of PNG or JPEG", async () => {
 });
 
 const pages = [
-  ["index.html", "Avoid IRMAA surprises. Plan with confidence."],
+  ["index.html", "Will your next money move raise your Medicare premiums?"],
   ["irmaa-calculator/index.html", "IRMAA Calculator"],
   ["irmaa-brackets-2026/index.html", "2026 IRMAA Brackets"],
   ["medicare-magi/index.html", "Medicare MAGI"],
@@ -73,13 +73,11 @@ for (const [path, heading] of pages) {
 test("homepage uses the image-led guided planner layout without an ad before the primary experience", async () => {
   const html = await readFile(join(root, "index.html"), "utf8");
 
-  assert.match(html, /class="[^"]*layout-guided-planner/);
-  assert.match(html, /class="hero-media"/);
-  assert.match(html, /src="\.\/assets\/irmaa-planning-couple\.webp"/);
-  assert.match(html, /class="calculator-workspace"/);
-  assert.match(html, /class="lookback-timeline"/);
-  assert.match(html, /2024 income[\s\S]*2026 premium/i);
-  assert.ok(html.indexOf('id="calculator"') < html.indexOf("Advertisement"));
+  assert.match(html, /id="hero"/);
+  assert.match(html, /id="wizard-card"/);
+  assert.match(html, /irmaa-planning-couple\.webp/);
+  assert.ok(html.indexOf('id="wizard-card"') < html.indexOf('id="advisor-cta-band"'));
+  assert.ok(html.indexOf('id="wizard-card"') < html.indexOf('Advertisement'));
 });
 
 test("main calculator puts the useful tool before sponsor inventory", async () => {
@@ -102,7 +100,7 @@ test("lookback cluster gives visitors a clear understand calculate act path", as
   const homepage = await readFile(join(root, "index.html"), "utf8");
   const lookback = await readFile(join(root, "irmaa-two-year-lookback", "index.html"), "utf8");
 
-  assert.match(homepage, /class="timeline-guide-link"[^>]+href="\.\/irmaa-two-year-lookback\/"/);
+  assert.match(homepage, /href="\.\/irmaa-two-year-lookback\/"/);
   assert.match(lookback, /class="planning-path"/);
   assert.match(lookback, /href="\.\.\/medicare-magi\/"[\s\S]*?Understand Medicare MAGI/);
   assert.match(lookback, /href="\.\.\/irmaa-calculator\/"[\s\S]*?Calculate the impact/);
@@ -139,7 +137,7 @@ test("every public page exposes the guide library in navigation", async () => {
     const html = await readFile(join(root, path), "utf8");
     const guidesHref = path === "index.html" ? "./guides/" : "../guides/";
 
-    assert.match(html, new RegExp(`<nav class="nav"[\\s\\S]*?href="${escapeRegExp(guidesHref)}"[\\s\\S]*?</nav>`), path);
+    assert.match(html, new RegExp(`<nav class="(?:site-)?nav"[\\s\\S]*?href="${escapeRegExp(guidesHref)}"[\\s\\S]*?</nav>`), path);
   }
 });
 
@@ -154,18 +152,15 @@ test("every public page exposes trust and contact links in the footer", async ()
   }
 });
 
-test("homepage routes visitors to the guide library before the long article grid", async () => {
+test("homepage routes visitors to the guide library", async () => {
   const html = await readFile(join(root, "index.html"), "utf8");
-  const guideLinkIndex = html.indexOf('href="./guides/"');
-  const calculatorIndex = html.indexOf('id="calculator"');
 
-  assert.match(html, /Browse IRMAA guides/i);
-  assert.ok(guideLinkIndex > 0 && guideLinkIndex < calculatorIndex);
+  assert.match(html, /href="\.\/guides\/"/);
+  assert.match(html, /id="guides"/);
 });
 
 test("calculator result cards answer Roth conversion room before the next IRMAA bracket", async () => {
   for (const path of [
-    "index.html",
     join("irmaa-calculator", "index.html"),
     join("roth-conversion-irmaa-calculator", "index.html"),
     join("rmd-irmaa-calculator", "index.html"),
@@ -195,7 +190,6 @@ test("Roth conversion calculator includes a schedule worksheet and lead capture"
 
 test("calculator pages include spouse household impact controls and result cards", async () => {
   for (const path of [
-    "index.html",
     join("irmaa-calculator", "index.html"),
     join("roth-conversion-irmaa-calculator", "index.html"),
     join("rmd-irmaa-calculator", "index.html"),
@@ -215,7 +209,6 @@ test("calculator pages include spouse household impact controls and result cards
 
 test("calculator pages include premium year controls and income-year result cards", async () => {
   for (const path of [
-    "index.html",
     join("irmaa-calculator", "index.html"),
     join("roth-conversion-irmaa-calculator", "index.html"),
     join("rmd-irmaa-calculator", "index.html"),
@@ -235,7 +228,6 @@ test("calculator pages include premium year controls and income-year result card
 
 test("calculator premium-year guidance links to the two-year lookback guide", async () => {
   for (const path of [
-    "index.html",
     join("irmaa-calculator", "index.html"),
     join("roth-conversion-irmaa-calculator", "index.html"),
     join("rmd-irmaa-calculator", "index.html"),
@@ -253,7 +245,6 @@ test("calculator premium-year guidance links to the two-year lookback guide", as
 
 test("calculator pages include a Medicare MAGI helper", async () => {
   for (const path of [
-    "index.html",
     join("irmaa-calculator", "index.html"),
     join("roth-conversion-irmaa-calculator", "index.html"),
     join("rmd-irmaa-calculator", "index.html"),
@@ -278,7 +269,6 @@ test("calculator pages include a Medicare MAGI helper", async () => {
 
 test("calculator pages include scenario comparison cards", async () => {
   for (const path of [
-    "index.html",
     join("irmaa-calculator", "index.html"),
     join("roth-conversion-irmaa-calculator", "index.html"),
     join("rmd-irmaa-calculator", "index.html"),
@@ -301,7 +291,6 @@ test("calculator pages include scenario comparison cards", async () => {
 
 test("calculator pages include result conversion actions", async () => {
   for (const path of [
-    "index.html",
     join("irmaa-calculator", "index.html"),
     join("roth-conversion-irmaa-calculator", "index.html"),
     join("rmd-irmaa-calculator", "index.html"),
@@ -324,7 +313,6 @@ test("calculator pages include result conversion actions", async () => {
 
 test("calculator pages include a visual IRMAA cliff meter", async () => {
   for (const path of [
-    "index.html",
     join("irmaa-calculator", "index.html"),
     join("roth-conversion-irmaa-calculator", "index.html"),
     join("rmd-irmaa-calculator", "index.html"),
@@ -957,7 +945,7 @@ test("transcript-inspired education pages are original easy-read IRMAA explainer
   }
 });
 
-for (const route of ["index.html", join("irmaa-calculator", "index.html")]) {
+for (const route of [join("irmaa-calculator", "index.html")]) {
   test(`${route} includes a plain-English result summary target`, async () => {
     const html = await readFile(join(root, route), "utf8");
 
@@ -966,7 +954,7 @@ for (const route of ["index.html", join("irmaa-calculator", "index.html")]) {
   });
 }
 
-for (const route of ["index.html", join("irmaa-calculator", "index.html")]) {
+for (const route of [join("irmaa-calculator", "index.html")]) {
   test(`${route} includes a printable estimate details section`, async () => {
     const html = await readFile(join(root, route), "utf8");
 
@@ -976,7 +964,7 @@ for (const route of ["index.html", join("irmaa-calculator", "index.html")]) {
   });
 }
 
-for (const route of ["index.html", join("irmaa-calculator", "index.html")]) {
+for (const route of [join("irmaa-calculator", "index.html")]) {
   test(`${route} includes a shareable estimate link control`, async () => {
     const html = await readFile(join(root, route), "utf8");
 

@@ -6,7 +6,7 @@ import test from "node:test";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 
-for (const route of ["index.html", join("irmaa-calculator", "index.html")]) {
+for (const route of [join("irmaa-calculator", "index.html")]) {
   test(`${route} keeps the launch calculator focused on the core Roth flow`, async () => {
     const html = await readFile(join(root, route), "utf8");
 
