@@ -11,7 +11,7 @@ const checks = [
   {
     path: "/",
     status: 200,
-    includes: "IRMAA Warning Calculator",
+    includes: "IRMAA Check",
   },
   {
     path: "/irmaa-calculator/",
