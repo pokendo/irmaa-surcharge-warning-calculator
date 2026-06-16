@@ -166,6 +166,13 @@ input:focus, select:focus, textarea:focus, button:focus, a:focus {
 .ad-slot-inline { margin: 8px 0 0; }
 .ad-slot-bottom { margin-top: 20px; }
 .ad-slot-rail { min-height: 240px; display: grid; align-content: center; }
+.amazon-book-ad { background: var(--surface, #fff); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 24px 0; display: flex; gap: 16px; align-items: flex-start; }
+.amazon-book-ad .abook-body { display: flex; flex-direction: column; gap: 6px; }
+.amazon-book-ad .abook-tag { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.amazon-book-ad .abook-title { font-weight: 800; color: var(--ink); line-height: 1.3; }
+.amazon-book-ad .abook-desc { font-size: 14px; color: var(--muted); line-height: 1.5; }
+.amazon-book-ad .abook-cta { font-weight: 800; color: var(--teal); text-decoration: none; }
+.amazon-book-ad .abook-disc { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 6px; }
 .jump-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
 .jump-links a { background: #fff; border: 1px solid var(--line); border-radius: 8px; color: var(--blue-ink); font-size: 14px; font-weight: 800; padding: 9px 12px; text-decoration: none; }
 .jump-links a:hover { border-color: var(--teal); color: var(--teal-dark); }
