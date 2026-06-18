@@ -173,6 +173,7 @@ input:focus, select:focus, textarea:focus, button:focus, a:focus {
 .amazon-book-ad .abook-desc { font-size: 14px; color: var(--muted); line-height: 1.5; }
 .amazon-book-ad .abook-cta { font-weight: 800; color: var(--teal); text-decoration: none; }
 .amazon-book-ad .abook-disc { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 6px; }
+.amazon-book-ad .abook-cover{flex-shrink:0;border-radius:6px;}
 .jump-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
 .jump-links a { background: #fff; border: 1px solid var(--line); border-radius: 8px; color: var(--blue-ink); font-size: 14px; font-weight: 800; padding: 9px 12px; text-decoration: none; }
 .jump-links a:hover { border-color: var(--teal); color: var(--teal-dark); }
