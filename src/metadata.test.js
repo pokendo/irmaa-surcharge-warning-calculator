@@ -98,7 +98,7 @@ test("social card asset exists", async () => {
   const svg = await readFile(join(root, "assets", "irmaa-social-card.svg"), "utf8");
 
   assert.match(svg, /<svg[^>]+viewBox="0 0 1200 630"/);
-  assert.match(svg, /IRMAA Warning Calculator/);
+  assert.match(svg, /IRMAA Check/);
 });
 test("non-home pages include BreadcrumbList schema", async () => {
   for (const [path, canonical] of routes.filter(([path]) => path !== "index.html")) {
