@@ -547,7 +547,7 @@ Stop pushing visual polish to "later." For this niche, trust is visual too.
 6. Done June 27, 2026: add stronger internal links from the calculator, brackets page, MAGI guide, and guide library into the rescued pages.
 7. Done June 27, 2026: rework the 2026 brackets page into a better hub.
 8. Done June 27, 2026: improve article CTAs so high-intent visitors are pushed toward the calculator or a checklist.
-9. Next: create the first backlink/resource outreach list after the pages are improved.
+9. Done June 27, 2026: create the first backlink/resource outreach list after the pages are improved.
 
 ## Implementation Log
 
@@ -642,6 +642,25 @@ Verification:
 
 - `npm test` passed: 192 tests.
 - `npm run smoke` passed.
+
+### June 27, 2026 - Backlink and resource outreach plan
+
+Files created:
+
+- `BACKLINK_RESOURCE_OUTREACH_2026-06-27.md`
+- `BACKLINK_OUTREACH_TRACKER.csv`
+
+What changed:
+
+- Created a backlink outreach plan focused on resource links, calculator mentions, newsletter mentions, and article-update opportunities.
+- Created a 25-target backlink tracker.
+- Prioritized targets already writing about IRMAA, Roth conversions, RMDs, municipal bond interest, Medicare MAGI, and 2026 Medicare premiums.
+- Added page-specific outreach templates for the 2026 brackets hub, calculator, municipal bond guide, two-year lookback guide, and calculator-directory/resource-page pitches.
+- Kept sponsor sales separate from backlink outreach so the ask stays credibility-focused while traffic is still low.
+
+Verification:
+
+- Documentation-only change. No code tests required.
 
 ## Bottom Line
 
