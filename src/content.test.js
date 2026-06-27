@@ -667,6 +667,33 @@ test("Part B premium page targets 2026 premium search and routes to IRMAA conver
   assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
 });
 
+test("highest-intent education pages expose calculator and checklist conversion blocks", async () => {
+  const partB = await readFile(join(root, "medicare-part-b-premium-2026", "index.html"), "utf8");
+  const lookback = await readFile(join(root, "irmaa-two-year-lookback", "index.html"), "utf8");
+  const magiChecklist = await readFile(join(root, "what-counts-toward-irmaa-magi", "index.html"), "utf8");
+  const avoid = await readFile(join(root, "how-to-avoid-irmaa", "index.html"), "utf8");
+
+  assert.match(partB, /Check the number that matters for your household/i);
+  assert.match(partB, /href="\.\.\/irmaa-calculator\/\?source=part-b-quick-check"/);
+  assert.match(partB, /href="\.\.\/irmaa-planning-checklist\/"/);
+  assert.match(partB, /href="\.\.\/do-both-spouses-pay-irmaa\/"/);
+  assert.match(partB, /href="\.\.\/how-long-does-irmaa-last\/"/);
+
+  assert.match(lookback, /Before the tax year closes/i);
+  assert.match(lookback, /href="\.\.\/irmaa-calculator\/\?source=lookback-before-year-end"/);
+  assert.match(lookback, /data-source="irmaa-two-year-lookback"/);
+  assert.match(lookback, /Send the checklist/i);
+
+  assert.match(magiChecklist, /Turn the checklist into an estimate/i);
+  assert.match(magiChecklist, /href="\.\.\/rmd-irmaa-calculator\/"/);
+  assert.match(magiChecklist, /href="\.\.\/401k-withdrawal-medicare-premium-calculator\/"/);
+  assert.match(magiChecklist, /href="\.\.\/municipal-bond-interest-irmaa\/"/);
+
+  assert.match(avoid, /Choose the next planning step/i);
+  assert.match(avoid, /href="\.\.\/irmaa-calculator\/\?source=avoid-irmaa-next-step"/);
+  assert.match(avoid, /href="\.\.\/ssa-44-irmaa-appeal-timing-checker\/"/);
+});
+
 test("planning checklist page creates a lead magnet for newsletter and sponsor conversion", async () => {
   const html = await readFile(join(root, "irmaa-planning-checklist", "index.html"), "utf8");
 

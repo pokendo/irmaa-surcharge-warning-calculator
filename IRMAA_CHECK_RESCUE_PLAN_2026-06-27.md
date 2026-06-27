@@ -546,7 +546,7 @@ Stop pushing visual polish to "later." For this niche, trust is visual too.
 5. Done June 27, 2026: strengthen the RMD calculator page and withdrawal/RMD cross-links.
 6. Done June 27, 2026: add stronger internal links from the calculator, brackets page, MAGI guide, and guide library into the rescued pages.
 7. Done June 27, 2026: rework the 2026 brackets page into a better hub.
-8. Next: improve article CTAs so every high-intent visitor is pushed toward the calculator or a checklist.
+8. Done June 27, 2026: improve article CTAs so high-intent visitors are pushed toward the calculator or a checklist.
 9. Next: create the first backlink/resource outreach list after the pages are improved.
 
 ## Implementation Log
@@ -618,6 +618,29 @@ What changed:
 Verification:
 
 - `npm test` passed: 191 tests.
+- `npm run smoke` passed.
+
+### June 27, 2026 - High-intent CTA and lead capture pass
+
+Pages updated:
+
+- `/medicare-part-b-premium-2026/`
+- `/irmaa-two-year-lookback/`
+- `/what-counts-toward-irmaa-magi/`
+- `/how-to-avoid-irmaa/`
+
+What changed:
+
+- Added calculator/checklist choice blocks near high-intent decision points.
+- Added a new two-year lookback checklist signup form.
+- Added Part B conversion paths to spouse impact, duration, MAGI checklist, and calculator pages.
+- Added MAGI checklist calculator paths for RMDs, 401(k) withdrawals, municipal bonds, and multi-event estimates.
+- Added avoid-IRMAA next-step links to calculator, checklist, brackets, and SSA-44 timing checker.
+- Added regression coverage for the new conversion blocks.
+
+Verification:
+
+- `npm test` passed: 192 tests.
 - `npm run smoke` passed.
 
 ## Bottom Line
