@@ -544,7 +544,7 @@ Stop pushing visual polish to "later." For this niche, trust is visual too.
 3. Done June 27, 2026: rewrite and improve the how-long-does-IRMAA-last page.
 4. Done June 27, 2026: strengthen the 401(k) withdrawal calculator page.
 5. Done June 27, 2026: strengthen the RMD calculator page and withdrawal/RMD cross-links.
-6. Next: add stronger internal links from the calculator, brackets page, and MAGI guide into the rescued pages.
+6. Done June 27, 2026: add stronger internal links from the calculator, brackets page, MAGI guide, and guide library into the rescued pages.
 7. Next: rework the 2026 brackets page into a better hub.
 8. Next: improve article CTAs so every high-intent visitor is pushed toward the calculator or a checklist.
 9. Next: create the first backlink/resource outreach list after the pages are improved.
@@ -574,6 +574,28 @@ What changed:
 Verification:
 
 - `npm test` passed: 189 tests.
+- `npm run smoke` passed.
+
+### June 27, 2026 - Internal link authority pass
+
+Hub pages updated:
+
+- `/irmaa-calculator/`
+- `/irmaa-brackets-2026/`
+- `/medicare-magi/`
+- `/guides/`
+
+What changed:
+
+- Added calculator links to municipal bond, spouse IRMAA, duration, RMD, 401(k), and MAGI checklist pages.
+- Added a 2026 bracket-page section for common bracket surprises.
+- Added exact-answer links inside the Medicare MAGI guide for municipal bonds, RMDs, 401(k) withdrawals, and spouse impact.
+- Added 401(k) withdrawal calculator links to the guide library and planning-tools rail.
+- Added a regression test so core hub pages must keep linking to Search Console rescue targets.
+
+Verification:
+
+- `npm test` passed: 190 tests.
 - `npm run smoke` passed.
 
 ## Bottom Line

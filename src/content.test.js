@@ -983,3 +983,25 @@ test("calculator and bracket pages include high-intent FAQ copy", async () => {
   assert.match(brackets, /What income year is used for 2026 IRMAA\?/i);
   assert.match(brackets, /When do 2027 IRMAA brackets come out\?/i);
 });
+
+test("core hub pages link to Search Console rescue targets", async () => {
+  const hubPages = [
+    ["irmaa-calculator/index.html", "../"],
+    ["irmaa-brackets-2026/index.html", "../"],
+    ["medicare-magi/index.html", "../"],
+    ["guides/index.html", "../"],
+  ];
+
+  for (const [path, prefix] of hubPages) {
+    const html = await readFile(join(root, path), "utf8");
+
+    for (const route of [
+      "municipal-bond-interest-irmaa",
+      "do-both-spouses-pay-irmaa",
+      "rmd-irmaa-calculator",
+      "401k-withdrawal-medicare-premium-calculator",
+    ]) {
+      assert.match(html, new RegExp(`href="${escapeRegExp(prefix)}${route}/"`), `${path} should link to ${route}`);
+    }
+  }
+});
