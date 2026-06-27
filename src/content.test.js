@@ -96,6 +96,22 @@ test("high-intent lookback and cliff guides include purpose-built explanatory vi
   assert.match(cliff, /Below threshold[\s\S]*One dollar over/i);
 });
 
+test("MAGI and bracket hubs include visual explainers for key decisions", async () => {
+  const magi = await readFile(join(root, "medicare-magi", "index.html"), "utf8");
+  const checklist = await readFile(join(root, "what-counts-toward-irmaa-magi", "index.html"), "utf8");
+  const brackets = await readFile(join(root, "irmaa-brackets-2026", "index.html"), "utf8");
+  const css = await readFile(join(root, "styles.css"), "utf8");
+
+  assert.match(magi, /class="decision-visual formula-visual"/);
+  assert.match(magi, /Adjusted gross income[\s\S]*Tax-exempt interest[\s\S]*IRMAA brackets/);
+  assert.match(magi, /class="decision-visual counting-visual"/);
+  assert.match(checklist, /class="decision-visual counting-visual"/);
+  assert.match(brackets, /class="decision-visual bracket-cliff-visual"/);
+  assert.match(brackets, /\$218,000 joint MAGI[\s\S]*\$218,001 joint MAGI/);
+  assert.match(css, /\.formula-visual-grid/);
+  assert.match(css, /\.bracket-cliff-track/);
+});
+
 test("lookback cluster gives visitors a clear understand calculate act path", async () => {
   const homepage = await readFile(join(root, "index.html"), "utf8");
   const lookback = await readFile(join(root, "irmaa-two-year-lookback", "index.html"), "utf8");

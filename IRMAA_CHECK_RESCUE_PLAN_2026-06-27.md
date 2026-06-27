@@ -681,6 +681,29 @@ Verification:
 - Gmail returned sent message IDs for all 8 outgoing messages.
 - Documentation/outreach-tracker change only. No code tests required.
 
+### June 27, 2026 - MAGI and bracket visual explainer pass
+
+Pages updated:
+
+- `/medicare-magi/`
+- `/what-counts-toward-irmaa-magi/`
+- `/irmaa-brackets-2026/`
+
+What changed:
+
+- Added a visual Medicare MAGI formula panel that explains AGI plus tax-exempt interest.
+- Added income-count sorting panels for taxable income events, tax-exempt interest add-backs, and items that usually should not be double-counted.
+- Added a 2026 bracket-cliff visual showing why one dollar over the first married-filing-jointly threshold can matter.
+- Added responsive CSS so the new visuals stack cleanly on mobile.
+- Added regression coverage so the visual explainers stay in place.
+
+Verification:
+
+- `npm test` passed: 193 tests.
+- `npm run audit` passed: 40 sitemap pages and 143 direct URL checks.
+- `npm run smoke` passed against local preview.
+- Installed-Chrome visual QA passed for desktop and mobile widths with no page-wide horizontal overflow; the only flagged mobile overflow was the intentional scrollable bracket table.
+
 ## Bottom Line
 
 The site does not need another pile of generic content right now. It needs a rescue sprint around the pages Google has already started to trust.
