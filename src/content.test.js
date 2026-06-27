@@ -477,6 +477,23 @@ test("bracket page targets 2026 bracket search intent with answer block and jump
   assert.match(html, /data-track-label="brackets table sponsor"/);
 });
 
+test("bracket page works as a calculator hub with total premium context", async () => {
+  const html = await readFile(join(root, "irmaa-brackets-2026", "index.html"), "utf8");
+
+  assert.match(html, /Total Part B premium/i);
+  assert.match(html, /Total IRMAA monthly/i);
+  assert.match(html, /\$284\.10/);
+  assert.match(html, /\$95\.70/);
+  assert.match(html, /How to use the 2026 IRMAA brackets/i);
+  assert.match(html, /Calculators for common income events/i);
+  assert.match(html, /href="\.\.\/roth-conversion-irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/rmd-irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/401k-withdrawal-medicare-premium-calculator\/"/);
+  assert.match(html, /href="\.\.\/capital-gains-irmaa-calculator\/"/);
+  assert.match(html, /href="\.\.\/home-sale-medicare-premium-calculator\/"/);
+  assert.match(html, /Print-friendly chart/i);
+});
+
 test("educational article pages use the editorial guide layout with related guides and ads", async () => {
   const html = await readFile(join(root, "medicare-magi", "index.html"), "utf8");
 

@@ -545,7 +545,7 @@ Stop pushing visual polish to "later." For this niche, trust is visual too.
 4. Done June 27, 2026: strengthen the 401(k) withdrawal calculator page.
 5. Done June 27, 2026: strengthen the RMD calculator page and withdrawal/RMD cross-links.
 6. Done June 27, 2026: add stronger internal links from the calculator, brackets page, MAGI guide, and guide library into the rescued pages.
-7. Next: rework the 2026 brackets page into a better hub.
+7. Done June 27, 2026: rework the 2026 brackets page into a better hub.
 8. Next: improve article CTAs so every high-intent visitor is pushed toward the calculator or a checklist.
 9. Next: create the first backlink/resource outreach list after the pages are improved.
 
@@ -596,6 +596,28 @@ What changed:
 Verification:
 
 - `npm test` passed: 190 tests.
+- `npm run smoke` passed.
+
+### June 27, 2026 - 2026 brackets hub upgrade
+
+Page updated:
+
+- `/irmaa-brackets-2026/`
+
+What changed:
+
+- Rewrote title and meta description around income limits, Part B, Part D, and total monthly impact.
+- Added stronger hero actions into the calculator and bracket chart.
+- Added a quick-answer snapshot for income year, standard Part B premium, and first thresholds.
+- Added a "How to use the 2026 IRMAA brackets" section.
+- Expanded bracket tables with total Part B premium and total monthly IRMAA columns.
+- Added a calculator hub section for Roth conversions, RMDs, 401(k) withdrawals, capital gains, home sales, and multi-event estimates.
+- Added a print-friendly chart rail prompt.
+- Added regression coverage for the bracket page as a calculator hub.
+
+Verification:
+
+- `npm test` passed: 191 tests.
 - `npm run smoke` passed.
 
 ## Bottom Line
