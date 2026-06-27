@@ -662,6 +662,25 @@ Verification:
 
 - Documentation-only change. No code tests required.
 
+### June 27, 2026 - First backlink outreach batch sent
+
+Files created/updated:
+
+- `BACKLINK_OUTREACH_BATCH_2026-06-27.md`
+- `BACKLINK_OUTREACH_TRACKER.csv`
+
+What changed:
+
+- Sent 8 resource-update pitches to relevant IRMAA, Medicare MAGI, Roth conversion, and municipal bond article owners.
+- Logged target, email address, pitch angle, resource URL, first outreach date, and follow-up date.
+- Kept Define Financial and Range in the manual/contact-path queue because no clean public email path was verified in this batch.
+- Set the first follow-up date to 2026-07-04.
+
+Verification:
+
+- Gmail returned sent message IDs for all 8 outgoing messages.
+- Documentation/outreach-tracker change only. No code tests required.
+
 ## Bottom Line
 
 The site does not need another pile of generic content right now. It needs a rescue sprint around the pages Google has already started to trust.
