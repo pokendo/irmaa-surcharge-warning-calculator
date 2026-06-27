@@ -704,6 +704,27 @@ Verification:
 - `npm run smoke` passed against local preview.
 - Installed-Chrome visual QA passed for desktop and mobile widths with no page-wide horizontal overflow; the only flagged mobile overflow was the intentional scrollable bracket table.
 
+### June 27, 2026 - Printable 2026 IRMAA chart linkable asset
+
+Page created:
+
+- `/printable-2026-irmaa-chart/`
+
+What changed:
+
+- Added a clean print-friendly 2026 IRMAA chart with single, joint, and married-filing-separately tables.
+- Included Part B IRMAA, total Part B premium, Part D IRMAA, and combined monthly IRMAA columns.
+- Added source notes linking to CMS, Medicare.gov, and SSA.
+- Added a screen-only WebP visual, print/save-as-PDF button, calculator CTA, and checklist CTA.
+- Added guide-library discovery, a bracket-page sidebar link, sitemap coverage, canonical/social metadata, and regression tests.
+
+Verification:
+
+- `npm test` passed: 195 tests.
+- `npm run audit -- --url=http://127.0.0.1:4173/` passed: 41 sitemap pages and 148 direct URL checks.
+- `npm run smoke` passed against local preview.
+- Installed-Chrome visual QA passed on desktop and mobile with two printable chart tables, visible print button, and no page-wide horizontal overflow.
+
 ## Bottom Line
 
 The site does not need another pile of generic content right now. It needs a rescue sprint around the pages Google has already started to trust.

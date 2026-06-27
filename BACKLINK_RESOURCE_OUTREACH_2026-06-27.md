@@ -16,6 +16,7 @@ Priority linkable assets:
 
 | Asset | URL | Best outreach angle |
 |---|---|---|
+| Printable 2026 IRMAA chart | `https://www.irmaacheck.com/printable-2026-irmaa-chart/` | A clean resource-page chart that readers can print or save as PDF for Medicare premium planning. |
 | 2026 IRMAA brackets hub | `https://www.irmaacheck.com/irmaa-brackets-2026/` | A print-friendly 2026 bracket chart with total Part B premium and total monthly IRMAA columns. |
 | Main IRMAA calculator | `https://www.irmaacheck.com/irmaa-calculator/` | A free calculator for testing Roth conversions, RMDs, gains, home sales, and spouse impact before an income decision. |
 | Municipal bond IRMAA guide | `https://www.irmaacheck.com/municipal-bond-interest-irmaa/` | A plain-English explanation that tax-free municipal bond interest can still count toward IRMAA MAGI. |
@@ -272,4 +273,3 @@ Suggested statuses:
 - 10 relevant referring domains
 - At least 3 links pointing to calculators or the 2026 brackets hub
 - At least 2 links pointing to municipal bond / MAGI / two-year lookback pages
-

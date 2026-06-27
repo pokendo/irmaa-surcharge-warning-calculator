@@ -17,6 +17,7 @@ const pages = [
   ["index.html", "Will your next money move raise your Medicare premiums?"],
   ["irmaa-calculator/index.html", "IRMAA Calculator"],
   ["irmaa-brackets-2026/index.html", "2026 IRMAA Brackets"],
+  ["printable-2026-irmaa-chart/index.html", "Printable 2026 IRMAA Chart"],
   ["medicare-magi/index.html", "Medicare MAGI"],
   ["what-is-irmaa/index.html", "What Is IRMAA?"],
   ["how-to-avoid-irmaa/index.html", "How to Avoid IRMAA Surprises"],
@@ -508,6 +509,24 @@ test("bracket page works as a calculator hub with total premium context", async 
   assert.match(html, /href="\.\.\/capital-gains-irmaa-calculator\/"/);
   assert.match(html, /href="\.\.\/home-sale-medicare-premium-calculator\/"/);
   assert.match(html, /Print-friendly chart/i);
+});
+
+test("printable 2026 IRMAA chart works as a linkable resource asset", async () => {
+  const html = await readFile(join(root, "printable-2026-irmaa-chart", "index.html"), "utf8");
+  const guides = await readFile(join(root, "guides", "index.html"), "utf8");
+  const brackets = await readFile(join(root, "irmaa-brackets-2026", "index.html"), "utf8");
+  const css = await readFile(join(root, "styles.css"), "utf8");
+
+  assert.match(html, /Printable 2026 IRMAA Chart/i);
+  assert.match(html, /Print or save as PDF/i);
+  assert.match(html, /Total Part B premium/i);
+  assert.match(html, /Total monthly IRMAA/i);
+  assert.match(html, /CMS 2026 Medicare Parts A &amp; B premiums/i);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/\?source=printable-2026-chart"/);
+  assert.match(guides, /href="\.\.\/printable-2026-irmaa-chart\/"/);
+  assert.match(brackets, /href="\.\.\/printable-2026-irmaa-chart\/"/);
+  assert.match(css, /\.printable-rate-table/);
+  assert.match(css, /@media print[\s\S]*\.no-print/);
 });
 
 test("educational article pages use the editorial guide layout with related guides and ads", async () => {

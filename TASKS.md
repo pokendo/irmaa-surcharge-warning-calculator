@@ -114,6 +114,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - The two-year-lookback guide now includes a 2025/2026/expected-2027 income-year table, an age-63 planning explanation, and a clear warning that official 2027 surcharge amounts are not yet published.
 - June 12 Search Console coverage review found the prior audit missed 40 duplicate `/index.html` URLs and 39 missing-trailing-slash 404 variants; canonical 308 redirects, a strict indexability audit, a pre-deployment quality gate, and a daily production audit were added.
 - June 27 rescue sprint added visual explainer panels to the Medicare MAGI guide, MAGI checklist, and 2026 brackets page so high-intent visitors can understand AGI plus tax-exempt interest, income-count categories, and the IRMAA bracket cliff faster.
+- June 27 rescue sprint added `/printable-2026-irmaa-chart/` as a linkable resource asset with print/PDF behavior, official source notes, sitemap coverage, guide-library discovery, and a calculator conversion path.
 
 ## Next Tasks
 
@@ -124,6 +125,7 @@ The static MVP is built and deployed from this project folder. The site includes
 - Continue the homepage and shared page redesign so the site feels trustworthy, visually distinctive, and easier to scan without weakening calculator usability.
 - Add purposeful visual assets such as clear IRMAA timeline, bracket-cliff, MAGI, and income-event graphics; avoid decorative stock imagery that does not help explain the decision.
 - Continue adding useful explainer visuals to income-event calculators where the visual teaches the decision, not just decoration.
+- Use the printable 2026 IRMAA chart as the primary linkable asset in the next backlink/resource outreach batch.
 - Continue traffic work after quality improvements: strengthen the two-year-lookback and calculator clusters, review Search Console queries, improve internal linking, and publish content based on measured demand.
 - Review PocketBase analytics after meaningful organic traffic arrives, then define minimum traffic and conversion benchmarks before resuming sponsor outreach or applying for display ads.
 

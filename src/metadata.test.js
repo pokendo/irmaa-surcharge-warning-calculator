@@ -11,6 +11,7 @@ const routes = [
   ["index.html", `${productionOrigin}/`],
   ["irmaa-calculator/index.html", `${productionOrigin}/irmaa-calculator/`],
   ["irmaa-brackets-2026/index.html", `${productionOrigin}/irmaa-brackets-2026/`],
+  ["printable-2026-irmaa-chart/index.html", `${productionOrigin}/printable-2026-irmaa-chart/`],
   ["medicare-magi/index.html", `${productionOrigin}/medicare-magi/`],
   ["what-is-irmaa/index.html", `${productionOrigin}/what-is-irmaa/`],
   ["how-to-avoid-irmaa/index.html", `${productionOrigin}/how-to-avoid-irmaa/`],
