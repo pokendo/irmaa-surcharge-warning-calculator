@@ -48,7 +48,7 @@ const pages = [
   ["one-time-income-spike-irmaa/index.html", "One-Time Income Spike and IRMAA"],
   ["how-long-does-irmaa-last/index.html", "How Long Does IRMAA Last?"],
   ["widow-penalty-irmaa/index.html", "Widow Penalty and IRMAA"],
-  ["municipal-bond-interest-irmaa/index.html", "Municipal Bond Interest and IRMAA"],
+  ["municipal-bond-interest-irmaa/index.html", "Does Municipal Bond Interest Count Toward IRMAA?"],
   ["backdoor-roth-irmaa/index.html", "Backdoor Roth and IRMAA"],
   ["advertise/index.html", "Reach people making Medicare premium and retirement income decisions"],
   ["about/index.html", "About IRMAA Check"],

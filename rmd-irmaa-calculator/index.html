@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RMD IRMAA Calculator | IRMAA Check</title>
-  <meta name="description" content="Estimate whether a required minimum distribution or IRA withdrawal could raise your Medicare premiums.">
+  <title>RMD IRMAA Calculator: Can RMDs Raise Medicare Premiums?</title>
+  <meta name="description" content="Estimate whether a required minimum distribution could raise Medicare premiums through IRMAA. Test RMD income, MAGI, and room before the next bracket.">
   <link rel="canonical" href="https://www.irmaacheck.com/rmd-irmaa-calculator/">
-  <meta property="og:title" content="RMD IRMAA Calculator | IRMAA Check">
-  <meta property="og:description" content="Estimate whether a required minimum distribution or IRA withdrawal could raise your Medicare premiums.">
+  <meta property="og:title" content="RMD IRMAA Calculator: Can RMDs Raise Medicare Premiums?">
+  <meta property="og:description" content="Estimate whether a required minimum distribution could raise Medicare premiums through IRMAA and see room before the next bracket.">
   <meta property="og:url" content="https://www.irmaacheck.com/rmd-irmaa-calculator/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -26,6 +26,38 @@
                   },
     "applicationCategory":  "FinanceApplication",
     "operatingSystem":  "Any"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do RMDs count toward IRMAA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Taxable required minimum distributions generally count in adjusted gross income, which is part of Medicare MAGI for IRMAA."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can an RMD raise Medicare premiums?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If an RMD raises Medicare MAGI above an IRMAA threshold, it can increase future Part B and Part D premium amounts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which year's RMD affects IRMAA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Medicare generally uses tax information from two years earlier, so a 2024 RMD can affect 2026 Medicare premiums."
+      }
+    }
+  ]
 }
   </script>
   <script type="application/ld+json">
@@ -74,7 +106,8 @@
     <section class="hero planner-hero">
       <div class="hero-copy planner-intro">
         <h1>RMD IRMAA Calculator</h1>
-        <p>Estimate whether a required minimum distribution or IRA withdrawal could raise your Medicare premiums.</p>
+        <p>Estimate whether a required minimum distribution or IRA withdrawal could raise your Medicare premiums through IRMAA.</p>
+        <p class="quick-answer"><strong>Short answer:</strong> taxable RMD income generally counts toward Medicare MAGI. If it pushes you over an IRMAA threshold, future Part B and Part D premiums can rise.</p>
         <figure class="page-visual page-visual-compact"><img class="page-visual-image" loading="lazy" decoding="async" src="../assets/retirement-account-planning.webp" alt="Retirement account statements, calculator, and laptop used to plan income decisions" width="1536" height="1024"></figure>
         <div class="planner-progress" aria-label="Calculator steps">
           <div><span>1</span><strong>Filing status</strong></div>
@@ -278,12 +311,55 @@
       <h2>Why RMDs can affect IRMAA</h2>
       <p>Required minimum distributions from traditional retirement accounts are usually taxable income. That means an RMD can raise the Medicare MAGI used for IRMAA brackets.</p>
       <p>Model your expected distribution here, then compare it with the <a href="../irmaa-brackets-2026/">2026 IRMAA brackets</a>, review <a href="../medicare-magi/">Medicare MAGI</a>, or use the <a href="../irmaa-calculator/">main IRMAA calculator</a> for a broader estimate.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Example step</th>
+              <th>Amount</th>
+              <th>IRMAA planning note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AGI before RMD</td>
+              <td>$100,000</td>
+              <td>Starting income estimate</td>
+            </tr>
+            <tr>
+              <td>Taxable RMD</td>
+              <td>$20,000</td>
+              <td>Usually included in AGI</td>
+            </tr>
+            <tr>
+              <td>Tax-exempt interest</td>
+              <td>$3,000</td>
+              <td>Added back for Medicare MAGI</td>
+            </tr>
+            <tr>
+              <td>Estimated Medicare MAGI</td>
+              <td>$123,000</td>
+              <td>Compare with the applicable IRMAA bracket</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <h3>RMD FAQ</h3>
       <dl class="faq-list">
         <dt>Do RMDs count toward IRMAA?</dt><dd>Taxable RMD income generally counts toward MAGI for IRMAA purposes.</dd>
         <dt>Can a QCD change the result?</dt><dd>A properly handled qualified charitable distribution may reduce taxable IRA income, but details matter.</dd>
         <dt>Which year matters?</dt><dd>Medicare typically uses income from two years before the premium year.</dd>
       </dl>
+      <p>Related planning pages: <a href="../do-rmds-affect-medicare-premiums/">Do RMDs affect Medicare premiums?</a>, <a href="../401k-withdrawal-medicare-premium-calculator/">401(k) withdrawal Medicare premium calculator</a>, and <a href="../ira-withdrawal-medicare-premium-calculator/">IRA withdrawal Medicare premium calculator</a>.</p>
+      <section class="source-note">
+        <h2>Official sources</h2>
+        <p>SSA explains that IRMAA uses MAGI and generally relies on tax information from two years earlier. IRS guidance explains the basic required minimum distribution framework.</p>
+        <ul>
+          <li><a href="https://www.ssa.gov/benefits/medicare/medicare-premiums.html">SSA: Medicare premiums and MAGI</a></li>
+          <li><a href="https://secure.ssa.gov/poms.nsf/lnx/0601101010">SSA POMS: Modified Adjusted Gross Income</a></li>
+          <li><a href="https://www.irs.gov/retirement-plans/retirement-plan-and-ira-required-minimum-distributions-faqs">IRS: Required minimum distributions FAQs</a></li>
+        </ul>
+      </section>
     </section>  </main>
 
   <footer class="site-footer"><div class="footer-inner"><span>Educational estimates only. Not tax, legal, investment, or Medicare enrollment advice.</span><nav class="footer-links" aria-label="Site information"><a href="../about/">About</a><a href="../privacy/">Privacy</a><a href="../contact/">Contact</a></nav></div></footer>

@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>401(k) Withdrawal Medicare Premium Calculator | IRMAA Check</title>
-  <meta name="description" content="Estimate whether a 401(k) withdrawal could increase your Medicare premium surcharge.">
+  <title>Can a 401(k) Withdrawal Raise Medicare Premiums? Calculator</title>
+  <meta name="description" content="Estimate whether a taxable 401(k) withdrawal could raise Medicare premiums through IRMAA. Compare traditional 401(k), Roth 401(k), RMD, and contribution scenarios.">
   <link rel="canonical" href="https://www.irmaacheck.com/401k-withdrawal-medicare-premium-calculator/">
-  <meta property="og:title" content="401(k) Withdrawal Medicare Premium Calculator | IRMAA Check">
-  <meta property="og:description" content="Estimate whether a 401(k) withdrawal could increase your Medicare premium surcharge.">
+  <meta property="og:title" content="Can a 401(k) Withdrawal Raise Medicare Premiums?">
+  <meta property="og:description" content="Estimate whether a taxable 401(k) withdrawal could increase Medicare premiums through IRMAA, then compare it with RMD and IRA withdrawal scenarios.">
   <meta property="og:url" content="https://www.irmaacheck.com/401k-withdrawal-medicare-premium-calculator/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -26,6 +26,38 @@
                   },
     "applicationCategory":  "FinanceApplication",
     "operatingSystem":  "Any"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can a 401(k) withdrawal raise Medicare premiums?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A taxable traditional 401(k) withdrawal can increase Medicare MAGI and may raise Part B and Part D premiums through IRMAA if it pushes income over a threshold."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a Roth 401(k) withdrawal count for IRMAA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A qualified Roth 401(k) withdrawal is generally not taxable income and usually does not increase Medicare MAGI the same way a taxable traditional 401(k) withdrawal can."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a 401(k) contribution reduce IRMAA MAGI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A current-year pre-tax 401(k) contribution may reduce taxable wages for a worker, but it does not retroactively undo income from a prior tax year already used for IRMAA."
+      }
+    }
+  ]
 }
   </script>
   <script type="application/ld+json">
@@ -74,7 +106,8 @@
     <section class="hero planner-hero">
       <div class="hero-copy planner-intro">
         <h1>401(k) Withdrawal Medicare Premium Calculator</h1>
-        <p>Estimate whether a 401(k) withdrawal could increase your Medicare premium surcharge.</p>
+        <p>Estimate whether a taxable 401(k) withdrawal could increase your Medicare premium surcharge through IRMAA.</p>
+        <p class="quick-answer"><strong>Short answer:</strong> traditional 401(k) withdrawals can raise Medicare MAGI. Qualified Roth 401(k) withdrawals usually do not affect IRMAA the same way.</p>
         <figure class="page-visual page-visual-compact"><img class="page-visual-image" loading="lazy" decoding="async" src="../assets/retirement-account-planning.webp" alt="Retirement account statements, calculator, and laptop used to plan income decisions" width="1536" height="1024"></figure>
         <div class="planner-progress" aria-label="Calculator steps">
           <div><span>1</span><strong>Filing status</strong></div>
@@ -176,9 +209,9 @@
               <input aria-label="Roth conversion amount" type="number" min="0" step="100" value="8000">
             </div>
             <div class="event-row" data-event>
-              <input id="event-rmd" data-event-key="401k" type="checkbox" value="401(k) withdrawal">
-              <label for="event-rmd">401(k) withdrawal</label>
-              <input aria-label="RMD or IRA withdrawal amount" type="number" min="0" step="100" value="0">
+              <input id="event-401k" data-event-key="401k" type="checkbox" value="401(k) withdrawal">
+              <label for="event-401k">401(k) withdrawal</label>
+              <input aria-label="401(k) withdrawal amount" type="number" min="0" step="100" value="0">
             </div>
             <div class="event-row" data-event>
               <input id="event-gain" data-event-key="gains" type="checkbox" value="Capital gains">
@@ -276,14 +309,57 @@
     </section>
     <section class="section scenario-education">
       <h2>Why 401(k) withdrawals can affect Medicare premiums</h2>
-      <p>Traditional 401(k) withdrawals are usually taxable income. That means they can raise Medicare MAGI and potentially affect IRMAA.</p>
+      <p>Traditional 401(k) withdrawals are usually taxable income. That means they can raise Medicare MAGI and potentially affect IRMAA. The Medicare question is not the account balance; it is how much taxable income lands on the tax return used for the premium year.</p>
       <p>Use this page to test a planned withdrawal and see how close it may put you to the next bracket. <a href="../irmaa-brackets-2026/">2026 IRMAA brackets</a>, <a href="../medicare-magi/">Medicare MAGI</a>, and the <a href="../irmaa-calculator/">main IRMAA calculator</a> can help frame the estimate.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Retirement account event</th>
+              <th>Typical IRMAA impact</th>
+              <th>Planning page</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Traditional 401(k) withdrawal</td>
+              <td>Can raise AGI and Medicare MAGI</td>
+              <td>Use this calculator</td>
+            </tr>
+            <tr>
+              <td>Qualified Roth 401(k) withdrawal</td>
+              <td>Usually not taxable income</td>
+              <td><a href="../does-roth-conversion-affect-irmaa/">Roth and IRMAA guide</a></td>
+            </tr>
+            <tr>
+              <td>RMD</td>
+              <td>Usually taxable and can raise MAGI</td>
+              <td><a href="../rmd-irmaa-calculator/">RMD IRMAA calculator</a></td>
+            </tr>
+            <tr>
+              <td>Traditional IRA withdrawal</td>
+              <td>Usually taxable and can raise MAGI</td>
+              <td><a href="../ira-withdrawal-medicare-premium-calculator/">IRA withdrawal calculator</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <h3>401(k) withdrawal FAQ</h3>
       <dl class="faq-list">
         <dt>Does this income count for IRMAA?</dt><dd>Taxable retirement income generally counts in MAGI for IRMAA purposes.</dd>
         <dt>Should I enter the gross amount?</dt><dd>Enter the amount you expect to count in taxable income or Medicare MAGI, not an account balance.</dd>
+        <dt>Can a 401(k) contribution lower IRMAA?</dt><dd>A current-year pre-tax contribution can reduce taxable wages for a worker, but it does not change a prior tax year already used for an IRMAA notice.</dd>
         <dt>Is this personal advice?</dt><dd>No. This page provides educational estimates and should be checked against official guidance.</dd>
       </dl>
+      <section class="source-note">
+        <h2>Official sources</h2>
+        <p>SSA explains that IRMAA is based on MAGI, generally using tax information from two years earlier. The exact tax treatment of retirement distributions depends on account type and tax facts.</p>
+        <ul>
+          <li><a href="https://www.ssa.gov/benefits/medicare/medicare-premiums.html">SSA: Medicare premiums and MAGI</a></li>
+          <li><a href="https://secure.ssa.gov/poms.nsf/lnx/0601101010">SSA POMS: Modified Adjusted Gross Income</a></li>
+          <li><a href="https://www.irs.gov/retirement-plans/retirement-plan-and-ira-required-minimum-distributions-faqs">IRS: Required minimum distributions FAQs</a></li>
+        </ul>
+      </section>
     </section>  </main>
 
   <footer class="site-footer"><div class="footer-inner"><span>Educational estimates only. Not tax, legal, investment, or Medicare enrollment advice.</span><nav class="footer-links" aria-label="Site information"><a href="../about/">About</a><a href="../privacy/">Privacy</a><a href="../contact/">Contact</a></nav></div></footer>
