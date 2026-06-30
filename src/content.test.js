@@ -169,6 +169,22 @@ test("every public page exposes trust and contact links in the footer", async ()
   }
 });
 
+test("every public page includes Ezoic connection scripts in the head", async () => {
+  for (const [path] of pages) {
+    const html = await readFile(join(root, path), "utf8");
+    const head = html.slice(html.indexOf("<head>"), html.indexOf("</head>"));
+
+    assert.match(head, /<script data-cfasync="false" src="https:\/\/cmp\.gatekeeperconsent\.com\/min\.js"><\/script>/, path);
+    assert.match(head, /<script data-cfasync="false" src="https:\/\/the\.gatekeeperconsent\.com\/cmp\.min\.js"><\/script>/, path);
+    assert.match(head, /<script async src="https:\/\/www\.ezojs\.com\/ezoic\/sa\.min\.js"><\/script>/, path);
+    assert.match(head, /window\.ezstandalone = window\.ezstandalone \|\| \{\};/, path);
+    assert.match(head, /<script src="https:\/\/ezoicanalytics\.com\/analytics\.js"><\/script>/, path);
+
+    assert.ok(head.indexOf("cmp.gatekeeperconsent.com/min.js") < head.indexOf("www.ezojs.com/ezoic/sa.min.js"), path);
+    assert.ok(head.indexOf("the.gatekeeperconsent.com/cmp.min.js") < head.indexOf("www.ezojs.com/ezoic/sa.min.js"), path);
+  }
+});
+
 test("homepage routes visitors to the guide library", async () => {
   const html = await readFile(join(root, "index.html"), "utf8");
 
