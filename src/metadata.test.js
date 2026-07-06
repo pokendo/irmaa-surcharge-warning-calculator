@@ -28,6 +28,7 @@ const routes = [
   ["inheritance-irmaa/index.html", `${productionOrigin}/inheritance-irmaa/`],
   ["annuity-income-irmaa/index.html", `${productionOrigin}/annuity-income-irmaa/`],
   ["hsa-withdrawals-irmaa/index.html", `${productionOrigin}/hsa-withdrawals-irmaa/`],
+  ["irmaa-planning-new-jersey/index.html", `${productionOrigin}/irmaa-planning-new-jersey/`],
   ["does-roth-conversion-affect-irmaa/index.html", `${productionOrigin}/does-roth-conversion-affect-irmaa/`],
   ["do-capital-gains-affect-medicare-premiums/index.html", `${productionOrigin}/do-capital-gains-affect-medicare-premiums/`],
   ["do-rmds-affect-medicare-premiums/index.html", `${productionOrigin}/do-rmds-affect-medicare-premiums/`],

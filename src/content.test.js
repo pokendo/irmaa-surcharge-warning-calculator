@@ -34,6 +34,7 @@ const pages = [
   ["inheritance-irmaa/index.html", "Inheritance and IRMAA"],
   ["annuity-income-irmaa/index.html", "Annuity Income and IRMAA"],
   ["hsa-withdrawals-irmaa/index.html", "HSA Withdrawals and IRMAA"],
+  ["irmaa-planning-new-jersey/index.html", "IRMAA Planning in New Jersey"],
   ["does-roth-conversion-affect-irmaa/index.html", "Does a Roth Conversion Affect IRMAA?"],
   ["do-capital-gains-affect-medicare-premiums/index.html", "Do Capital Gains Affect Medicare Premiums?"],
   ["do-rmds-affect-medicare-premiums/index.html", "Do RMDs Affect Medicare Premiums?"],
@@ -788,6 +789,18 @@ test("new long-tail IRMAA income pages answer specific search intent", async () 
     assert.match(html, /"@type"\s*:\s*"Article"/, path);
     assert.match(guides, new RegExp(`href="\\.\\.\\/${escapeRegExp(path.replace("index.html", ""))}"`), `${path} linked from guides`);
   }
+});
+
+test("New Jersey IRMAA planning page targets local search without changing federal rules", async () => {
+  const html = await readFile(join(root, "irmaa-planning-new-jersey", "index.html"), "utf8");
+  const guides = await readFile(join(root, "guides", "index.html"), "utf8");
+
+  assert.match(html, /IRMAA is a federal Medicare premium surcharge/i);
+  assert.match(html, /New Jersey retirement income decisions/i);
+  assert.match(html, /href="\.\.\/irmaa-calculator\/\?source=new-jersey"/);
+  assert.match(html, /data-newsletter-form/);
+  assert.match(html, /"@type"\s*:\s*"Article"/);
+  assert.match(guides, /href="\.\.\/irmaa-planning-new-jersey\/"/);
 });
 
 function escapeRegExp(value) {
