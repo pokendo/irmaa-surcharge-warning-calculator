@@ -98,6 +98,50 @@ test("Search Console rescue pages have FAQ schema with on-page answers", async (
   }
 });
 
+test("homepage exposes a common IRMAA questions hub for rescue pages", async () => {
+  const html = await readFile(join(root, "index.html"), "utf8");
+  const section = extractElementById(html, "common-irmaa-questions");
+
+  assert.ok(section, "homepage has a common IRMAA questions section");
+  for (const href of [
+    "./municipal-bond-interest-irmaa/",
+    "./irmaa-two-year-lookback/",
+    "./do-both-spouses-pay-irmaa/",
+    "./how-long-does-irmaa-last/",
+    "./does-social-security-count-toward-irmaa/",
+    "./irmaa-cliff/",
+    "./how-to-avoid-irmaa/",
+  ]) {
+    assert.match(section, new RegExp(`href="${escapeRegExp(href)}"`), href);
+  }
+});
+
+test("calculator result area links to timing and household-impact explanations", async () => {
+  const html = await readFile(join(root, "irmaa-calculator/index.html"), "utf8");
+  const resultAction = extractElementByClass(html, "result-action");
+
+  assert.ok(resultAction, "calculator has a result action area");
+  assert.match(resultAction, /href="\.\.\/irmaa-two-year-lookback\/"/);
+  assert.match(resultAction, /href="\.\.\/do-both-spouses-pay-irmaa\/"/);
+});
+
+test("Search Console rescue pages link to siblings and the calculator", async () => {
+  const siblingHrefs = new Set(metadataTargets.map((target) => siblingHrefFor(target.path)));
+
+  for (const target of metadataTargets) {
+    const html = await readFile(join(root, target.path), "utf8");
+    const links = [...html.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+    const uniqueLinks = new Set(links);
+    const relatedGuides = extractElementByClass(html, "related-guides") ?? "";
+    const relatedLinks = [...relatedGuides.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+    const siblings = [...uniqueLinks].filter((href) => siblingHrefs.has(href) && href !== siblingHrefFor(target.path));
+
+    assert.ok(uniqueLinks.has("../irmaa-calculator/") || [...uniqueLinks].some((href) => href.startsWith("../irmaa-calculator/?")), `${target.path} links to calculator`);
+    assert.ok(siblings.length >= 2, `${target.path} links to at least two sibling rescue pages`);
+    assert.equal(relatedLinks.length, new Set(relatedLinks).size, `${target.path} related guide links do not duplicate exact hrefs`);
+  }
+});
+
 function extractTitle(html) {
   return html.match(/<title>([\s\S]*?)<\/title>/)?.[1]?.trim();
 }
@@ -127,6 +171,22 @@ function stripTags(html) {
 
 function normalizeText(value) {
   return value.replace(/\s+/g, " ").trim();
+}
+
+function extractElementById(html, id) {
+  return html.match(new RegExp(`<section[^>]*id="${escapeRegExp(id)}"[\\s\\S]*?<\\/section>`))?.[0];
+}
+
+function extractElementByClass(html, className) {
+  if (className === "result-action") {
+    return html.match(new RegExp(`<div[^>]*class="[^"]*${escapeRegExp(className)}[^"]*"[^>]*>[\\s\\S]*?<\\/div>\\s*<section class="print-summary"`))?.[0];
+  }
+
+  return html.match(new RegExp(`<(?:section|div)[^>]*class="[^"]*${escapeRegExp(className)}[^"]*"[^>]*>[\\s\\S]*?<\\/(?:section|div)>`))?.[0];
+}
+
+function siblingHrefFor(path) {
+  return `../${path.replace("index.html", "")}`;
 }
 
 function escapeRegExp(value) {
