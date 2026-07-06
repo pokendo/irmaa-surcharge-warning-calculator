@@ -204,6 +204,21 @@ input:focus, select:focus, textarea:focus, button:focus, a:focus {
   font-size: 22px;
 }
 
+.quick-answer {
+  background: var(--soft);
+  border-left: 4px solid var(--teal);
+  border-radius: 0 8px 8px 0;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.55;
+  margin: 0 0 24px;
+  padding: 16px 18px;
+}
+
+.quick-answer strong {
+  color: var(--blue-ink);
+}
+
 .planner-progress {
   display: grid;
   gap: 12px;
