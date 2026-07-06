@@ -23,6 +23,11 @@ const requiredRoutes = [
   "/ira-withdrawal-medicare-premium-calculator/",
   "/401k-withdrawal-medicare-premium-calculator/",
   "/qcd-irmaa/",
+  "/roth-conversion-irmaa/",
+  "/capital-gains-irmaa/",
+  "/inheritance-irmaa/",
+  "/annuity-income-irmaa/",
+  "/hsa-withdrawals-irmaa/",
   "/does-roth-conversion-affect-irmaa/",
   "/do-capital-gains-affect-medicare-premiums/",
   "/do-rmds-affect-medicare-premiums/",
@@ -75,7 +80,7 @@ test("sitemap includes lastmod dates for every public URL", async () => {
 
   assert.equal(urlBlocks.length, requiredRoutes.length);
   for (const block of urlBlocks) {
-    assert.match(block, /<lastmod>2026-(05-(14|29|31)|06-(05|06|07|27))<\/lastmod>/);
+    assert.match(block, /<lastmod>2026-(05-(14|29|31)|06-(05|06|07|27)|07-05)<\/lastmod>/);
   }
 });
 test("custom 404 page points users back to useful IRMAA pages", async () => {

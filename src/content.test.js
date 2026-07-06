@@ -29,6 +29,11 @@ const pages = [
   ["ira-withdrawal-medicare-premium-calculator/index.html", "IRA Withdrawal Medicare Premium Calculator"],
   ["401k-withdrawal-medicare-premium-calculator/index.html", "401(k) Withdrawal Medicare Premium Calculator"],
   ["qcd-irmaa/index.html", "QCD IRMAA Guide"],
+  ["roth-conversion-irmaa/index.html", "Roth Conversion and IRMAA"],
+  ["capital-gains-irmaa/index.html", "Capital Gains and IRMAA"],
+  ["inheritance-irmaa/index.html", "Inheritance and IRMAA"],
+  ["annuity-income-irmaa/index.html", "Annuity Income and IRMAA"],
+  ["hsa-withdrawals-irmaa/index.html", "HSA Withdrawals and IRMAA"],
   ["does-roth-conversion-affect-irmaa/index.html", "Does a Roth Conversion Affect IRMAA?"],
   ["do-capital-gains-affect-medicare-premiums/index.html", "Do Capital Gains Affect Medicare Premiums?"],
   ["do-rmds-affect-medicare-premiums/index.html", "Do RMDs Affect Medicare Premiums?"],
@@ -760,6 +765,29 @@ test("planning checklist page creates a lead magnet for newsletter and sponsor c
   assert.match(html, /href="\.\.\/irmaa-calculator\/"/);
   assert.match(html, /href="\.\.\/how-to-avoid-irmaa\/"/);
   assert.match(html, /src\/profit\.js|\.\.\/src\/profit\.js/);
+});
+
+test("new long-tail IRMAA income pages answer specific search intent", async () => {
+  const targets = [
+    ["roth-conversion-irmaa/index.html", /Roth conversions can increase Medicare MAGI/i, /href="\.\.\/roth-conversion-irmaa-calculator\/"/],
+    ["capital-gains-irmaa/index.html", /Taxable capital gains can increase Medicare MAGI/i, /href="\.\.\/capital-gains-irmaa-calculator\/"/],
+    ["inheritance-irmaa/index.html", /An inheritance itself is usually not taxable income/i, /href="\.\.\/irmaa-calculator\/\?source=inheritance-irmaa"/],
+    ["annuity-income-irmaa/index.html", /Taxable annuity income can count toward Medicare MAGI/i, /href="\.\.\/irmaa-calculator\/\?source=annuity-income-irmaa"/],
+    ["hsa-withdrawals-irmaa/index.html", /Qualified HSA withdrawals generally do not count toward IRMAA/i, /href="\.\.\/irmaa-calculator\/\?source=hsa-withdrawals-irmaa"/],
+  ];
+
+  const guides = await readFile(join(root, "guides", "index.html"), "utf8");
+
+  for (const [path, answerPattern, calculatorPattern] of targets) {
+    const html = await readFile(join(root, path), "utf8");
+
+    assert.match(html, /class="quick-answer"/, path);
+    assert.match(html, answerPattern, path);
+    assert.match(html, calculatorPattern, path);
+    assert.match(html, /data-newsletter-form/, path);
+    assert.match(html, /"@type"\s*:\s*"Article"/, path);
+    assert.match(guides, new RegExp(`href="\\.\\.\\/${escapeRegExp(path.replace("index.html", ""))}"`), `${path} linked from guides`);
+  }
 });
 
 function escapeRegExp(value) {
