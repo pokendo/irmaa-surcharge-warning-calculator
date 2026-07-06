@@ -803,6 +803,15 @@ test("New Jersey IRMAA planning page targets local search without changing feder
   assert.match(guides, /href="\.\.\/irmaa-planning-new-jersey\/"/);
 });
 
+test("Part B premium guide answers the 2026 premium before explaining IRMAA", async () => {
+  const html = await readFile(join(root, "medicare-part-b-premium-2026", "index.html"), "utf8");
+  const hero = html.match(/<section class="article-hero editorial-hero">([\s\S]*?)<\/section>/)?.[1] ?? "";
+
+  assert.match(html, /<title>Medicare Part B Premium 2026: \$202\.90\/mo/);
+  assert.match(hero, /<h1>Medicare Part B Premium 2026<\/h1>\s*<p>The standard Medicare Part B premium is \$202\.90 per month in 2026/);
+  assert.doesNotMatch(hero, /IRMAA/);
+});
+
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
