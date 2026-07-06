@@ -77,6 +77,27 @@ test("quick answer snippets use a distinct left-border callout style", async () 
   assert.match(css, /\.quick-answer\s*\{[\s\S]*padding:/);
 });
 
+test("Search Console rescue pages have FAQ schema with on-page answers", async () => {
+  for (const target of metadataTargets) {
+    const html = await readFile(join(root, target.path), "utf8");
+    const visibleText = normalizeText(stripTags(html));
+    const faqSchema = extractJsonLd(html).find((schema) => schema["@type"] === "FAQPage");
+
+    assert.ok(faqSchema, `${target.path} has FAQPage schema`);
+    assert.ok(Array.isArray(faqSchema.mainEntity), `${target.path} has FAQ entries`);
+    assert.ok(faqSchema.mainEntity.length >= 3, `${target.path} has at least 3 FAQs`);
+    assert.ok(faqSchema.mainEntity.length <= 5, `${target.path} has at most 5 FAQs`);
+
+    for (const entry of faqSchema.mainEntity) {
+      assert.equal(entry["@type"], "Question", `${target.path} FAQ entry type`);
+      assert.ok(entry.name, `${target.path} FAQ question has text`);
+      assert.equal(entry.acceptedAnswer?.["@type"], "Answer", `${target.path} FAQ answer type`);
+      assert.ok(entry.acceptedAnswer?.text, `${target.path} FAQ answer has text`);
+      assert.match(visibleText, new RegExp(escapeRegExp(normalizeText(entry.acceptedAnswer.text))), `${target.path} answer appears on page`);
+    }
+  }
+});
+
 function extractTitle(html) {
   return html.match(/<title>([\s\S]*?)<\/title>/)?.[1]?.trim();
 }
@@ -91,6 +112,21 @@ function extractProperty(html, property) {
 
 function countMatches(value, pattern) {
   return [...value.matchAll(pattern)].length;
+}
+
+function extractJsonLd(html) {
+  return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+}
+
+function stripTags(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/g, " ")
+    .replace(/<style[\s\S]*?<\/style>/g, " ")
+    .replace(/<[^>]+>/g, " ");
+}
+
+function normalizeText(value) {
+  return value.replace(/\s+/g, " ").trim();
 }
 
 function escapeRegExp(value) {
