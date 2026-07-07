@@ -791,13 +791,44 @@ test("new long-tail IRMAA income pages answer specific search intent", async () 
   }
 });
 
+test("new long-tail IRMAA income pages include FAQ schema, official sources, and depth", async () => {
+  const targets = [
+    ["roth-conversion-irmaa/index.html", ["https://www.irs.gov/retirement-plans/retirement-plans-faqs-regarding-iras", "https://secure.ssa.gov/poms.nsf/lnx/0601101010"]],
+    ["capital-gains-irmaa/index.html", ["https://www.irs.gov/taxtopics/tc409", "https://www.irs.gov/faqs/capital-gains-losses-and-sale-of-home"]],
+    ["inheritance-irmaa/index.html", ["https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-beneficiary", "https://www.irs.gov/publications/p590b"]],
+    ["annuity-income-irmaa/index.html", ["https://www.irs.gov/publications/p575", "https://www.irs.gov/help/ita/is-my-pension-or-annuity-payment-taxable"]],
+    ["hsa-withdrawals-irmaa/index.html", ["https://www.irs.gov/publications/p969", "https://secure.ssa.gov/poms.nsf/lnx/0601101010"]],
+  ];
+
+  for (const [path, sourceUrls] of targets) {
+    const html = await readFile(join(root, path), "utf8");
+    const wordCount = stripTags(html).split(/\s+/).filter(Boolean).length;
+    const schemas = extractJsonLd(html);
+    const faq = schemas.find((schema) => schema["@type"] === "FAQPage");
+
+    assert.ok(wordCount >= 600, `${path} has at least 600 words`);
+    assert.ok(wordCount <= 1000, `${path} stays under 1000 words`);
+    assert.ok(faq, `${path} has FAQPage schema`);
+    assert.ok(faq.mainEntity.length >= 3, `${path} has at least 3 FAQ entries`);
+    assert.match(html, /class="source-note"/, `${path} has official source note`);
+    for (const sourceUrl of sourceUrls) {
+      assert.match(html, new RegExp(`href="${escapeRegExp(sourceUrl)}"`), `${path} links to ${sourceUrl}`);
+    }
+  }
+});
+
 test("New Jersey IRMAA planning page targets local search without changing federal rules", async () => {
   const html = await readFile(join(root, "irmaa-planning-new-jersey", "index.html"), "utf8");
   const guides = await readFile(join(root, "guides", "index.html"), "utf8");
 
   assert.match(html, /IRMAA is a federal Medicare premium surcharge/i);
   assert.match(html, /New Jersey retirement income decisions/i);
+  assert.match(html, /New Jersey does not tax Social Security benefits/i);
+  assert.match(html, /pension exclusion/i);
+  assert.match(html, /tax-exempt interest/i);
   assert.match(html, /href="\.\.\/irmaa-calculator\/\?source=new-jersey"/);
+  assert.match(html, /href="https:\/\/www\.nj\.gov\/treasury\/taxation\/njit7\.shtml"/);
+  assert.match(html, /href="https:\/\/www\.nj\.gov\/treasury\/taxation\/njit12\.shtml"/);
   assert.match(html, /data-newsletter-form/);
   assert.match(html, /"@type"\s*:\s*"Article"/);
   assert.match(guides, /href="\.\.\/irmaa-planning-new-jersey\/"/);
@@ -814,6 +845,17 @@ test("Part B premium guide answers the 2026 premium before explaining IRMAA", as
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function extractJsonLd(html) {
+  return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+}
+
+function stripTags(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/g, " ")
+    .replace(/<style[\s\S]*?<\/style>/g, " ")
+    .replace(/<[^>]+>/g, " ");
 }
 
 test("every public page includes a relevant content image with alt text", async () => {
